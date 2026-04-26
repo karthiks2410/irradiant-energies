@@ -1,21 +1,19 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { SolarPanelsSection } from "@/components/sections/SolarPanelsSection";
-import { SmartBoxSection } from "@/components/sections/SmartBoxSection";
-import { P2PTradingSection } from "@/components/sections/P2PTradingSection";
+import { ProductShowcaseSection } from "@/components/sections/ProductShowcaseSection";
 import { GovernmentSection } from "@/components/sections/GovernmentSection";
 import { CTASection } from "@/components/sections/CTASection";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
 
 export default function Home() {
   return (
     <>
+      <ScrollProgress />
       <Header />
       <main className="flex-1">
         <HeroSection />
-        <SolarPanelsSection />
-        <SmartBoxSection />
-        <P2PTradingSection />
+        <ProductShowcaseSection />
         <GovernmentSection />
         <CTASection />
       </main>

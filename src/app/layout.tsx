@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { LenisProvider } from "@/components/providers/LenisProvider";
 import "./globals.css";
 
 const inter = Inter({
@@ -26,7 +27,9 @@ export default function RootLayout({
       className={`${inter.variable} h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full flex flex-col font-sans">
-        <TooltipProvider>{children}</TooltipProvider>
+        <LenisProvider>
+          <TooltipProvider>{children}</TooltipProvider>
+        </LenisProvider>
         <Analytics />
       </body>
     </html>
