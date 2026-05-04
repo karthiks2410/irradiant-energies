@@ -1,231 +1,270 @@
 "use client";
 
-import { useRef, useLayoutEffect } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Bell, Zap, Users, Sun } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
 
 const products = [
   {
     id: "solar",
     tag: "Solar Energy",
-    tagColor: "text-orange-500",
+    tagColor: "text-[#8EBE34]",
     title: "Harness the Sun",
     description:
       "Premium panels with professional installation. We handle all government subsidies and paperwork for you.",
     image: "/solar-panel.jpg",
     icon: Sun,
-    iconBg: "bg-orange-500/20",
-    iconColor: "text-orange-500",
+    iconBg: "bg-[#8EBE34]/20",
+    iconColor: "text-[#8EBE34]",
     cta: { label: "Get Quote", href: "/get-started" },
     ctaSecondary: { label: "Learn More", href: "#solar-learn-more" },
-    gradient: "from-black/70 via-black/40 to-transparent",
     available: true,
   },
   {
     id: "smartbox",
     tag: "Smart Box",
-    tagColor: "text-blue-400",
+    tagColor: "text-blue-500",
     title: "Intelligence That Pays for Itself",
     description:
       "Our Smart Box learns your home. It knows when to store, when to use, when to sell.",
     image: "/smart-box.jpg",
     icon: Zap,
     iconBg: "bg-blue-500/20",
-    iconColor: "text-blue-400",
+    iconColor: "text-blue-500",
     cta: { label: "Join Waitlist", href: "#waitlist" },
-    gradient: "from-black/80 via-black/50 to-black/20",
     badge: "Coming Soon",
     available: false,
   },
   {
     id: "p2p",
     tag: "P2P Trading",
-    tagColor: "text-green-400",
+    tagColor: "text-emerald-500",
     title: "Your Energy. Your Market.",
     description:
       "Generate more than you need? Sell it to your neighbors. Coming to Karnataka first.",
     image: "/p2p-trading.jpg",
     icon: Users,
-    iconBg: "bg-green-500/20",
-    iconColor: "text-green-400",
+    iconBg: "bg-emerald-500/20",
+    iconColor: "text-emerald-500",
     cta: { label: "Get Started", href: "/get-started" },
     ctaSecondary: { label: "Learn More", href: "#p2p-learn-more" },
-    gradient: "from-black/70 via-black/40 to-transparent",
     available: true,
   },
 ];
 
+function ProductCard({
+  product,
+  index,
+}: {
+  product: (typeof products)[0];
+  index: number;
+}) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const isEven = index % 2 === 0;
+
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.8, 1, 1, 0.8]);
+  const imageY = useTransform(scrollYProgress, [0, 1], [50, -50]);
+
+  return (
+    <motion.div
+      ref={cardRef}
+      style={{ opacity, scale }}
+      className="min-h-screen flex items-center justify-center py-20 px-6"
+    >
+      <div
+        className={`max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center ${
+          isEven ? "" : "lg:direction-rtl"
+        }`}
+      >
+        {/* Content */}
+        <motion.div
+          style={{ y }}
+          className={`space-y-6 ${isEven ? "lg:order-1" : "lg:order-2"}`}
+        >
+          {product.badge && (
+            <Badge className="bg-blue-500/10 text-blue-500 border-blue-500/20 px-4 py-1.5 text-sm">
+              {product.badge}
+            </Badge>
+          )}
+
+          <div className="flex items-center gap-3">
+            <div className={`p-3 rounded-full ${product.iconBg}`}>
+              <product.icon className={`w-6 h-6 ${product.iconColor}`} />
+            </div>
+            <p
+              className={`text-sm uppercase tracking-wider font-medium ${product.tagColor}`}
+            >
+              {product.tag}
+            </p>
+          </div>
+
+          <h2
+            className="text-4xl md:text-5xl lg:text-6xl font-normal font-[family-name:var(--font-display)]"
+            style={{
+              lineHeight: 1,
+              letterSpacing: "-1.5px",
+              color: "#1d1d1f",
+            }}
+          >
+            {product.title}
+          </h2>
+
+          <p className="text-lg text-[#6F6F6F] max-w-lg leading-relaxed">
+            {product.description}
+          </p>
+
+          <div className="flex flex-wrap gap-4 pt-4">
+            {product.ctaSecondary && (
+              <Link
+                href={product.ctaSecondary.href}
+                className="inline-flex items-center justify-center px-8 py-3.5 text-base rounded-full border-2 border-[#1d1d1f] text-[#1d1d1f] hover:bg-[#1d1d1f] hover:text-white transition-all duration-300"
+              >
+                {product.ctaSecondary.label}
+              </Link>
+            )}
+            <Link
+              href={product.cta.href}
+              className={`inline-flex items-center justify-center px-8 py-3.5 text-base rounded-full transition-all duration-300 hover:scale-[1.03] ${
+                product.available
+                  ? "bg-[#8EBE34] text-white hover:bg-[#7AA82D] shadow-lg shadow-[#8EBE34]/25"
+                  : "bg-blue-500 text-white hover:bg-blue-600 shadow-lg shadow-blue-500/25"
+              }`}
+            >
+              {!product.available && <Bell className="mr-2 w-5 h-5" />}
+              {product.cta.label}
+              {product.available && <ArrowRight className="ml-2 w-5 h-5" />}
+            </Link>
+          </div>
+        </motion.div>
+
+        {/* Image */}
+        <motion.div
+          style={{ y: imageY }}
+          className={`relative ${isEven ? "lg:order-2" : "lg:order-1"}`}
+        >
+          <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl shadow-black/20">
+            <Image
+              src={product.image}
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover transition-transform duration-700 hover:scale-105"
+              alt={product.title}
+            />
+            {/* Subtle gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+          </div>
+
+          {/* Decorative element */}
+          <motion.div
+            className={`absolute -z-10 w-full h-full rounded-3xl ${
+              product.available ? "bg-[#8EBE34]/10" : "bg-blue-500/10"
+            }`}
+            style={{
+              top: "20px",
+              left: isEven ? "20px" : "-20px",
+            }}
+          />
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+}
+
 export function ProductShowcaseSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const panelsRef = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const ctx = gsap.context(() => {
-      const panels = panelsRef.current;
-      if (!panels) return;
-
-      const totalWidth = panels.scrollWidth - window.innerWidth;
-
-      gsap.to(panels, {
-        x: -totalWidth,
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: () => `+=${totalWidth}`,
-          pin: true,
-          scrub: 1,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      });
-
-      const productPanels = panels.querySelectorAll(".product-panel");
-      productPanels.forEach((panel, i) => {
-        const content = panel.querySelector(".panel-content");
-        if (content) {
-          gsap.fromTo(
-            content,
-            { opacity: 0, y: 50 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.5,
-              scrollTrigger: {
-                trigger: panel,
-                containerAnimation: gsap.getById("horizontal") as gsap.core.Animation,
-                start: "left center",
-                end: "center center",
-                scrub: true,
-              },
-            }
-          );
-        }
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
 
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-black"
+      id="products"
+      className="relative bg-[#f5f5f7]"
     >
-      <div ref={containerRef} className="h-screen flex items-center overflow-hidden">
-        <div
-          ref={panelsRef}
-          className="flex h-full"
-          style={{ width: `${products.length * 100}vw` }}
-        >
-          {products.map((product, index) => (
-            <div
-              key={product.id}
-              className="product-panel relative w-screen h-full flex-shrink-0"
-            >
-              <div className="absolute inset-0">
-                <Image
-                  src={product.image}
-                  fill
-                  sizes="100vw"
-                  className="object-cover"
-                  alt={product.title}
-                  priority={index === 0}
-                />
-              </div>
-
-              <div
-                className={`absolute inset-0 bg-gradient-to-r ${product.gradient}`}
-              />
-
-              <div className="panel-content absolute inset-0 flex items-center">
-                <div className="max-w-xl px-8 md:px-16 text-white">
-                  {product.badge && (
-                    <motion.div className="mb-4">
-                      <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30 px-4 py-1.5 text-sm">
-                        {product.badge}
-                      </Badge>
-                    </motion.div>
-                  )}
-
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className={`p-2 rounded-full ${product.iconBg}`}>
-                      <product.icon className={`w-5 h-5 ${product.iconColor}`} />
-                    </div>
-                    <p
-                      className={`text-sm uppercase tracking-wider ${product.tagColor}`}
-                    >
-                      {product.tag}
-                    </p>
-                  </div>
-
-                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold mb-6">
-                    {product.title}
-                  </h2>
-
-                  <p className="text-lg md:text-xl text-gray-300 mb-8">
-                    {product.description}
-                  </p>
-
-                  <div className="flex gap-4">
-                    {product.ctaSecondary && (
-                      <Link
-                        href={product.ctaSecondary.href}
-                        className="inline-flex items-center justify-center px-8 py-3 text-lg rounded-full border border-white text-white hover:bg-white hover:text-black transition-all duration-300"
-                      >
-                        {product.ctaSecondary.label}
-                      </Link>
-                    )}
-                    <Link
-                      href={product.cta.href}
-                      className={`inline-flex items-center justify-center px-8 py-3 text-lg rounded-full transition-all duration-300 ${
-                        product.available
-                          ? "bg-white text-black hover:bg-gray-100"
-                          : "bg-blue-500 text-white hover:bg-blue-600"
-                      }`}
-                    >
-                      {!product.available && <Bell className="mr-2 w-5 h-5" />}
-                      {product.cta.label}
-                      {product.available && <ArrowRight className="ml-2 w-5 h-5" />}
-                    </Link>
-                  </div>
-                </div>
-              </div>
-
-              <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
-                {products.map((_, i) => (
-                  <div
-                    key={i}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      i === index ? "bg-white w-8" : "bg-white/40"
-                    }`}
-                  />
-                ))}
-              </div>
+      {/* Section Header */}
+      <div className="sticky top-0 z-10 bg-[#f5f5f7]/80 backdrop-blur-md py-8 border-b border-black/5">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex items-center justify-between"
+          >
+            <div>
+              <p className="text-[#8EBE34] text-sm uppercase tracking-wider font-medium mb-2">
+                Our Solutions
+              </p>
+              <h2
+                className="text-3xl md:text-4xl font-normal font-[family-name:var(--font-display)]"
+                style={{ color: "#1d1d1f" }}
+              >
+                Complete Solar Ecosystem
+              </h2>
             </div>
-          ))}
+
+            {/* Progress indicator */}
+            <div className="hidden md:flex items-center gap-3">
+              {products.map((product, i) => (
+                <motion.div
+                  key={product.id}
+                  className="flex items-center gap-2"
+                >
+                  <span className="text-xs text-[#6F6F6F]">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-xs uppercase tracking-wider text-[#6F6F6F]">
+                    {product.tag}
+                  </span>
+                  {i < products.length - 1 && (
+                    <span className="w-8 h-px bg-black/10 mx-2" />
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </div>
 
-      <div className="absolute right-8 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-4 z-20">
-        {products.map((product, i) => (
-          <div
-            key={product.id}
-            className="flex items-center gap-3 text-white/60 hover:text-white transition-colors cursor-pointer"
-          >
-            <span className="text-sm">{String(i + 1).padStart(2, "0")}</span>
-            <span className="text-xs uppercase tracking-wider">{product.tag}</span>
-          </div>
+      {/* Product Cards */}
+      <div className="relative">
+        {products.map((product, index) => (
+          <ProductCard key={product.id} product={product} index={index} />
         ))}
       </div>
+
+      {/* Bottom CTA */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="py-20 text-center px-6"
+      >
+        <p className="text-[#6F6F6F] text-lg mb-6 max-w-xl mx-auto">
+          Not sure which solution is right for you? Let our experts help you design the perfect system.
+        </p>
+        <Link
+          href="#contact"
+          className="inline-flex items-center justify-center px-10 py-4 text-base rounded-full bg-[#1d1d1f] text-white hover:bg-black transition-all duration-300 hover:scale-[1.03]"
+        >
+          Talk to an Expert
+          <ArrowRight className="ml-2 w-5 h-5" />
+        </Link>
+      </motion.div>
     </section>
   );
 }
