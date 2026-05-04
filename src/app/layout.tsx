@@ -3,6 +3,7 @@ import { Inter, Instrument_Serif } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { LenisProvider } from "@/components/providers/LenisProvider";
+import { CookieConsentProvider } from "@/components/providers/CookieConsentProvider";
 import "./globals.css";
 
 const inter = Inter({
@@ -38,6 +39,7 @@ export default function RootLayout({
         <LenisProvider>
           <TooltipProvider>{children}</TooltipProvider>
         </LenisProvider>
+        <CookieConsentProvider />
         <Analytics />
       </body>
     </html>
