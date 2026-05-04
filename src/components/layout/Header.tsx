@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, ArrowRight, ChevronDown, Sun, Zap, Users, BookOpen } from "lucide-react";
+import { Menu, X, ArrowRight, ChevronDown, Sun, Zap, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const products = [
@@ -32,13 +32,6 @@ const products = [
     iconColor: "text-emerald-500",
     iconBg: "bg-emerald-500/10",
   },
-];
-
-const navLinks = [
-  { name: "Home", href: "/", active: true },
-  { name: "Discover", href: "/discover" },
-  { name: "About", href: "#about" },
-  { name: "Contact", href: "#contact" },
 ];
 
 export function Header() {
@@ -84,21 +77,15 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={`text-sm font-medium transition-colors ${
-                  link.active
-                    ? "text-[#000000]"
-                    : "text-[#6F6F6F] hover:text-[#000000]"
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
+            {/* Home Link */}
+            <Link
+              href="/"
+              className="text-sm font-medium transition-colors text-[#000000]"
+            >
+              Home
+            </Link>
 
-            {/* Products Dropdown */}
+            {/* Products Dropdown - Right after Home */}
             <div
               className="relative"
               onMouseEnter={() => setIsProductsOpen(true)}
@@ -153,6 +140,26 @@ export function Header() {
                 </div>
               </div>
             </div>
+
+            {/* Other Nav Links */}
+            <Link
+              href="/discover"
+              className="text-sm font-medium transition-colors text-[#6F6F6F] hover:text-[#000000]"
+            >
+              Discover
+            </Link>
+            <Link
+              href="#about"
+              className="text-sm font-medium transition-colors text-[#6F6F6F] hover:text-[#000000]"
+            >
+              About
+            </Link>
+            <Link
+              href="#contact"
+              className="text-sm font-medium transition-colors text-[#6F6F6F] hover:text-[#000000]"
+            >
+              Contact
+            </Link>
           </nav>
 
           {/* CTA Button */}
@@ -182,20 +189,14 @@ export function Header() {
         {isMobileMenuOpen && (
           <div className="md:hidden pb-6 border-t border-gray-100">
             <nav className="flex flex-col space-y-4 pt-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-base font-medium transition-colors ${
-                    link.active
-                      ? "text-[#000000]"
-                      : "text-[#6F6F6F] hover:text-[#000000]"
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              ))}
+              {/* Home */}
+              <Link
+                href="/"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-base font-medium transition-colors text-[#000000]"
+              >
+                Home
+              </Link>
 
               {/* Mobile Products */}
               <div className="pt-2 border-t border-gray-100">
@@ -219,6 +220,29 @@ export function Header() {
                   </Link>
                 ))}
               </div>
+
+              {/* Other Links */}
+              <Link
+                href="/discover"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-base font-medium transition-colors text-[#6F6F6F] hover:text-[#000000]"
+              >
+                Discover
+              </Link>
+              <Link
+                href="#about"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-base font-medium transition-colors text-[#6F6F6F] hover:text-[#000000]"
+              >
+                About
+              </Link>
+              <Link
+                href="#contact"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-base font-medium transition-colors text-[#6F6F6F] hover:text-[#000000]"
+              >
+                Contact
+              </Link>
 
               <Button
                 className="bg-[#8EBE34] hover:bg-[#7AA82D] text-white rounded-full px-6 py-2.5 text-sm w-full mt-2"
