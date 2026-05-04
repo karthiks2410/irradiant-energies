@@ -15,19 +15,18 @@ const articles = [
     iconColor: "text-blue-500",
     iconBg: "bg-blue-500/10",
     tag: "Energy Innovation",
-    readTime: "5 min read",
+    readTime: "8 min read",
   },
   {
     slug: "p2p-trading",
     title: "Peer-to-Peer Energy Trading",
     description:
-      "Discover how you can sell your excess solar energy directly to your neighbors and community.",
+      "Discover how you can sell your excess solar energy directly to your neighbors and earn money from your rooftop solar system.",
     icon: Users,
     iconColor: "text-emerald-500",
     iconBg: "bg-emerald-500/10",
-    tag: "Coming Soon",
-    readTime: "4 min read",
-    comingSoon: true,
+    tag: "Earn from Solar",
+    readTime: "7 min read",
   },
   {
     slug: "solar-basics",
