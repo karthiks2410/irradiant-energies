@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Sun, Zap, Mail, Phone, MapPin } from "lucide-react";
+import Image from "next/image";
+import { Mail, Phone, MapPin } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { COMPANY } from "@/lib/constants";
 
@@ -49,12 +50,21 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center space-x-2 mb-6">
-              <div className="relative w-10 h-10">
-                <Sun className="w-10 h-10 text-orange-500" />
-                <Zap className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-orange-600" />
-              </div>
-              <span className="text-xl font-bold text-[#1d1d1f]">Irradiant Energies</span>
+            <Link href="/" className="flex items-center space-x-3 mb-6">
+              <Image
+                src="/logo.svg"
+                alt="Irradiant Energies"
+                width={40}
+                height={47}
+                className="h-10 w-auto"
+              />
+              <Image
+                src="/logo-text.svg"
+                alt="Irradiant Energies"
+                width={150}
+                height={50}
+                className="h-7 w-auto"
+              />
             </Link>
             <p className="text-[#6e6e73] mb-6 max-w-sm">
               Powering India's clean energy future with innovative solar solutions and smart energy management systems.

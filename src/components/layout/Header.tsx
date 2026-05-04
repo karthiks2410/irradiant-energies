@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, Sun, Zap, ArrowRight, ChevronDown } from "lucide-react";
+import { Menu, ArrowRight, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
@@ -107,13 +107,20 @@ export function Header() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <div className="relative w-10 h-10">
-              <Sun className="w-10 h-10 text-orange-500" />
-              <Zap className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 text-orange-600" />
-            </div>
-            <span className="text-xl font-bold tracking-tight text-[#1d1d1f]">
-              Irradiant
-            </span>
+            <Image
+              src="/logo.svg"
+              alt="Irradiant Energies"
+              width={32}
+              height={38}
+              className="h-9 w-auto"
+            />
+            <Image
+              src="/logo-text.svg"
+              alt="Irradiant Energies"
+              width={120}
+              height={40}
+              className="h-6 w-auto hidden sm:block"
+            />
           </Link>
 
           {/* Desktop Navigation */}
