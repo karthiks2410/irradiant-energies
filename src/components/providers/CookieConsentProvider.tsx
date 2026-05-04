@@ -6,7 +6,9 @@ import * as CookieConsent from "vanilla-cookieconsent";
 
 export function CookieConsentProvider() {
   useEffect(() => {
-    CookieConsent.run({
+    // Delay showing the cookie consent for a smoother experience
+    const timer = setTimeout(() => {
+      CookieConsent.run({
       // Force user to make a choice before accessing the site
       disablePageInteraction: true,
 
@@ -94,7 +96,7 @@ export function CookieConsentProvider() {
         translations: {
           en: {
             consentModal: {
-              title: "We Value Your Privacy 🍪",
+              title: "We Value Your Privacy",
               description:
                 "We use cookies to enhance your browsing experience, provide personalized content, and analyze our traffic. Please make a selection to continue using our website.",
               acceptAllBtn: "Accept All",
@@ -142,6 +144,9 @@ export function CookieConsentProvider() {
         },
       },
     });
+    }, 1500); // 1.5 second delay before showing
+
+    return () => clearTimeout(timer);
   }, []);
 
   return null;
