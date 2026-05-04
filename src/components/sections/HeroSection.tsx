@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-white">
+    <section className="relative min-h-[85vh] w-full overflow-hidden bg-white">
       {/* Image Background */}
       <div
         className="absolute z-0"
@@ -33,9 +33,9 @@ export function HeroSection() {
       <div
         className="relative z-10 flex flex-col items-center justify-center text-center px-6"
         style={{
-          paddingTop: "calc(8rem + 20px)",
-          paddingBottom: "10rem",
-          minHeight: "100vh",
+          paddingTop: "calc(6rem + 20px)",
+          paddingBottom: "6rem",
+          minHeight: "85vh",
         }}
       >
         {/* Headline */}

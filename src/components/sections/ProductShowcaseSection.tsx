@@ -79,7 +79,7 @@ function ProductCard({
     <motion.div
       ref={cardRef}
       style={{ opacity, scale }}
-      className="min-h-screen flex items-center justify-center py-20 px-6"
+      className="flex items-center justify-center py-16 px-6"
     >
       <div
         className={`max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center ${
@@ -195,7 +195,7 @@ export function ProductShowcaseSection() {
       className="relative bg-[#f5f5f7]"
     >
       {/* Section Header */}
-      <div className="sticky top-0 z-10 bg-[#f5f5f7]/80 backdrop-blur-md py-8 border-b border-black/5">
+      <div className="sticky top-0 z-10 bg-[#f5f5f7]/80 backdrop-blur-md py-6 border-b border-black/5">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -252,7 +252,7 @@ export function ProductShowcaseSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="py-20 text-center px-6"
+        className="py-12 text-center px-6"
       >
         <p className="text-[#6F6F6F] text-lg mb-6 max-w-xl mx-auto">
           Not sure which solution is right for you? Let our experts help you design the perfect system.
