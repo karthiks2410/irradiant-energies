@@ -7,7 +7,7 @@ import { COMPANY } from "@/lib/constants";
 const footerLinks = {
   products: [
     { name: "Solar Panels", href: "#solar" },
-    { name: "Smart Energy Box", href: "#smartbox" },
+    { name: "Virtual Power Plant", href: "#vpp" },
     { name: "P2P Trading", href: "#p2p" },
     { name: "Enterprise Solutions", href: "#enterprise" },
   ],
@@ -15,7 +15,7 @@ const footerLinks = {
     { name: "About Us", href: "#about" },
     { name: "Our Mission", href: "#mission" },
     { name: "Careers", href: "#careers" },
-    { name: "Blog", href: "#blog" },
+    { name: "Discover", href: "/discover" },
   ],
   support: [
     { name: "Contact Us", href: "#contact" },

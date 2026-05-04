@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, ArrowRight, ChevronDown, Sun, Zap, Users } from "lucide-react";
+import { Menu, X, ArrowRight, ChevronDown, Sun, Zap, Users, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const products = [
@@ -16,7 +16,7 @@ const products = [
     iconBg: "bg-[#8EBE34]/10",
   },
   {
-    name: "Smart Box",
+    name: "Virtual Power Plant",
     href: "#products",
     description: "Coming Soon",
     icon: Zap,
@@ -36,6 +36,7 @@ const products = [
 
 const navLinks = [
   { name: "Home", href: "/", active: true },
+  { name: "Discover", href: "/discover" },
   { name: "About", href: "#about" },
   { name: "Contact", href: "#contact" },
 ];
