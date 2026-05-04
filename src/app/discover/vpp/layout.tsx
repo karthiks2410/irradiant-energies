@@ -1,31 +1,52 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "What is a Virtual Power Plant (VPP)? | Irradiant Energies",
+  title: "Virtual Power Plant (VPP) in India | Future of Solar Energy",
   description:
-    "Learn how Virtual Power Plants connect solar panels, batteries, and smart devices to create a smarter, cleaner grid. Discover the future of solar energy in India.",
+    "Learn about Virtual Power Plants (VPP) in India. Discover how smart solar systems, batteries, and EVs can reduce electricity bills and power the future.",
   keywords: [
-    "virtual power plant",
-    "VPP India",
-    "solar energy storage",
-    "home battery storage",
-    "smart grid India",
-    "prosumer energy",
-    "distributed energy resources",
-    "solar battery system",
-    "renewable energy India",
-    "rooftop solar",
-    "energy management system",
-    "grid connected solar",
-    "solar investment India",
-    "clean energy future",
+    // Primary Keywords
+    "Virtual Power Plant India",
+    "VPP solar India",
+    "Smart solar systems India",
+    "Future of solar energy India",
+    "Distributed energy India",
+    // Secondary Keywords
+    "Rooftop solar with battery India",
+    "Solar energy savings India",
+    "Smart grid India",
+    "Solar battery system India",
+    "Reduce electricity bill India",
+    "Solar energy future India",
+    // Long-tail Keywords
+    "What is virtual power plant in India",
+    "How VPP works in solar systems",
+    "Benefits of virtual power plant for homes",
+    "Is VPP available in India",
+    "Future of solar energy with battery storage",
+    "Solar plus battery India",
+    "Home energy storage India",
+    "Prosumer energy India",
+    "Grid connected solar India",
   ],
+  robots: "index, follow",
   openGraph: {
-    title: "Virtual Power Plant (VPP): The Future of Solar Energy in India",
+    title: "Virtual Power Plant (VPP) in India | Future of Solar Energy",
     description:
-      "Your home can not only use solar power—but also support the grid and earn benefits from it. Learn how VPPs are transforming energy in India.",
+      "The future of solar energy is here. Turn your home into a smart energy system that saves money, stores power, and supports the grid.",
     type: "article",
     publishedTime: "2026-05-04",
+    locale: "en_IN",
+    siteName: "Irradiant Energies",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Virtual Power Plant (VPP) in India",
+    description:
+      "Learn how smart solar systems, batteries, and EVs can reduce electricity bills and power the future of energy in India.",
+  },
+  alternates: {
+    canonical: "https://irradiant-energies.vercel.app/discover/vpp",
   },
 };
 
