@@ -13,10 +13,10 @@ export function WhatsAppButton() {
   const whatsappLink = `https://wa.me/${COMPANY.whatsapp}?text=${whatsappMessage}`;
 
   return (
-    <div className="fixed bottom-6 left-6 z-40">
+    <div className="fixed bottom-6 right-6 z-40">
       {/* Info Card */}
       {isOpen && (
-        <div className="absolute bottom-16 left-0 w-80 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden animate-in slide-in-from-bottom-4 duration-300">
+        <div className="absolute bottom-16 right-0 w-80 bg-white rounded-2xl shadow-2xl shadow-black/20 border border-gray-100 overflow-hidden animate-in slide-in-from-bottom-4 duration-300">
           {/* Header */}
           <div className="bg-[#25D366] p-4 text-white">
             <div className="flex items-center justify-between mb-2">
@@ -108,7 +108,7 @@ export function WhatsAppButton() {
       {/* Floating Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#20BD5A] text-white shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center ${
+        className={`w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#20BD5A] text-white shadow-xl shadow-black/25 hover:shadow-2xl hover:shadow-black/30 transition-all duration-300 flex items-center justify-center ${
           isOpen ? "rotate-0" : "hover:scale-110"
         }`}
         aria-label="Chat on WhatsApp"
