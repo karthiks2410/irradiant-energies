@@ -212,16 +212,8 @@ function ProductCard({
 }
 
 export function ProductShowcaseSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"],
-  });
-
   return (
     <section
-      ref={sectionRef}
       id="products"
       className="relative bg-[#f5f5f7]"
     >

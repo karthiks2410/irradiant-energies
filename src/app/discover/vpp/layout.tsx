@@ -46,7 +46,7 @@ export const metadata: Metadata = {
       "Learn how smart solar systems, batteries, and EVs can reduce electricity bills and power the future of energy in India.",
   },
   alternates: {
-    canonical: "https://irradiant-energies.vercel.app/discover/vpp",
+    canonical: "https://irradiantenergie.com/discover/vpp",
   },
 };
 

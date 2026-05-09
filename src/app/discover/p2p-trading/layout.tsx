@@ -44,7 +44,7 @@ export const metadata: Metadata = {
       "Learn how to sell excess solar power and earn money from your rooftop solar system in India.",
   },
   alternates: {
-    canonical: "https://irradiant-energies.vercel.app/discover/p2p-trading",
+    canonical: "https://irradiantenergie.com/discover/p2p-trading",
   },
 };
 

@@ -11,7 +11,6 @@ import {
   Smartphone,
   IndianRupee,
   Users,
-  Building2,
   CheckCircle2,
   Lightbulb,
   Leaf,
@@ -20,12 +19,10 @@ import {
   Shield,
   Zap,
   Home,
-  Factory,
   FileCheck,
   CreditCard,
   BarChart3,
   Eye,
-  ChevronRight,
 } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -37,7 +34,7 @@ export default function P2PTradingPage() {
       <Header />
       <main className="min-h-screen bg-white">
         {/* Hero Section */}
-        <section className="pt-32 pb-16 bg-gradient-to-b from-emerald-50 to-white">
+        <section className="pt-32 pb-16 bg-gradient-to-b from-[#8EBE34]/10 to-white">
           <div className="max-w-4xl mx-auto px-6 text-center">
             {/* Back Link */}
             <Link
@@ -49,7 +46,7 @@ export default function P2PTradingPage() {
             </Link>
 
             {/* Tag */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 text-emerald-600 text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#8EBE34]/10 text-[#8EBE34] text-sm font-medium mb-6">
               <Users className="w-4 h-4" />
               Earn from Solar India
             </div>
@@ -152,7 +149,7 @@ export default function P2PTradingPage() {
             </div>
 
             {/* Highlight Box */}
-            <div className="p-6 rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-white">
+            <div className="p-6 rounded-2xl bg-gradient-to-r from-[#8EBE34] to-[#7AA82D] text-white">
               <p className="text-lg font-medium flex items-start gap-3">
                 <Lightbulb className="w-6 h-6 flex-shrink-0 mt-0.5" />
                 <span>
@@ -187,8 +184,8 @@ export default function P2PTradingPage() {
                   key={item.text}
                   className="flex items-center gap-4 p-4 rounded-xl bg-white border border-gray-100"
                 >
-                  <div className="p-2 rounded-lg bg-emerald-500/10">
-                    <item.icon className="w-5 h-5 text-emerald-500" />
+                  <div className="p-2 rounded-lg bg-[#8EBE34]/10">
+                    <item.icon className="w-5 h-5 text-[#8EBE34]" />
                   </div>
                   <span className="text-[#1d1d1f] font-medium">{item.text}</span>
                 </div>
@@ -312,7 +309,7 @@ export default function P2PTradingPage() {
           </section>
 
           {/* Benefits Section */}
-          <section className="mb-16 p-8 rounded-3xl bg-gradient-to-b from-emerald-50 to-white">
+          <section className="mb-16 p-8 rounded-3xl bg-gradient-to-b from-[#8EBE34]/10 to-white">
             <h2 className="text-2xl sm:text-3xl font-[family-name:var(--font-display)] text-[#1d1d1f] mb-4 text-center">
               Benefits of P2P Energy Trading
             </h2>
@@ -328,8 +325,8 @@ export default function P2PTradingPage() {
                   title: "Earn from Solar",
                   description:
                     "Sell excess electricity at rates better than net-metering. Turn your solar system into a revenue stream.",
-                  color: "text-emerald-500",
-                  bg: "bg-emerald-500/10",
+                  color: "text-[#8EBE34]",
+                  bg: "bg-[#8EBE34]/10",
                 },
                 {
                   icon: TrendingUp,
@@ -390,7 +387,7 @@ export default function P2PTradingPage() {
                     <th className="p-4 text-left font-semibold text-[#1d1d1f] border border-gray-200">
                       Net Metering
                     </th>
-                    <th className="p-4 text-left font-semibold text-emerald-600 border border-gray-200">
+                    <th className="p-4 text-left font-semibold text-[#8EBE34] border border-gray-200">
                       P2P Trading
                     </th>
                   </tr>
@@ -408,7 +405,7 @@ export default function P2PTradingPage() {
                         {feature}
                       </td>
                       <td className="p-4 border border-gray-200 text-[#6F6F6F]">{net}</td>
-                      <td className="p-4 border border-gray-200 text-emerald-600 font-medium">
+                      <td className="p-4 border border-gray-200 text-[#8EBE34] font-medium">
                         {p2p}
                       </td>
                     </tr>
@@ -478,9 +475,9 @@ export default function P2PTradingPage() {
               ].map((item) => (
                 <div
                   key={item.label}
-                  className="flex flex-col items-center text-center p-6 rounded-2xl bg-gradient-to-b from-emerald-50 to-white border border-emerald-100"
+                  className="flex flex-col items-center text-center p-6 rounded-2xl bg-gradient-to-b from-[#8EBE34]/10 to-white border border-[#8EBE34]/20"
                 >
-                  <item.icon className="w-8 h-8 text-emerald-500 mb-3" />
+                  <item.icon className="w-8 h-8 text-[#8EBE34] mb-3" />
                   <span className="text-[#1d1d1f] font-semibold mb-1">{item.label}</span>
                   <span className="text-xs text-[#6F6F6F]">{item.desc}</span>
                 </div>
@@ -507,7 +504,7 @@ export default function P2PTradingPage() {
 
           {/* CTA Section */}
           <section className="p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-[#1d1d1f] to-[#2d2d2d] text-white text-center">
-            <IndianRupee className="w-12 h-12 mx-auto mb-6 text-emerald-400" />
+            <IndianRupee className="w-12 h-12 mx-auto mb-6 text-[#8EBE34]" />
             <h2 className="text-2xl sm:text-3xl font-[family-name:var(--font-display)] mb-4">
               Start Earning from Your Solar Power
             </h2>
@@ -516,7 +513,7 @@ export default function P2PTradingPage() {
               ready for P2P energy trading. We design systems that maximize your earning potential.
             </p>
             <Link href="/#contact">
-              <Button className="bg-emerald-500 hover:bg-emerald-600 text-white rounded-full px-10 py-6 text-lg font-medium">
+              <Button className="bg-[#8EBE34] hover:bg-[#7AA82D] text-white rounded-full px-10 py-6 text-lg font-medium">
                 Contact Us Today
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>

@@ -34,7 +34,7 @@ export default function VPPArticlePage() {
       <Header />
       <main className="min-h-screen bg-white">
         {/* Hero Section - SEO Optimized */}
-        <section className="pt-32 pb-16 bg-gradient-to-b from-blue-50 to-white">
+        <section className="pt-32 pb-16 bg-gradient-to-b from-[#8EBE34]/10 to-white">
           <div className="max-w-4xl mx-auto px-6 text-center">
             {/* Back Link */}
             <Link
@@ -46,7 +46,7 @@ export default function VPPArticlePage() {
             </Link>
 
             {/* Tag */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 text-blue-500 text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#8EBE34]/10 text-[#8EBE34] text-sm font-medium mb-6">
               <Zap className="w-4 h-4" />
               Future of Solar Energy India
             </div>
@@ -171,7 +171,7 @@ export default function VPPArticlePage() {
             </div>
 
             {/* Highlight Box */}
-            <div className="p-6 rounded-2xl bg-gradient-to-r from-blue-500 to-blue-600 text-white">
+            <div className="p-6 rounded-2xl bg-gradient-to-r from-[#8EBE34] to-[#7AA82D] text-white">
               <p className="text-lg font-medium flex items-start gap-3">
                 <Lightbulb className="w-6 h-6 flex-shrink-0 mt-0.5" />
                 <span>
@@ -336,7 +336,7 @@ export default function VPPArticlePage() {
           </section>
 
           {/* Benefits Section */}
-          <section className="mb-16 p-8 rounded-3xl bg-gradient-to-b from-blue-50 to-white">
+          <section className="mb-16 p-8 rounded-3xl bg-gradient-to-b from-[#8EBE34]/10 to-white">
             <h2 className="text-2xl sm:text-3xl font-[family-name:var(--font-display)] text-[#1d1d1f] mb-4 text-center">
               Benefits of Virtual Power Plant for Homes
             </h2>

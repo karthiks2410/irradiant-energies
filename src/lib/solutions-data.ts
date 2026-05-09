@@ -183,10 +183,6 @@ export function getSolarHref(segmentId: string, typeId: SolutionTypeId): string 
   return `/solutions/solar/${segmentId}/${typeId}`;
 }
 
-export function getSolutionById(id: string): Solution | undefined {
-  return solutions.find((s) => s.id === id);
-}
-
 export function getSegmentById(id: string): SolarSegment | undefined {
   return solarSegments.find((s) => s.id === id);
 }
