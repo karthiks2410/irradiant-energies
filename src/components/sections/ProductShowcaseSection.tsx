@@ -4,7 +4,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Bell, Zap, Users, Sun } from "lucide-react";
+import { ArrowRight, Bell, Zap, Users, Sun, Battery, Car } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 const products = [
@@ -14,30 +14,44 @@ const products = [
     tagColor: "text-[#8EBE34]",
     title: "Harness the Sun",
     description:
-      "Premium panels with professional installation. We handle all government subsidies and paperwork for you.",
+      "Premium solar panels for homes, housing societies, and industrial scale. On-Grid, Off-Grid, and Hybrid solutions tailored to your needs.",
     image: "/solar-panel.jpg",
     icon: Sun,
     iconBg: "bg-[#8EBE34]/20",
     iconColor: "text-[#8EBE34]",
     cta: { label: "Get Quote", href: "/get-started" },
-    ctaSecondary: { label: "Learn More", href: "#solar-learn-more" },
+    ctaSecondary: { label: "Learn More", href: "/solutions/solar/home/on-grid" },
     available: true,
   },
   {
-    id: "vpp",
-    tag: "Virtual Power Plant",
+    id: "ess",
+    tag: "Energy Storage",
     tagColor: "text-blue-500",
-    title: "Power the Grid Together",
+    title: "Store Power, Stay Empowered",
     description:
-      "Join a network of distributed energy resources. Your solar + battery becomes part of a smarter, cleaner grid.",
+      "Battery Energy Storage Systems (BESS) for reliable backup and optimized energy usage. Never worry about power outages again.",
     image: "/smart-box.jpg",
-    icon: Zap,
+    icon: Battery,
     iconBg: "bg-blue-500/20",
     iconColor: "text-blue-500",
-    cta: { label: "Join Waitlist", href: "#waitlist" },
-    ctaSecondary: { label: "Learn More", href: "/discover/vpp" },
-    badge: "Coming Soon",
-    available: false,
+    cta: { label: "Get Quote", href: "/get-started" },
+    ctaSecondary: { label: "Learn More", href: "/solutions/ess/bess" },
+    available: true,
+  },
+  {
+    id: "ev-charging",
+    tag: "EV Charging",
+    tagColor: "text-purple-500",
+    title: "Charge Your Future",
+    description:
+      "Complete EV charging infrastructure - Grid Dependent, Solar + Grid, or Hybrid solutions for homes, businesses, and public spaces.",
+    image: "/ev-charging.jpg",
+    icon: Car,
+    iconBg: "bg-purple-500/20",
+    iconColor: "text-purple-500",
+    cta: { label: "Get Quote", href: "/get-started" },
+    ctaSecondary: { label: "Learn More", href: "/solutions/ev-charging/grid-dependent" },
+    available: true,
   },
   {
     id: "p2p",
@@ -45,14 +59,30 @@ const products = [
     tagColor: "text-emerald-500",
     title: "Your Energy. Your Market.",
     description:
-      "Generate more than you need? Sell it to your neighbors. Coming to Karnataka first.",
+      "Generate more than you need? Sell it to your neighbors. Peer-to-peer energy trading coming to Karnataka first.",
     image: "/p2p-trading.jpg",
     icon: Users,
     iconBg: "bg-emerald-500/20",
     iconColor: "text-emerald-500",
     cta: { label: "Get Started", href: "/get-started" },
-    ctaSecondary: { label: "Learn More", href: "#p2p-learn-more" },
+    ctaSecondary: { label: "Learn More", href: "/discover/p2p-trading" },
     available: true,
+  },
+  {
+    id: "vpp",
+    tag: "Virtual Power Plant",
+    tagColor: "text-amber-500",
+    title: "Power the Grid Together",
+    description:
+      "Join a network of distributed energy resources. Your solar + battery becomes part of a smarter, cleaner grid.",
+    image: "/vpp-network.jpg",
+    icon: Zap,
+    iconBg: "bg-amber-500/20",
+    iconColor: "text-amber-500",
+    cta: { label: "Join Waitlist", href: "#waitlist" },
+    ctaSecondary: { label: "Learn More", href: "/discover/vpp" },
+    badge: "Coming Soon",
+    available: false,
   },
 ];
 
@@ -93,7 +123,7 @@ function ProductCard({
           className={`space-y-6 ${isEven ? "lg:order-1" : "lg:order-2"}`}
         >
           {product.badge && (
-            <Badge className="bg-blue-500/10 text-blue-500 border-blue-500/20 px-4 py-1.5 text-sm">
+            <Badge className="bg-amber-500/10 text-amber-500 border-amber-500/20 px-4 py-1.5 text-sm">
               {product.badge}
             </Badge>
           )}
@@ -138,7 +168,7 @@ function ProductCard({
               className={`inline-flex items-center justify-center px-8 py-3.5 text-base rounded-full transition-all duration-300 hover:scale-[1.03] ${
                 product.available
                   ? "bg-[#8EBE34] text-white hover:bg-[#7AA82D] shadow-lg shadow-[#8EBE34]/25"
-                  : "bg-blue-500 text-white hover:bg-blue-600 shadow-lg shadow-blue-500/25"
+                  : "bg-amber-500 text-white hover:bg-amber-600 shadow-lg shadow-amber-500/25"
               }`}
             >
               {!product.available && <Bell className="mr-2 w-5 h-5" />}
@@ -168,7 +198,7 @@ function ProductCard({
           {/* Decorative element */}
           <motion.div
             className={`absolute -z-10 w-full h-full rounded-3xl ${
-              product.available ? "bg-[#8EBE34]/10" : "bg-blue-500/10"
+              product.available ? "bg-[#8EBE34]/10" : "bg-amber-500/10"
             }`}
             style={{
               top: "20px",

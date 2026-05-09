@@ -7,7 +7,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, monospace;
   --font-display: var(--font-display), Georgia, serif;
   --color-sidebar-ring: var(--sidebar-ring);
@@ -79,12 +79,12 @@
   --muted: #f5f5f7;
   --muted-foreground: #6e6e73;
 
-  /* Accent - Orange brand color */
-  --accent: #f97316;
+  /* Accent - Brand green from logo */
+  --accent: #8EBE34;
   --accent-foreground: #ffffff;
 
-  /* Green accent for eco */
-  --accent-green: #10b981;
+  /* Brand green for eco */
+  --accent-green: #8EBE34;
 
   /* Destructive */
   --destructive: #ef4444;
@@ -92,11 +92,11 @@
   /* Borders and inputs */
   --border: rgba(0, 0, 0, 0.08);
   --input: rgba(0, 0, 0, 0.06);
-  --ring: #f97316;
+  --ring: #8EBE34;
 
   /* Charts */
-  --chart-1: #f97316;
-  --chart-2: #10b981;
+  --chart-1: #8EBE34;
+  --chart-2: #7AA82D;
   --chart-3: #3b82f6;
   --chart-4: #8b5cf6;
   --chart-5: #ec4899;
@@ -145,7 +145,7 @@
 
   --border: rgba(255, 255, 255, 0.1);
   --input: rgba(255, 255, 255, 0.08);
-  --ring: #f97316;
+  --ring: #8EBE34;
 
   --sidebar: #1d1d1f;
   --sidebar-foreground: #f5f5f7;
@@ -195,6 +195,26 @@
 .animate-fade-rise-delay-2 {
   animation: fade-rise 0.8s ease-out 0.4s forwards;
   opacity: 0;
+}
+
+/* Nav link animated underline */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
 }
 
 /* Cookie Consent Banner Customization */

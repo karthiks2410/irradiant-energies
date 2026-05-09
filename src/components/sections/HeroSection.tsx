@@ -49,7 +49,7 @@ export function HeroSection() {
           }}
         >
           Power Your Future{" "}
-          <em style={{ color: "#6F6F6F", fontStyle: "italic" }}>
+          <em style={{ color: "#8EBE34", fontStyle: "italic" }}>
             With Solar Energy
           </em>
         </h1>
@@ -60,8 +60,7 @@ export function HeroSection() {
           style={{ color: "#6F6F6F" }}
         >
           India's complete solar ecosystem — from rooftop to revenue. Premium
-          panels, smart energy management, and peer-to-peer trading. We handle
-          everything, including government subsidies.
+          panels, smart energy management, and peer-to-peer trading.
         </p>
 
         {/* CTA Button */}
