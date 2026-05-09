@@ -41,6 +41,11 @@ const socialLinks = [
     href: "#",
     logo: "https://img.logo.dev/facebook.com?token=pk_HTrnQ1UQST6HmLe5roSfjg",
   },
+  {
+    name: "X",
+    href: "#",
+    logo: "https://img.logo.dev/x.com?token=pk_HTrnQ1UQST6HmLe5roSfjg",
+  },
 ];
 
 export function Footer() {
@@ -96,7 +101,7 @@ export function Footer() {
             <ul className="space-y-3">
               {footerLinks.products.map((link) => (
                 <li key={link.name}>
-                  <Link href={link.href} className="text-[#6e6e73] hover:text-orange-500 transition-colors">
+                  <Link href={link.href} className="text-[#6e6e73] hover:text-[#8EBE34] transition-colors">
                     {link.name}
                   </Link>
                 </li>
@@ -110,7 +115,7 @@ export function Footer() {
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
-                  <Link href={link.href} className="text-[#6e6e73] hover:text-orange-500 transition-colors">
+                  <Link href={link.href} className="text-[#6e6e73] hover:text-[#8EBE34] transition-colors">
                     {link.name}
                   </Link>
                 </li>
@@ -124,7 +129,7 @@ export function Footer() {
             <ul className="space-y-3">
               {footerLinks.support.map((link) => (
                 <li key={link.name}>
-                  <Link href={link.href} className="text-[#6e6e73] hover:text-orange-500 transition-colors">
+                  <Link href={link.href} className="text-[#6e6e73] hover:text-[#8EBE34] transition-colors">
                     {link.name}
                   </Link>
                 </li>
@@ -138,11 +143,11 @@ export function Footer() {
         {/* Contact Info */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div className="flex flex-wrap gap-6 text-sm">
-            <a href={`mailto:${COMPANY.email}`} className="flex items-center gap-2 text-[#6e6e73] hover:text-orange-500">
+            <a href={`mailto:${COMPANY.email}`} className="flex items-center gap-2 text-[#6e6e73] hover:text-[#8EBE34]">
               <Mail className="w-4 h-4" />
               {COMPANY.email}
             </a>
-            <a href={`tel:${COMPANY.whatsapp}`} className="flex items-center gap-2 text-[#6e6e73] hover:text-orange-500">
+            <a href={`tel:${COMPANY.whatsapp}`} className="flex items-center gap-2 text-[#6e6e73] hover:text-[#8EBE34]">
               <Phone className="w-4 h-4" />
               {COMPANY.phone}
             </a>

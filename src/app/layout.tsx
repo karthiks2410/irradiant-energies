@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Serif } from "next/font/google";
+import { DM_Sans, Instrument_Serif } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { LenisProvider } from "@/components/providers/LenisProvider";
 import { CookieConsentProvider } from "@/components/providers/CookieConsentProvider";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
   display: "swap",
 });
@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${instrumentSerif.variable} h-full antialiased scroll-smooth`}
+      className={`${dmSans.variable} ${instrumentSerif.variable} h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full flex flex-col font-sans">
         <LenisProvider>
