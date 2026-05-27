@@ -108,7 +108,7 @@ export function Header() {
           {/* CTA Button */}
           <div className="hidden lg:flex items-center">
             <Button
-              className="bg-[#8EBE34] hover:bg-[#7AA82D] text-white rounded-full px-6 py-2.5 text-sm transition-all duration-300 hover:scale-[1.03]"
+              className="bg-[#52842D] hover:bg-[#446F26] text-white rounded-full px-6 py-2.5 text-sm transition-all duration-300 hover:scale-[1.03]"
             >
               Get Quote
               <ArrowRight className="ml-2 w-4 h-4" />
@@ -168,7 +168,7 @@ export function Header() {
               </Link>
 
               <Button
-                className="bg-[#8EBE34] hover:bg-[#7AA82D] text-white rounded-full px-6 py-2.5 text-sm w-full mt-2"
+                className="bg-[#52842D] hover:bg-[#446F26] text-white rounded-full px-6 py-2.5 text-sm w-full mt-2"
               >
                 Get Quote
                 <ArrowRight className="ml-2 w-4 h-4" />

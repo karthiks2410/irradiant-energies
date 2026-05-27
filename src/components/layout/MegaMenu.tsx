@@ -139,7 +139,7 @@ function SolutionItem({
         </span>
       </div>
       {hasSubMenu && (
-        <ChevronRight className={`w-4 h-4 transition-colors ${isActive ? "text-[#8EBE34]" : "text-gray-300"}`} />
+        <ChevronRight className={`w-4 h-4 transition-colors ${isActive ? "text-[#52842D]" : "text-gray-300"}`} />
       )}
     </div>
   );
@@ -181,7 +181,7 @@ function SolarPanel({
       {currentSegment && (
         <div className="mb-7">
           <div className="flex items-center gap-2 mb-2">
-            <currentSegment.icon className="w-4 h-4 text-[#8EBE34]" />
+            <currentSegment.icon className="w-4 h-4 text-[#52842D]" />
             <h3 className="text-base font-semibold text-[#1d1d1f]">
               {currentSegment.name}
             </h3>
@@ -197,10 +197,10 @@ function SolarPanel({
             key={type.id}
             href={getSolarHref(selectedSegment, type.id)}
             onClick={onClose}
-            className="group p-5 rounded-xl border border-gray-100 hover:border-[#8EBE34]/30 hover:bg-[#8EBE34]/5 transition-all"
+            className="group p-5 rounded-xl border border-gray-100 hover:border-[#52842D]/30 hover:bg-[#52842D]/5 transition-all"
           >
-            <div className="p-2.5 rounded-lg bg-gray-100 group-hover:bg-[#8EBE34]/10 w-fit mb-4 transition-colors">
-              <type.icon className="w-5 h-5 text-[#6F6F6F] group-hover:text-[#8EBE34] transition-colors" />
+            <div className="p-2.5 rounded-lg bg-gray-100 group-hover:bg-[#52842D]/10 w-fit mb-4 transition-colors">
+              <type.icon className="w-5 h-5 text-[#6F6F6F] group-hover:text-[#52842D] transition-colors" />
             </div>
             <h4 className="text-sm font-medium text-[#1d1d1f] mb-1.5">
               {type.name}
@@ -242,11 +242,11 @@ function ChildrenPanel({
             key={child.id}
             href={child.href}
             onClick={onClose}
-            className="group p-5 rounded-xl border border-gray-100 hover:border-[#8EBE34]/30 hover:bg-[#8EBE34]/5 transition-all"
+            className="group p-5 rounded-xl border border-gray-100 hover:border-[#52842D]/30 hover:bg-[#52842D]/5 transition-all"
           >
             {child.icon && (
-              <div className="p-2.5 rounded-lg bg-gray-100 group-hover:bg-[#8EBE34]/10 w-fit mb-4 transition-colors">
-                <child.icon className="w-5 h-5 text-[#6F6F6F] group-hover:text-[#8EBE34] transition-colors" />
+              <div className="p-2.5 rounded-lg bg-gray-100 group-hover:bg-[#52842D]/10 w-fit mb-4 transition-colors">
+                <child.icon className="w-5 h-5 text-[#6F6F6F] group-hover:text-[#52842D] transition-colors" />
               </div>
             )}
             <h4 className="text-sm font-medium text-[#1d1d1f] mb-1.5">
@@ -291,7 +291,7 @@ function DirectLinkPanel({
         <Link
           href={solution.href}
           onClick={onClose}
-          className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#8EBE34] text-white rounded-full text-sm font-medium hover:bg-[#7AA82D] transition-colors"
+          className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#52842D] text-white rounded-full text-sm font-medium hover:bg-[#446F26] transition-colors"
         >
           Learn More
           <ChevronRight className="w-4 h-4" />

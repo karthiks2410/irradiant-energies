@@ -34,8 +34,8 @@ const articles = [
     description:
       "Everything you need to know about solar panels, installation, and maximizing your energy savings.",
     icon: Sun,
-    iconColor: "text-[#8EBE34]",
-    iconBg: "bg-[#8EBE34]/10",
+    iconColor: "text-[#52842D]",
+    iconBg: "bg-[#52842D]/10",
     tag: "Coming Soon",
     readTime: "6 min read",
     comingSoon: true,
@@ -50,7 +50,7 @@ export default function DiscoverPage() {
         <div className="max-w-7xl mx-auto px-6">
           {/* Header */}
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#8EBE34]/10 text-[#8EBE34] text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#52842D]/10 text-[#52842D] text-sm font-medium mb-6">
               <BookOpen className="w-4 h-4" />
               Knowledge Hub
             </div>
@@ -95,7 +95,7 @@ export default function DiscoverPage() {
                   <span className="text-xs text-[#6F6F6F]">{article.readTime}</span>
                 </div>
 
-                <h2 className="text-xl font-medium text-[#1d1d1f] mb-3 group-hover:text-[#8EBE34] transition-colors">
+                <h2 className="text-xl font-medium text-[#1d1d1f] mb-3 group-hover:text-[#52842D] transition-colors">
                   {article.title}
                 </h2>
 
@@ -104,7 +104,7 @@ export default function DiscoverPage() {
                 </p>
 
                 {!article.comingSoon && (
-                  <div className="flex items-center text-[#8EBE34] text-sm font-medium group-hover:gap-3 gap-2 transition-all">
+                  <div className="flex items-center text-[#52842D] text-sm font-medium group-hover:gap-3 gap-2 transition-all">
                     Read Article
                     <ArrowRight className="w-4 h-4" />
                   </div>

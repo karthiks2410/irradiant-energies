@@ -52,12 +52,12 @@ export function CTASection() {
         <motion.div
           animate={{ scale: [1, 1.3, 1], opacity: [0.03, 0.08, 0.03] }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -right-1/4 top-1/4 w-1/2 h-1/2 bg-[#8EBE34]/20 rounded-full blur-3xl"
+          className="absolute -right-1/4 top-1/4 w-1/2 h-1/2 bg-[#52842D]/20 rounded-full blur-3xl"
         />
         <motion.div
           animate={{ scale: [1.2, 1, 1.2], opacity: [0.03, 0.06, 0.03] }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -left-1/4 bottom-1/4 w-1/2 h-1/2 bg-[#8EBE34]/15 rounded-full blur-3xl"
+          className="absolute -left-1/4 bottom-1/4 w-1/2 h-1/2 bg-[#52842D]/15 rounded-full blur-3xl"
         />
       </div>
 
@@ -94,7 +94,7 @@ export function CTASection() {
                     }}
                     className="flex items-center gap-2"
                   >
-                    <CheckCircle className="w-5 h-5 text-[#8EBE34] flex-shrink-0" />
+                    <CheckCircle className="w-5 h-5 text-[#52842D] flex-shrink-0" />
                     <span className="text-[#6e6e73] text-sm">{benefit}</span>
                   </motion.div>
                 ))}
@@ -110,13 +110,13 @@ export function CTASection() {
               >
                 <a
                   href={`tel:${COMPANY.whatsapp}`}
-                  className="flex items-center gap-3 text-[#6e6e73] hover:text-[#8EBE34] transition-colors group"
+                  className="flex items-center gap-3 text-[#6e6e73] hover:text-[#52842D] transition-colors group"
                 >
                   <motion.div
                     whileHover={{ scale: 1.1 }}
-                    className="p-3 rounded-full bg-[#8EBE34]/10 group-hover:bg-[#8EBE34]/20 transition-colors"
+                    className="p-3 rounded-full bg-[#52842D]/10 group-hover:bg-[#52842D]/20 transition-colors"
                   >
-                    <Phone className="w-5 h-5 text-[#8EBE34]" />
+                    <Phone className="w-5 h-5 text-[#52842D]" />
                   </motion.div>
                   <div>
                     <div className="text-sm text-[#86868b]">Call us</div>
@@ -126,13 +126,13 @@ export function CTASection() {
                 </a>
                 <a
                   href={`mailto:${COMPANY.email}`}
-                  className="flex items-center gap-3 text-[#6e6e73] hover:text-[#8EBE34] transition-colors group"
+                  className="flex items-center gap-3 text-[#6e6e73] hover:text-[#52842D] transition-colors group"
                 >
                   <motion.div
                     whileHover={{ scale: 1.1 }}
-                    className="p-3 rounded-full bg-[#8EBE34]/10 group-hover:bg-[#8EBE34]/20 transition-colors"
+                    className="p-3 rounded-full bg-[#52842D]/10 group-hover:bg-[#52842D]/20 transition-colors"
                   >
-                    <Mail className="w-5 h-5 text-[#8EBE34]" />
+                    <Mail className="w-5 h-5 text-[#52842D]" />
                   </motion.div>
                   <div>
                     <div className="text-sm text-[#86868b]">Email us</div>
@@ -165,7 +165,7 @@ export function CTASection() {
                       className="space-y-2"
                     >
                       <Label htmlFor="name" className="text-[#1d1d1f]">Name</Label>
-                      <Input id="name" placeholder="Your name" className="border-black/10 focus:border-[#8EBE34]" />
+                      <Input id="name" placeholder="Your name" className="border-black/10 focus:border-[#52842D]" />
                     </motion.div>
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
@@ -175,7 +175,7 @@ export function CTASection() {
                       className="space-y-2"
                     >
                       <Label htmlFor="phone" className="text-[#1d1d1f]">Phone</Label>
-                      <Input id="phone" type="tel" placeholder="+91" className="border-black/10 focus:border-[#8EBE34]" />
+                      <Input id="phone" type="tel" placeholder="+91" className="border-black/10 focus:border-[#52842D]" />
                     </motion.div>
                   </div>
                   <motion.div
@@ -186,7 +186,7 @@ export function CTASection() {
                     className="space-y-2"
                   >
                     <Label htmlFor="email" className="text-[#1d1d1f]">Email</Label>
-                    <Input id="email" type="email" placeholder="your@email.com" className="border-black/10 focus:border-[#8EBE34]" />
+                    <Input id="email" type="email" placeholder="your@email.com" className="border-black/10 focus:border-[#52842D]" />
                   </motion.div>
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
@@ -196,7 +196,7 @@ export function CTASection() {
                     className="space-y-2"
                   >
                     <Label htmlFor="location" className="text-[#1d1d1f]">Location</Label>
-                    <Input id="location" placeholder="City, State" className="border-black/10 focus:border-[#8EBE34]" />
+                    <Input id="location" placeholder="City, State" className="border-black/10 focus:border-[#52842D]" />
                   </motion.div>
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
@@ -210,7 +210,7 @@ export function CTASection() {
                       id="message"
                       placeholder="Tell us about your requirements..."
                       rows={3}
-                      className="border-black/10 focus:border-[#8EBE34]"
+                      className="border-black/10 focus:border-[#52842D]"
                     />
                   </motion.div>
                   <motion.div
@@ -222,7 +222,7 @@ export function CTASection() {
                     <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                       <Button
                         type="submit"
-                        className="w-full bg-[#8EBE34] hover:bg-[#7AA82D] text-white py-6 rounded-xl shadow-lg shadow-[#8EBE34]/25"
+                        className="w-full bg-[#52842D] hover:bg-[#446F26] text-white py-6 rounded-xl shadow-lg shadow-[#52842D]/25"
                       >
                         Get Free Quote
                         <ArrowRight className="ml-2 w-5 h-5" />

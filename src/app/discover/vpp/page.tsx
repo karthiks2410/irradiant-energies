@@ -34,7 +34,7 @@ export default function VPPArticlePage() {
       <Header />
       <main className="min-h-screen bg-white">
         {/* Hero Section - SEO Optimized */}
-        <section className="pt-32 pb-16 bg-gradient-to-b from-[#8EBE34]/10 to-white">
+        <section className="pt-32 pb-16 bg-gradient-to-b from-[#52842D]/10 to-white">
           <div className="max-w-4xl mx-auto px-6 text-center">
             {/* Back Link */}
             <Link
@@ -46,7 +46,7 @@ export default function VPPArticlePage() {
             </Link>
 
             {/* Tag */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#8EBE34]/10 text-[#8EBE34] text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#52842D]/10 text-[#52842D] text-sm font-medium mb-6">
               <Zap className="w-4 h-4" />
               Future of Solar Energy India
             </div>
@@ -109,8 +109,8 @@ export default function VPPArticlePage() {
                   icon: Sun,
                   label: "Solar Panels",
                   desc: "Generate clean energy from your rooftop",
-                  color: "text-[#8EBE34]",
-                  bg: "bg-[#8EBE34]/10",
+                  color: "text-[#52842D]",
+                  bg: "bg-[#52842D]/10",
                 },
                 {
                   icon: Battery,
@@ -171,7 +171,7 @@ export default function VPPArticlePage() {
             </div>
 
             {/* Highlight Box */}
-            <div className="p-6 rounded-2xl bg-gradient-to-r from-[#8EBE34] to-[#7AA82D] text-white">
+            <div className="p-6 rounded-2xl bg-gradient-to-r from-[#52842D] to-[#446F26] text-white">
               <p className="text-lg font-medium flex items-start gap-3">
                 <Lightbulb className="w-6 h-6 flex-shrink-0 mt-0.5" />
                 <span>
@@ -267,7 +267,7 @@ export default function VPPArticlePage() {
               ))}
             </div>
 
-            <div className="p-6 rounded-2xl bg-[#8EBE34]/10 border border-[#8EBE34]/20">
+            <div className="p-6 rounded-2xl bg-[#52842D]/10 border border-[#52842D]/20">
               <p className="text-[#1d1d1f] font-medium text-lg text-center">
                 Instead of building new power plants, we use existing energy smarter with{" "}
                 <strong>solar + battery systems in India</strong>.
@@ -289,7 +289,7 @@ export default function VPPArticlePage() {
                   description:
                     "Start with rooftop solar (battery optional). Your home or business becomes energy-enabled.",
                   icon: Sun,
-                  color: "bg-[#8EBE34]",
+                  color: "bg-[#52842D]",
                 },
                 {
                   step: 2,
@@ -336,7 +336,7 @@ export default function VPPArticlePage() {
           </section>
 
           {/* Benefits Section */}
-          <section className="mb-16 p-8 rounded-3xl bg-gradient-to-b from-[#8EBE34]/10 to-white">
+          <section className="mb-16 p-8 rounded-3xl bg-gradient-to-b from-[#52842D]/10 to-white">
             <h2 className="text-2xl sm:text-3xl font-[family-name:var(--font-display)] text-[#1d1d1f] mb-4 text-center">
               Benefits of Virtual Power Plant for Homes
             </h2>
@@ -376,8 +376,8 @@ export default function VPPArticlePage() {
                   title: "Eco-Friendly",
                   description:
                     "Reduce carbon footprint and support clean energy for a greener India.",
-                  color: "text-[#8EBE34]",
-                  bg: "bg-[#8EBE34]/10",
+                  color: "text-[#52842D]",
+                  bg: "bg-[#52842D]/10",
                 },
               ].map((benefit) => (
                 <div
@@ -412,7 +412,7 @@ export default function VPPArticlePage() {
                 "Government renewable energy push",
               ].map((item) => (
                 <div key={item} className="flex items-center gap-3 p-4 rounded-xl bg-gray-50">
-                  <CheckCircle2 className="w-5 h-5 text-[#8EBE34]" />
+                  <CheckCircle2 className="w-5 h-5 text-[#52842D]" />
                   <span className="text-[#1d1d1f]">{item}</span>
                 </div>
               ))}
@@ -437,7 +437,7 @@ export default function VPPArticlePage() {
               Traditionally, you only consumed electricity. With solar + VPP, you become a:
             </p>
 
-            <div className="p-8 rounded-3xl bg-gradient-to-r from-[#8EBE34] to-emerald-500 text-white text-center mb-8">
+            <div className="p-8 rounded-3xl bg-gradient-to-r from-[#52842D] to-emerald-500 text-white text-center mb-8">
               <p className="text-4xl font-bold mb-2">"Prosumer"</p>
               <p className="text-xl opacity-90">Producer + Consumer</p>
             </div>
@@ -457,7 +457,7 @@ export default function VPPArticlePage() {
                   key={item.num}
                   className="flex items-center gap-3 p-4 rounded-xl bg-gray-50 border border-gray-100"
                 >
-                  <span className="w-8 h-8 rounded-full bg-[#8EBE34] text-white flex items-center justify-center font-bold text-sm">
+                  <span className="w-8 h-8 rounded-full bg-[#52842D] text-white flex items-center justify-center font-bold text-sm">
                     {item.num}
                   </span>
                   <span className="text-[#1d1d1f] font-medium">{item.text}</span>
@@ -486,16 +486,16 @@ export default function VPPArticlePage() {
                   "Scalable technology for future VPP integration",
                 ].map((item) => (
                   <div key={item} className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-[#8EBE34]" />
+                    <CheckCircle2 className="w-5 h-5 text-[#52842D]" />
                     <span className="text-[#6F6F6F]">{item}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-[#8EBE34]/10 border border-[#8EBE34]/20">
+            <div className="p-6 rounded-2xl bg-[#52842D]/10 border border-[#52842D]/20">
               <p className="text-[#1d1d1f] font-medium text-lg flex items-start gap-3">
-                <Lightbulb className="w-5 h-5 text-[#8EBE34] flex-shrink-0 mt-1" />
+                <Lightbulb className="w-5 h-5 text-[#52842D] flex-shrink-0 mt-1" />
                 So when VPP becomes mainstream in India, you're already ready.
               </p>
             </div>
@@ -503,7 +503,7 @@ export default function VPPArticlePage() {
 
           {/* CTA Section - Very Important */}
           <section className="p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-[#1d1d1f] to-[#2d2d2d] text-white text-center">
-            <Building2 className="w-12 h-12 mx-auto mb-6 text-[#8EBE34]" />
+            <Building2 className="w-12 h-12 mx-auto mb-6 text-[#52842D]" />
             <h2 className="text-2xl sm:text-3xl font-[family-name:var(--font-display)] mb-4">
               Ready for the Future of Energy?
             </h2>
@@ -513,7 +513,7 @@ export default function VPPArticlePage() {
               energy in India.
             </p>
             <Link href="/#contact">
-              <Button className="bg-[#8EBE34] hover:bg-[#7AA82D] text-white rounded-full px-10 py-6 text-lg font-medium">
+              <Button className="bg-[#52842D] hover:bg-[#446F26] text-white rounded-full px-10 py-6 text-lg font-medium">
                 Contact Us Today
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>

@@ -57,18 +57,18 @@ export function GovernmentSection() {
       >
         <motion.div
           style={{ scale: orbScale }}
-          className="absolute top-1/4 -left-32 w-96 h-96 bg-[#8EBE34]/20 rounded-full blur-3xl"
+          className="absolute top-1/4 -left-32 w-96 h-96 bg-[#52842D]/20 rounded-full blur-3xl"
         />
         <motion.div
           style={{ scale: orbScale }}
-          className="absolute bottom-1/4 -right-32 w-96 h-96 bg-[#8EBE34]/15 rounded-full blur-3xl"
+          className="absolute bottom-1/4 -right-32 w-96 h-96 bg-[#52842D]/15 rounded-full blur-3xl"
         />
       </motion.div>
 
       <div className="relative z-10 min-h-screen flex flex-col justify-center px-8 md:px-16 py-20">
         <div className="max-w-7xl mx-auto w-full">
           <MaskReveal className="text-center mb-4">
-            <p className="text-[#8EBE34] text-sm uppercase tracking-wider font-medium">
+            <p className="text-[#52842D] text-sm uppercase tracking-wider font-medium">
               Government Support
             </p>
           </MaskReveal>
@@ -134,7 +134,7 @@ export function GovernmentSection() {
             >
               <Button
                 size="lg"
-                className="bg-[#8EBE34] hover:bg-[#7AA82D] text-white px-8 py-6 text-lg rounded-full shadow-lg shadow-[#8EBE34]/25 transition-all duration-300"
+                className="bg-[#52842D] hover:bg-[#446F26] text-white px-8 py-6 text-lg rounded-full shadow-lg shadow-[#52842D]/25 transition-all duration-300"
               >
                 <Calculator className="mr-2 w-5 h-5" />
                 Calculate Your Subsidy
