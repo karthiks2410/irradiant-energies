@@ -49,7 +49,7 @@ export function HeroSection() {
           }}
         >
           Power Your Future{" "}
-          <em style={{ color: "#8EBE34", fontStyle: "italic" }}>
+          <em style={{ color: "#52842D", fontStyle: "italic" }}>
             With Solar Energy
           </em>
         </h1>
@@ -67,7 +67,7 @@ export function HeroSection() {
         <div className="animate-fade-rise-delay-2 mt-12">
           <Button
             size="lg"
-            className="rounded-full px-14 py-6 text-base bg-[#8EBE34] hover:bg-[#7AA82D] text-white transition-all duration-300 hover:scale-[1.03] shadow-lg shadow-[#8EBE34]/25"
+            className="rounded-full px-14 py-6 text-base bg-[#52842D] hover:bg-[#446F26] text-white transition-all duration-300 hover:scale-[1.03] shadow-lg shadow-[#52842D]/25"
           >
             Get Free Quote
             <ArrowRight className="ml-2 w-5 h-5" />

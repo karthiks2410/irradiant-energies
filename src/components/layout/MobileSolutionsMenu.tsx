@@ -201,7 +201,7 @@ function SegmentAccordion({
               onClick={onLinkClick}
               className="flex items-center gap-2 py-2 px-2 rounded-lg hover:bg-gray-50"
             >
-              <type.icon className="w-3.5 h-3.5 text-[#8EBE34]" />
+              <type.icon className="w-3.5 h-3.5 text-[#52842D]" />
               <span className="text-sm text-[#6F6F6F]">{type.name}</span>
             </Link>
           ))}

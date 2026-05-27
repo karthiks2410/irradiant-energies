@@ -31,7 +31,7 @@ export default async function SolarSolutionPage({ params }: PageProps) {
             <h1 className="text-3xl font-bold text-[#1d1d1f] mb-4">
               Solution Not Found
             </h1>
-            <Link href="/" className="text-[#8EBE34] hover:underline">
+            <Link href="/" className="text-[#52842D] hover:underline">
               Return to Home
             </Link>
           </div>
@@ -49,7 +49,7 @@ export default async function SolarSolutionPage({ params }: PageProps) {
       <Header />
       <main className="min-h-screen bg-white">
         {/* Hero */}
-        <section className="pt-32 pb-16 bg-gradient-to-b from-[#8EBE34]/10 to-white">
+        <section className="pt-32 pb-16 bg-gradient-to-b from-[#52842D]/10 to-white">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <Link
               href="/#products"
@@ -60,12 +60,12 @@ export default async function SolarSolutionPage({ params }: PageProps) {
             </Link>
 
             <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="p-3 rounded-xl bg-[#8EBE34]/10">
-                <SegmentIcon className="w-6 h-6 text-[#8EBE34]" />
+              <div className="p-3 rounded-xl bg-[#52842D]/10">
+                <SegmentIcon className="w-6 h-6 text-[#52842D]" />
               </div>
               <span className="text-[#6F6F6F]">+</span>
-              <div className="p-3 rounded-xl bg-[#8EBE34]/10">
-                <TypeIcon className="w-6 h-6 text-[#8EBE34]" />
+              <div className="p-3 rounded-xl bg-[#52842D]/10">
+                <TypeIcon className="w-6 h-6 text-[#52842D]" />
               </div>
             </div>
 
@@ -75,7 +75,7 @@ export default async function SolarSolutionPage({ params }: PageProps) {
             >
               {segment.name} Solar
               <br />
-              <span className="text-[#8EBE34]">{solutionType.name} System</span>
+              <span className="text-[#52842D]">{solutionType.name} System</span>
             </h1>
 
             <p className="text-lg text-[#6F6F6F] max-w-2xl mx-auto mb-8">
@@ -102,7 +102,7 @@ export default async function SolarSolutionPage({ params }: PageProps) {
                 In the meantime, get in touch for a personalized consultation.
               </p>
               <Link href="/#contact">
-                <Button className="bg-[#8EBE34] hover:bg-[#7AA82D] text-white rounded-full px-8 py-3">
+                <Button className="bg-[#52842D] hover:bg-[#446F26] text-white rounded-full px-8 py-3">
                   Request Consultation
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>

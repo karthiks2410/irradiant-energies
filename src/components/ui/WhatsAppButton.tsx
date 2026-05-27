@@ -57,14 +57,14 @@ export function WhatsAppButton() {
             <div className="space-y-2 mb-4">
               <a
                 href={`tel:${COMPANY.whatsapp}`}
-                className="flex items-center gap-2 text-sm text-[#6F6F6F] hover:text-[#8EBE34] transition-colors"
+                className="flex items-center gap-2 text-sm text-[#6F6F6F] hover:text-[#52842D] transition-colors"
               >
                 <Phone className="w-4 h-4" />
                 {COMPANY.phone} / {COMPANY.phoneSecondary}
               </a>
               <a
                 href={`mailto:${COMPANY.email}`}
-                className="flex items-center gap-2 text-sm text-[#6F6F6F] hover:text-[#8EBE34] transition-colors"
+                className="flex items-center gap-2 text-sm text-[#6F6F6F] hover:text-[#52842D] transition-colors"
               >
                 <Mail className="w-4 h-4" />
                 {COMPANY.email}
@@ -80,7 +80,7 @@ export function WhatsAppButton() {
               href="https://irradiantenergie.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm text-[#8EBE34] hover:text-[#7AA82D] font-medium mb-4"
+              className="flex items-center gap-2 text-sm text-[#52842D] hover:text-[#446F26] font-medium mb-4"
             >
               <ExternalLink className="w-4 h-4" />
               Visit irradiantenergie.com

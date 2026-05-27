@@ -22,8 +22,8 @@ const evTypes = {
     name: "Solar + Grid",
     description: "Solar-powered EV charging with grid backup for reliability",
     icon: Sun,
-    color: "text-[#8EBE34]",
-    bg: "bg-[#8EBE34]/10",
+    color: "text-[#52842D]",
+    bg: "bg-[#52842D]/10",
   },
   "hybrid": {
     name: "Hybrid",
@@ -47,7 +47,7 @@ export default async function EVChargingPage({ params }: PageProps) {
             <h1 className="text-3xl font-bold text-[#1d1d1f] mb-4">
               Solution Not Found
             </h1>
-            <Link href="/" className="text-[#8EBE34] hover:underline">
+            <Link href="/" className="text-[#52842D] hover:underline">
               Return to Home
             </Link>
           </div>

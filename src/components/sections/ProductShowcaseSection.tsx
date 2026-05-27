@@ -11,14 +11,14 @@ const products = [
   {
     id: "solar",
     tag: "Solar Energy",
-    tagColor: "text-[#8EBE34]",
+    tagColor: "text-[#52842D]",
     title: "Harness the Sun",
     description:
       "Premium solar panels for homes, housing societies, and industrial scale. On-Grid, Off-Grid, and Hybrid solutions tailored to your needs.",
     image: "/solar-panel.jpg",
     icon: Sun,
-    iconBg: "bg-[#8EBE34]/20",
-    iconColor: "text-[#8EBE34]",
+    iconBg: "bg-[#52842D]/20",
+    iconColor: "text-[#52842D]",
     cta: { label: "Get Quote", href: "/get-started" },
     ctaSecondary: { label: "Learn More", href: "/solutions/solar/home/on-grid" },
     available: true,
@@ -167,7 +167,7 @@ function ProductCard({
               href={product.cta.href}
               className={`inline-flex items-center justify-center px-8 py-3.5 text-base rounded-full transition-all duration-300 hover:scale-[1.03] ${
                 product.available
-                  ? "bg-[#8EBE34] text-white hover:bg-[#7AA82D] shadow-lg shadow-[#8EBE34]/25"
+                  ? "bg-[#52842D] text-white hover:bg-[#446F26] shadow-lg shadow-[#52842D]/25"
                   : "bg-amber-500 text-white hover:bg-amber-600 shadow-lg shadow-amber-500/25"
               }`}
             >
@@ -198,7 +198,7 @@ function ProductCard({
           {/* Decorative element */}
           <motion.div
             className={`absolute -z-10 w-full h-full rounded-3xl ${
-              product.available ? "bg-[#8EBE34]/10" : "bg-amber-500/10"
+              product.available ? "bg-[#52842D]/10" : "bg-amber-500/10"
             }`}
             style={{
               top: "20px",
@@ -228,7 +228,7 @@ export function ProductShowcaseSection() {
             className="flex items-center justify-between"
           >
             <div>
-              <p className="text-[#8EBE34] text-sm uppercase tracking-wider font-medium mb-2">
+              <p className="text-[#52842D] text-sm uppercase tracking-wider font-medium mb-2">
                 Our Solutions
               </p>
               <h2
