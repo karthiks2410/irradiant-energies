@@ -1,35 +1,50 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Menu, X, ArrowRight, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MegaMenu } from "./MegaMenu";
 import { MobileSolutionsMenu } from "./MobileSolutionsMenu";
+import { SPRING_PRESS, PRESS_HOVER, PRESS_TAP } from "@/lib/motion";
 
 export function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const { scrollY } = useScroll();
+  const backgroundColor = useTransform(
+    scrollY,
+    [0, 100],
+    ["rgba(255,255,255,0)", "rgba(255,255,255,1)"]
+  );
+  const borderBottomColor = useTransform(
+    scrollY,
+    [0, 100],
+    ["rgba(229,231,235,0)", "rgba(229,231,235,0.5)"]
+  );
+  const boxShadow = useTransform(
+    scrollY,
+    [0, 100],
+    ["0 1px 2px 0 rgba(0,0,0,0)", "0 1px 2px 0 rgba(0,0,0,0.06)"]
+  );
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
-        isScrolled || isMobileMenuOpen
-          ? "bg-white border-b border-gray-200/50 shadow-sm"
-          : "bg-transparent border-b border-transparent"
+    <motion.header
+      className={`fixed top-0 left-0 right-0 z-50 border-b ${
+        isMobileMenuOpen
+          ? "bg-white border-gray-200/50 shadow-sm"
+          : ""
       }`}
+      style={
+        isMobileMenuOpen
+          ? undefined
+          : { backgroundColor, borderBottomColor, boxShadow }
+      }
     >
       <div className="max-w-7xl mx-auto px-8">
         <div className="flex items-center justify-between py-5">
@@ -107,12 +122,18 @@ export function Header() {
 
           {/* CTA Button */}
           <div className="hidden lg:flex items-center">
-            <Button
-              className="bg-[#52842D] hover:bg-[#446F26] text-white rounded-full px-6 py-2.5 text-sm transition-all duration-300 hover:scale-[1.03]"
+            <motion.div
+              whileHover={PRESS_HOVER}
+              whileTap={PRESS_TAP}
+              transition={SPRING_PRESS}
             >
-              Get Quote
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
+              <Button
+                className="bg-[#52842D] hover:bg-[#446F26] text-white rounded-full px-6 py-2.5 text-sm"
+              >
+                Get Quote
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </motion.div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -167,16 +188,23 @@ export function Header() {
                 Contact
               </Link>
 
-              <Button
-                className="bg-[#52842D] hover:bg-[#446F26] text-white rounded-full px-6 py-2.5 text-sm w-full mt-2"
+              <motion.div
+                whileHover={PRESS_HOVER}
+                whileTap={PRESS_TAP}
+                transition={SPRING_PRESS}
+                className="w-full mt-2"
               >
-                Get Quote
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
+                <Button
+                  className="bg-[#52842D] hover:bg-[#446F26] text-white rounded-full px-6 py-2.5 text-sm w-full"
+                >
+                  Get Quote
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </motion.div>
             </nav>
           </div>
         )}
       </div>
-    </header>
+    </motion.header>
   );
 }

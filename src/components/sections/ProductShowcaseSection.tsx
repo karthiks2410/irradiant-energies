@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Bell, Zap, Users, Sun, Battery, Car } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { PRESS_HOVER, PRESS_TAP, SPRING_PRESS } from "@/lib/motion";
 
 const products = [
   {
@@ -101,10 +102,10 @@ function ProductCard({
     offset: ["start end", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.8, 1, 1, 0.8]);
-  const imageY = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const y = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  const opacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0, 1, 1, 0.4]);
+  const scale = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], [0.95, 1, 1, 0.97]);
+  const imageY = useTransform(scrollYProgress, [0, 1], [30, -30]);
 
   return (
     <motion.div
@@ -156,25 +157,37 @@ function ProductCard({
 
           <div className="flex flex-wrap gap-4 pt-4">
             {product.ctaSecondary && (
-              <Link
-                href={product.ctaSecondary.href}
-                className="inline-flex items-center justify-center px-8 py-3.5 text-base rounded-full border-2 border-[#1d1d1f] text-[#1d1d1f] hover:bg-[#1d1d1f] hover:text-white transition-all duration-300"
+              <motion.div
+                whileHover={PRESS_HOVER}
+                whileTap={PRESS_TAP}
+                transition={SPRING_PRESS}
               >
-                {product.ctaSecondary.label}
-              </Link>
+                <Link
+                  href={product.ctaSecondary.href}
+                  className="inline-flex items-center justify-center px-8 py-3.5 text-base rounded-full border-2 border-[#1d1d1f] text-[#1d1d1f] hover:bg-[#1d1d1f] hover:text-white"
+                >
+                  {product.ctaSecondary.label}
+                </Link>
+              </motion.div>
             )}
-            <Link
-              href={product.cta.href}
-              className={`inline-flex items-center justify-center px-8 py-3.5 text-base rounded-full transition-all duration-300 hover:scale-[1.03] ${
-                product.available
-                  ? "bg-[#52842D] text-white hover:bg-[#446F26] shadow-lg shadow-[#52842D]/25"
-                  : "bg-amber-500 text-white hover:bg-amber-600 shadow-lg shadow-amber-500/25"
-              }`}
+            <motion.div
+              whileHover={PRESS_HOVER}
+              whileTap={PRESS_TAP}
+              transition={SPRING_PRESS}
             >
-              {!product.available && <Bell className="mr-2 w-5 h-5" />}
-              {product.cta.label}
-              {product.available && <ArrowRight className="ml-2 w-5 h-5" />}
-            </Link>
+              <Link
+                href={product.cta.href}
+                className={`inline-flex items-center justify-center px-8 py-3.5 text-base rounded-full ${
+                  product.available
+                    ? "bg-[#52842D] text-white hover:bg-[#446F26] shadow-lg shadow-[#52842D]/25"
+                    : "bg-amber-500 text-white hover:bg-amber-600 shadow-lg shadow-amber-500/25"
+                }`}
+              >
+                {!product.available && <Bell className="mr-2 w-5 h-5" />}
+                {product.cta.label}
+                {product.available && <ArrowRight className="ml-2 w-5 h-5" />}
+              </Link>
+            </motion.div>
           </div>
         </motion.div>
 
@@ -280,13 +293,20 @@ export function ProductShowcaseSection() {
         <p className="text-[#6F6F6F] text-lg mb-6 max-w-xl mx-auto">
           Not sure which solution is right for you? Let our experts help you design the perfect system.
         </p>
-        <Link
-          href="#contact"
-          className="inline-flex items-center justify-center px-10 py-4 text-base rounded-full bg-[#1d1d1f] text-white hover:bg-black transition-all duration-300 hover:scale-[1.03]"
+        <motion.div
+          whileHover={PRESS_HOVER}
+          whileTap={PRESS_TAP}
+          transition={SPRING_PRESS}
+          className="inline-block"
         >
-          Talk to an Expert
-          <ArrowRight className="ml-2 w-5 h-5" />
-        </Link>
+          <Link
+            href="#contact"
+            className="inline-flex items-center justify-center px-10 py-4 text-base rounded-full bg-[#1d1d1f] text-white hover:bg-black"
+          >
+            Talk to an Expert
+            <ArrowRight className="ml-2 w-5 h-5" />
+          </Link>
+        </motion.div>
       </motion.div>
     </section>
   );
