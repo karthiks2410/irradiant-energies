@@ -5,11 +5,12 @@ import { Separator } from "@/components/ui/separator";
 import { COMPANY } from "@/lib/constants";
 
 const footerLinks = {
-  products: [
-    { name: "Solar Panels", href: "#solar" },
-    { name: "Virtual Power Plant", href: "#vpp" },
-    { name: "P2P Trading", href: "#p2p" },
-    { name: "Enterprise Solutions", href: "#enterprise" },
+  solutions: [
+    { name: "Solar", href: "/solutions/solar/home/on-grid" },
+    { name: "Energy Storage", href: "/solutions/ess/bess" },
+    { name: "EV Charging", href: "/solutions/ev-charging/ac" },
+    { name: "Virtual Power Plant", href: "/discover/vpp" },
+    { name: "P2P Trading", href: "/discover/p2p-trading" },
   ],
   company: [
     { name: "About Us", href: "#about" },
@@ -95,11 +96,11 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Products */}
+          {/* Solutions */}
           <div>
-            <h3 className="text-[#1d1d1f] font-semibold mb-4">Products</h3>
+            <h3 className="text-[#1d1d1f] font-semibold mb-4">Solutions</h3>
             <ul className="space-y-3">
-              {footerLinks.products.map((link) => (
+              {footerLinks.solutions.map((link) => (
                 <li key={link.name}>
                   <Link href={link.href} className="text-[#6e6e73] hover:text-[#8EBE34] transition-colors">
                     {link.name}
@@ -149,7 +150,7 @@ export function Footer() {
             </a>
             <a href={`tel:${COMPANY.whatsapp}`} className="flex items-center gap-2 text-[#6e6e73] hover:text-[#8EBE34]">
               <Phone className="w-4 h-4" />
-              {COMPANY.phone}
+              {COMPANY.phone} / {COMPANY.phoneSecondary}
             </a>
             <span className="flex items-center gap-2 text-[#6e6e73]">
               <MapPin className="w-4 h-4" />
