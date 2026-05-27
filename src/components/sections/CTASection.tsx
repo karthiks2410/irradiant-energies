@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { COMPANY } from "@/lib/constants";
 import { ParallaxWrapper } from "@/components/animations";
+import { SPRING_PRESS, PRESS_HOVER, PRESS_TAP } from "@/lib/motion";
 
 const benefits = [
   "Free site assessment",
@@ -219,7 +220,7 @@ export function CTASection() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.55 }}
                   >
-                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <motion.div whileHover={PRESS_HOVER} whileTap={PRESS_TAP} transition={SPRING_PRESS}>
                       <Button
                         type="submit"
                         className="w-full bg-[#52842D] hover:bg-[#446F26] text-white py-6 rounded-xl shadow-lg shadow-[#52842D]/25"

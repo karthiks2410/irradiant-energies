@@ -1,13 +1,22 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  EASE_OUT_EXPO,
+  SPRING_PRESS,
+  PRESS_HOVER,
+  PRESS_TAP,
+} from "@/lib/motion";
+
+const PLAIN_WORDS = ["Power", "Your", "Future"];
+const ITALIC_WORDS = ["With", "Solar", "Energy"];
 
 export function HeroSection() {
   return (
     <section className="relative min-h-[85vh] w-full overflow-hidden bg-white">
-      {/* Image Background */}
       <div
         className="absolute z-0"
         style={{
@@ -25,11 +34,9 @@ export function HeroSection() {
           className="object-cover"
           style={{ opacity: 0.9 }}
         />
-        {/* Gradient overlays */}
         <div className="absolute inset-0 bg-gradient-to-b from-white via-white/60 to-white/90" />
       </div>
 
-      {/* Content */}
       <div
         className="relative z-10 flex flex-col items-center justify-center text-center px-6"
         style={{
@@ -38,9 +45,8 @@ export function HeroSection() {
           minHeight: "85vh",
         }}
       >
-        {/* Headline */}
         <h1
-          className="animate-fade-rise max-w-7xl font-normal font-[family-name:var(--font-display)]"
+          className="max-w-7xl font-normal font-[family-name:var(--font-display)]"
           style={{
             fontSize: "clamp(3rem, 8vw, 6rem)",
             lineHeight: 0.95,
@@ -48,31 +54,71 @@ export function HeroSection() {
             color: "#000000",
           }}
         >
-          Power Your Future{" "}
-          <em style={{ color: "#52842D", fontStyle: "italic" }}>
-            With Solar Energy
-          </em>
+          {PLAIN_WORDS.map((word, i) => (
+            <motion.span
+              key={`plain-${i}`}
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{
+                duration: 0.6,
+                delay: i * 0.06,
+                ease: EASE_OUT_EXPO,
+              }}
+              className="inline-block mr-[0.25em]"
+            >
+              {word}
+            </motion.span>
+          ))}
+          {ITALIC_WORDS.map((word, i) => (
+            <motion.span
+              key={`italic-${i}`}
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{
+                duration: 0.6,
+                delay: (PLAIN_WORDS.length + i) * 0.06,
+                ease: EASE_OUT_EXPO,
+              }}
+              className="inline-block mr-[0.25em]"
+              style={{ color: "#52842D", fontStyle: "italic" }}
+            >
+              {word}
+            </motion.span>
+          ))}
         </h1>
 
-        {/* Description */}
-        <p
-          className="animate-fade-rise-delay text-base sm:text-lg max-w-2xl mt-8 leading-relaxed"
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.7, ease: EASE_OUT_EXPO }}
+          className="text-base sm:text-lg max-w-2xl mt-8 leading-relaxed"
           style={{ color: "#6F6F6F" }}
         >
           India's complete solar ecosystem — from rooftop to revenue. Premium
           panels, smart energy management, and peer-to-peer trading.
-        </p>
+        </motion.p>
 
-        {/* CTA Button */}
-        <div className="animate-fade-rise-delay-2 mt-12">
-          <Button
-            size="lg"
-            className="rounded-full px-14 py-6 text-base bg-[#52842D] hover:bg-[#446F26] text-white transition-all duration-300 hover:scale-[1.03] shadow-lg shadow-[#52842D]/25"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.9, ease: EASE_OUT_EXPO }}
+          className="mt-12"
+        >
+          <motion.div
+            whileHover={PRESS_HOVER}
+            whileTap={PRESS_TAP}
+            transition={SPRING_PRESS}
+            className="inline-block"
           >
-            Get Free Quote
-            <ArrowRight className="ml-2 w-5 h-5" />
-          </Button>
-        </div>
+            <Button
+              size="lg"
+              className="rounded-full px-14 py-6 text-base bg-[#52842D] hover:bg-[#446F26] text-white shadow-lg shadow-[#52842D]/25"
+            >
+              Get Free Quote
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
