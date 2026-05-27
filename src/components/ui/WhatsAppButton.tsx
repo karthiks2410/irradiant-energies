@@ -60,7 +60,7 @@ export function WhatsAppButton() {
                 className="flex items-center gap-2 text-sm text-[#6F6F6F] hover:text-[#8EBE34] transition-colors"
               >
                 <Phone className="w-4 h-4" />
-                {COMPANY.phone}
+                {COMPANY.phone} / {COMPANY.phoneSecondary}
               </a>
               <a
                 href={`mailto:${COMPANY.email}`}

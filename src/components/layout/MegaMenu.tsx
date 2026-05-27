@@ -30,13 +30,13 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
           : "opacity-0 invisible -translate-y-2"
       }`}
     >
-      <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden flex min-w-[700px]">
+      <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden flex min-w-[920px]">
         {/* Left Panel - Solution Categories */}
-        <div className="w-[220px] bg-gray-50/50 p-3 border-r border-gray-100">
-          <p className="text-[10px] uppercase tracking-wider text-[#6F6F6F] font-medium px-3 py-2">
+        <div className="w-[280px] bg-gray-50/50 p-5 border-r border-gray-100">
+          <p className="text-[10px] uppercase tracking-wider text-[#6F6F6F] font-medium px-3 py-2 mb-1">
             Solutions
           </p>
-          <div className="space-y-0.5">
+          <div className="space-y-1">
             {solutions.map((solution) => (
               <SolutionItem
                 key={solution.id}
@@ -55,7 +55,7 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
         </div>
 
         {/* Right Panel - Dynamic Content */}
-        <div className="flex-1 p-5 min-h-[320px]">
+        <div className="flex-1 p-8 min-h-[400px]">
           {currentSolution?.hasSegments && currentSolution.segments && (
             <SolarPanel
               segments={currentSolution.segments}
@@ -100,7 +100,7 @@ function SolutionItem({
         href={solution.href}
         onClick={onClose}
         onMouseEnter={onHover}
-        className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all ${
+        className={`flex items-center gap-3 px-3 py-3 rounded-xl transition-all ${
           isActive ? "bg-white shadow-sm" : "hover:bg-white/60"
         }`}
       >
@@ -126,7 +126,7 @@ function SolutionItem({
   return (
     <div
       onMouseEnter={onHover}
-      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all cursor-pointer ${
+      className={`flex items-center gap-3 px-3 py-3 rounded-xl transition-all cursor-pointer ${
         isActive ? "bg-white shadow-sm" : "hover:bg-white/60"
       }`}
     >
@@ -161,12 +161,12 @@ function SolarPanel({
   return (
     <div>
       {/* Segment Tabs */}
-      <div className="flex gap-1 mb-5 p-1 bg-gray-100 rounded-xl">
+      <div className="flex gap-1 mb-7 p-1 bg-gray-100 rounded-xl">
         {segments.map((segment) => (
           <button
             key={segment.id}
             onClick={() => onSegmentChange(segment.id)}
-            className={`px-3 py-2 text-xs font-medium rounded-lg transition-all ${
+            className={`px-4 py-2.5 text-xs font-medium rounded-lg transition-all ${
               selectedSegment === segment.id
                 ? "bg-white text-[#1d1d1f] shadow-sm"
                 : "text-[#6F6F6F] hover:text-[#1d1d1f]"
@@ -179,33 +179,33 @@ function SolarPanel({
 
       {/* Segment Description */}
       {currentSegment && (
-        <div className="mb-5">
-          <div className="flex items-center gap-2 mb-1">
+        <div className="mb-7">
+          <div className="flex items-center gap-2 mb-2">
             <currentSegment.icon className="w-4 h-4 text-[#8EBE34]" />
-            <h3 className="text-sm font-semibold text-[#1d1d1f]">
+            <h3 className="text-base font-semibold text-[#1d1d1f]">
               {currentSegment.name}
             </h3>
           </div>
-          <p className="text-xs text-[#6F6F6F]">{currentSegment.description}</p>
+          <p className="text-sm text-[#6F6F6F]">{currentSegment.description}</p>
         </div>
       )}
 
       {/* Solution Type Cards */}
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-3 gap-4">
         {solutionTypes.map((type) => (
           <Link
             key={type.id}
             href={getSolarHref(selectedSegment, type.id)}
             onClick={onClose}
-            className="group p-4 rounded-xl border border-gray-100 hover:border-[#8EBE34]/30 hover:bg-[#8EBE34]/5 transition-all"
+            className="group p-5 rounded-xl border border-gray-100 hover:border-[#8EBE34]/30 hover:bg-[#8EBE34]/5 transition-all"
           >
-            <div className="p-2 rounded-lg bg-gray-100 group-hover:bg-[#8EBE34]/10 w-fit mb-3 transition-colors">
+            <div className="p-2.5 rounded-lg bg-gray-100 group-hover:bg-[#8EBE34]/10 w-fit mb-4 transition-colors">
               <type.icon className="w-5 h-5 text-[#6F6F6F] group-hover:text-[#8EBE34] transition-colors" />
             </div>
-            <h4 className="text-sm font-medium text-[#1d1d1f] mb-1">
+            <h4 className="text-sm font-medium text-[#1d1d1f] mb-1.5">
               {type.name}
             </h4>
-            <p className="text-[11px] text-[#6F6F6F] leading-relaxed">
+            <p className="text-xs text-[#6F6F6F] leading-relaxed">
               {type.description}
             </p>
           </Link>
@@ -224,35 +224,35 @@ function ChildrenPanel({
 }) {
   return (
     <div>
-      <div className="mb-5">
-        <div className="flex items-center gap-2 mb-1">
+      <div className="mb-7">
+        <div className="flex items-center gap-2 mb-2">
           <solution.icon className={`w-4 h-4 ${solution.iconColor}`} />
-          <h3 className="text-sm font-semibold text-[#1d1d1f]">
+          <h3 className="text-base font-semibold text-[#1d1d1f]">
             {solution.shortName || solution.name}
           </h3>
         </div>
         {solution.description && (
-          <p className="text-xs text-[#6F6F6F]">{solution.description}</p>
+          <p className="text-sm text-[#6F6F6F]">{solution.description}</p>
         )}
       </div>
 
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-3 gap-4">
         {solution.children?.map((child) => (
           <Link
             key={child.id}
             href={child.href}
             onClick={onClose}
-            className="group p-4 rounded-xl border border-gray-100 hover:border-[#8EBE34]/30 hover:bg-[#8EBE34]/5 transition-all"
+            className="group p-5 rounded-xl border border-gray-100 hover:border-[#8EBE34]/30 hover:bg-[#8EBE34]/5 transition-all"
           >
             {child.icon && (
-              <div className="p-2 rounded-lg bg-gray-100 group-hover:bg-[#8EBE34]/10 w-fit mb-3 transition-colors">
+              <div className="p-2.5 rounded-lg bg-gray-100 group-hover:bg-[#8EBE34]/10 w-fit mb-4 transition-colors">
                 <child.icon className="w-5 h-5 text-[#6F6F6F] group-hover:text-[#8EBE34] transition-colors" />
               </div>
             )}
-            <h4 className="text-sm font-medium text-[#1d1d1f] mb-1">
+            <h4 className="text-sm font-medium text-[#1d1d1f] mb-1.5">
               {child.name}
             </h4>
-            <p className="text-[11px] text-[#6F6F6F] leading-relaxed">
+            <p className="text-xs text-[#6F6F6F] leading-relaxed">
               {child.description}
             </p>
           </Link>

@@ -121,6 +121,7 @@ export function CTASection() {
                   <div>
                     <div className="text-sm text-[#86868b]">Call us</div>
                     <div className="font-medium text-[#1d1d1f]">{COMPANY.phone}</div>
+                    <div className="font-medium text-[#1d1d1f]">{COMPANY.phoneSecondary}</div>
                   </div>
                 </a>
                 <a
