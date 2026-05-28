@@ -2,7 +2,8 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { ArrowRight, Phone, Mail, CheckCircle } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, Phone, Mail, CheckCircle, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -75,10 +76,30 @@ export function CTASection() {
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1d1d1f] mb-6 tracking-tight">
                 Ready to Go Solar?
               </h2>
-              <p className="text-lg text-[#6e6e73] mb-8">
+              <p className="text-lg text-[#6e6e73] mb-6">
                 Get a free consultation and customized quote for your home or business.
                 Our experts will design the perfect system for your needs.
               </p>
+
+              {/* Live calculator shortcut — value before form */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.15 }}
+                whileHover={PRESS_HOVER}
+                whileTap={PRESS_TAP}
+                className="mb-8 inline-block"
+              >
+                <Link
+                  href="/get-quote"
+                  className="group inline-flex items-center gap-2 rounded-full border border-[#52842D]/30 bg-white px-4 py-2.5 text-sm font-medium text-[#446F26] shadow-sm transition-colors hover:border-[#52842D] hover:bg-[#52842D]/5"
+                >
+                  <Sparkles className="h-4 w-4 text-[#52842D]" />
+                  See your numbers in seconds — try the live calculator
+                  <ArrowRight className="h-4 w-4 text-[#52842D] transition-transform group-hover:translate-x-0.5" />
+                </Link>
+              </motion.div>
 
               {/* Benefits with staggered animation */}
               <div className="grid grid-cols-2 gap-4 mb-8">
