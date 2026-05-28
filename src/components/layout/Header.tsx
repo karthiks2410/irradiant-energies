@@ -61,20 +61,20 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-8">
         <div className="flex items-center justify-between py-5">
           {/* Logo */}
-          <Link href="/" onClick={handleHomeClick} className="flex items-center space-x-2">
+          <Link href="/" onClick={handleHomeClick} className="flex items-center space-x-2.5">
             <Image
               src="/logo.svg"
               alt="Irradiant Energie"
-              width={32}
-              height={38}
-              className="h-9 w-auto"
+              width={44}
+              height={52}
+              className="h-11 w-auto sm:h-12"
             />
             <Image
               src="/logo-text.svg"
               alt="Irradiant Energie"
-              width={120}
-              height={40}
-              className="h-6 w-auto hidden sm:block"
+              width={160}
+              height={52}
+              className="h-7 w-auto sm:h-8"
             />
           </Link>
 

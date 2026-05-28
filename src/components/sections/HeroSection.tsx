@@ -12,8 +12,7 @@ import {
   PRESS_TAP,
 } from "@/lib/motion";
 
-const PLAIN_WORDS = ["Power", "Your", "Future"];
-const ACCENT_WORDS = ["With", "Solar", "Energy"];
+const HEADLINE_WORDS = ["Power", "Your", "Future", "With", "Solar", "Energy"];
 
 export function HeroSection() {
   const prefersReducedMotion = useReducedMotion();
@@ -49,18 +48,19 @@ export function HeroSection() {
         }}
       >
         <h1
-          className="max-w-7xl font-[family-name:var(--font-display)]"
+          className="max-w-7xl font-[family-name:var(--font-display)] bg-clip-text text-transparent"
           style={{
-            fontSize: "clamp(3.25rem, 8.5vw, 6.5rem)",
-            lineHeight: 1.02,
+            fontSize: "clamp(2.75rem, 7vw, 5.5rem)",
+            lineHeight: 1.04,
             letterSpacing: "-0.035em",
             fontWeight: 800,
-            color: "#1d1d1f",
+            backgroundImage:
+              "linear-gradient(110deg, #1d1d1f 0%, #1d1d1f 22%, #2d4a1a 55%, #3f6a25 78%, #52842D 100%)",
           }}
         >
-          {PLAIN_WORDS.map((word, i) => (
+          {HEADLINE_WORDS.map((word, i) => (
             <motion.span
-              key={`plain-${i}`}
+              key={`word-${i}`}
               initial={wordInitial}
               animate={{ y: 0, opacity: 1 }}
               transition={{
@@ -69,22 +69,6 @@ export function HeroSection() {
                 ease: EASE_OUT_EXPO,
               }}
               className="inline-block mr-[0.25em]"
-            >
-              {word}
-            </motion.span>
-          ))}
-          {ACCENT_WORDS.map((word, i) => (
-            <motion.span
-              key={`accent-${i}`}
-              initial={wordInitial}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{
-                duration: 0.6,
-                delay: (PLAIN_WORDS.length + i) * 0.06,
-                ease: EASE_OUT_EXPO,
-              }}
-              className="inline-block mr-[0.25em]"
-              style={{ color: "#52842D" }}
             >
               {word}
             </motion.span>
