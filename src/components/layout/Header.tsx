@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Menu, X, ArrowRight, ChevronDown } from "lucide-react";
@@ -13,6 +14,7 @@ import { SPRING_PRESS, PRESS_HOVER, PRESS_TAP } from "@/lib/motion";
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
+  const pathname = usePathname();
 
   const { scrollY } = useScroll();
   const backgroundColor = useTransform(
@@ -33,6 +35,16 @@ export function Header() {
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
+  const handleHomeClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (pathname === "/") {
+      event.preventDefault();
+      if (window.location.hash) {
+        history.replaceState(null, "", "/");
+      }
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 border-b ${
@@ -49,7 +61,7 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-8">
         <div className="flex items-center justify-between py-5">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
+          <Link href="/" onClick={handleHomeClick} className="flex items-center space-x-2">
             <Image
               src="/logo.svg"
               alt="Irradiant Energie"
@@ -71,6 +83,7 @@ export function Header() {
             {/* Home Link */}
             <Link
               href="/"
+              onClick={handleHomeClick}
               className="nav-link text-sm font-medium transition-colors text-[#000000]"
             >
               Home
@@ -156,7 +169,10 @@ export function Header() {
               {/* Home */}
               <Link
                 href="/"
-                onClick={closeMobileMenu}
+                onClick={(e) => {
+                  handleHomeClick(e);
+                  closeMobileMenu();
+                }}
                 className="text-base font-medium transition-colors text-[#000000]"
               >
                 Home
