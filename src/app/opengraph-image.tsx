@@ -1,8 +1,8 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 
-export const runtime = "edge";
-
-export const alt = "Irradiant Energies - Solar & Smart Energy Solutions";
+export const alt = "Irradiant Energie - Solar & Smart Energy Solutions";
 export const size = {
   width: 1200,
   height: 630,
@@ -10,6 +10,9 @@ export const size = {
 export const contentType = "image/png";
 
 export default async function Image() {
+  const logoSvg = await readFile(join(process.cwd(), "public", "logo.svg"), "utf-8");
+  const logoDataUrl = `data:image/svg+xml;base64,${Buffer.from(logoSvg).toString("base64")}`;
+
   return new ImageResponse(
     (
       <div
@@ -48,7 +51,7 @@ export default async function Image() {
           }}
         />
 
-        {/* Logo SVG recreation */}
+        {/* Logo from public/logo.svg — single source of truth */}
         <div
           style={{
             display: "flex",
@@ -57,42 +60,8 @@ export default async function Image() {
             marginBottom: 40,
           }}
         >
-          <svg
-            width="120"
-            height="140"
-            viewBox="0 0 119 139"
-            fill="none"
-          >
-            <path
-              d="M59.8193 138.228C45.4933 120.896 27.1009 114.148 17.5882 128.816C-0.0451736 115.155 -2.14073 90.9695 6.72116 75.9832C15.4534 61.2135 31.3022 53.7004 45.4109 57.3813C41.6871 43.7882 48.5634 28.4352 60.6889 19.1161C72.8143 9.79707 88.3994 6.90616 100.567 11.9386C119.111 19.6119 123.302 35.7319 117.034 55.4153C121.798 64.9595 120.93 77.1632 114.749 87.6174C107.352 100.123 93.4596 107.55 80.3919 104.771C83.5065 114.969 81.1435 126.563 74.0927 135.486C69.7598 141.173 63.816 141.044 59.8193 138.228Z"
-              fill="#52842D"
-            />
-            <path
-              d="M59.8193 138.228C45.4933 120.896 27.1009 114.148 17.5882 128.816C-0.0451736 115.155 -2.14073 90.9695 6.72116 75.9832C15.4534 61.2135 31.3022 53.7004 45.4109 57.3813C41.6871 43.7882 48.5634 28.4352 60.6889 19.1161C72.8143 9.79707 88.3994 6.90616 100.567 11.9386C119.111 19.6119 123.302 35.7319 117.034 55.4153C121.798 64.9595 120.93 77.1632 114.749 87.6174C107.352 100.123 93.4596 107.55 80.3919 104.771C83.5065 114.969 81.1435 126.563 74.0927 135.486C69.7598 141.173 63.816 141.044 59.8193 138.228Z"
-              fill="url(#paint0_linear)"
-            />
-            <path
-              d="M45.4108 57.3813C41.687 43.7882 48.5633 28.4352 60.6888 19.1161C72.8142 9.79707 88.3993 6.90616 100.567 11.9386C119.111 19.6119 123.302 35.7319 117.034 55.4153C102.622 49.4235 86.608 50.0153 72.3721 56.8523C62.5312 61.5832 53.5152 68.8508 45.4108 57.3813Z"
-              fill="#4C7D2B"
-            />
-            <path
-              d="M72.372 56.8524C62.5311 61.5833 53.5151 68.8509 45.4108 57.3814C41.687 43.7883 48.5633 28.4353 60.6888 19.1162C64.9814 31.5965 67.5866 44.3779 72.372 56.8524Z"
-              fill="#1D3F26"
-            />
-            <defs>
-              <linearGradient
-                id="paint0_linear"
-                x1="60"
-                y1="10"
-                x2="60"
-                y2="140"
-                gradientUnits="userSpaceOnUse"
-              >
-                <stop stopColor="#52842D" />
-                <stop offset="1" stopColor="#6FA328" />
-              </linearGradient>
-            </defs>
-          </svg>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={logoDataUrl} alt="" width={140} height={165} />
         </div>
 
         {/* Company name */}
@@ -106,7 +75,7 @@ export default async function Image() {
             marginBottom: 16,
           }}
         >
-          IRRADIANT ENERGIES
+          IRRADIANT ENERGIE
         </div>
 
         {/* Tagline */}

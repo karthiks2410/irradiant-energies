@@ -1,5 +1,5 @@
 export const COMPANY = {
-  name: "IRRADIANT ENERGIES",
+  name: "IRRADIANT ENERGIE",
   tagline: "Power. Intelligently.",
   description: "India's first complete solar ecosystem — from rooftop to revenue.",
   phone: "+91 98457 94343",
