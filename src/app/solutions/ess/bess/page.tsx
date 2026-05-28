@@ -1,8 +1,16 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Clock, Battery } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
+
+export const metadata: Metadata = {
+  title: "Battery Energy Storage (BESS) — Coming Soon | Irradiant Energie",
+  description:
+    "Battery Energy Storage Systems for homes, businesses, and utility-scale applications. Coming soon.",
+  robots: { index: false, follow: false },
+};
 
 export default function BESSPage() {
   return (
@@ -56,7 +64,7 @@ export default function BESSPage() {
                 We're preparing comprehensive BESS solutions for various applications.
                 Register your interest to be notified when we launch.
               </p>
-              <Link href="/#contact">
+              <Link href="/get-quote">
                 <Button className="bg-blue-500 hover:bg-blue-600 text-white rounded-full px-8 py-3">
                   Register Interest
                   <ArrowRight className="ml-2 w-4 h-4" />

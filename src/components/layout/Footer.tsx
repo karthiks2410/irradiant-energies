@@ -12,43 +12,39 @@ const footerLinks = {
   solutions: [
     { name: "Solar", href: "/solutions/solar/home/on-grid" },
     { name: "Energy Storage", href: "/solutions/ess/bess" },
-    { name: "EV Charging", href: "/solutions/ev-charging/ac" },
+    { name: "EV Charging", href: "/solutions/ev-charging/grid-dependent" },
     { name: "Virtual Power Plant", href: "/discover/vpp" },
     { name: "P2P Trading", href: "/discover/p2p-trading" },
   ],
   company: [
-    { name: "About Us", href: "#about" },
-    { name: "Our Mission", href: "#mission" },
-    { name: "Careers", href: "#careers" },
+    { name: "About Us", href: "/#about" },
     { name: "Discover", href: "/discover" },
   ],
   support: [
-    { name: "Contact Us", href: "#contact" },
-    { name: "FAQs", href: "#faq" },
-    { name: "Installation Guide", href: "#guide" },
-    { name: "Warranty", href: "#warranty" },
+    { name: "Get a Quote", href: "/get-quote" },
+    { name: "Contact Us", href: "/#contact" },
   ],
 };
 
 const socialLinks = [
   {
     name: "Instagram",
-    href: "#",
+    href: "",
     logo: "https://img.logo.dev/instagram.com?token=pk_HTrnQ1UQST6HmLe5roSfjg",
   },
   {
     name: "LinkedIn",
-    href: "#",
+    href: "",
     logo: "https://img.logo.dev/linkedin.com?token=pk_HTrnQ1UQST6HmLe5roSfjg",
   },
   {
     name: "Facebook",
-    href: "#",
+    href: "",
     logo: "https://img.logo.dev/facebook.com?token=pk_HTrnQ1UQST6HmLe5roSfjg",
   },
   {
     name: "X",
-    href: "#",
+    href: "",
     logo: "https://img.logo.dev/x.com?token=pk_HTrnQ1UQST6HmLe5roSfjg",
   },
 ];
@@ -108,15 +104,19 @@ export function Footer() {
                 <a
                   key={social.name}
                   href={social.href}
-                  className="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors hover:scale-110 transition-transform duration-200 overflow-hidden"
-                  aria-label={social.name}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors overflow-hidden"
+                  aria-label={`${social.name} (opens in new tab)`}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={social.logo}
-                    alt={social.name}
+                    alt=""
+                    aria-hidden="true"
                     width={20}
                     height={20}
+                    loading="lazy"
                     className="rounded-sm"
                   />
                 </a>
@@ -182,7 +182,7 @@ export function Footer() {
               <Mail className="w-4 h-4" />
               {COMPANY.email}
             </a>
-            <a href={`tel:${COMPANY.whatsapp}`} className="flex items-center gap-2 text-[#6e6e73] hover:text-[#52842D]">
+            <a href={`tel:${COMPANY.phone}`} className="flex items-center gap-2 text-[#6e6e73] hover:text-[#52842D]">
               <Phone className="w-4 h-4" />
               {COMPANY.phone} / {COMPANY.phoneSecondary}
             </a>

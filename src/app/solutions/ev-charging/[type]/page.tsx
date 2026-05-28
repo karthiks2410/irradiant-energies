@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Clock, Car, PlugZap, Sun, Merge } from "lucide-react";
 import { Header } from "@/components/layout/Header";
@@ -33,6 +34,19 @@ const evTypes = {
     bg: "bg-blue-500/10",
   },
 };
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { type: typeId } = await params;
+  const evType = evTypes[typeId as keyof typeof evTypes];
+  if (!evType) {
+    return { title: "Not Found | Irradiant Energie", robots: { index: false, follow: false } };
+  }
+  return {
+    title: `EV Charging: ${evType.name} — Coming Soon | Irradiant Energie`,
+    description: `${evType.description}. Coming soon to Irradiant Energie.`,
+    robots: { index: false, follow: false },
+  };
+}
 
 export default async function EVChargingPage({ params }: PageProps) {
   const { type: typeId } = await params;
@@ -115,7 +129,7 @@ export default async function EVChargingPage({ params }: PageProps) {
                 We're preparing comprehensive EV charging solutions for various needs.
                 Register your interest to be notified when we launch.
               </p>
-              <Link href="/#contact">
+              <Link href="/get-quote">
                 <Button className="bg-purple-500 hover:bg-purple-600 text-white rounded-full px-8 py-3">
                   Register Interest
                   <ArrowRight className="ml-2 w-4 h-4" />

@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowRight, Phone, Mail, CheckCircle, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,6 +24,8 @@ const benefits = [
 
 export function CTASection() {
   const sectionRef = useRef(null);
+  const router = useRouter();
+  const prefersReducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"]
@@ -33,8 +36,8 @@ export function CTASection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // For now, just show an alert. Later this will go to Supabase.
-    alert("Thank you! We will contact you soon.");
+    // The detailed quote flow lives at /get-quote — funnel users there for real lead capture.
+    router.push("/get-quote");
   };
 
   return (
@@ -52,12 +55,12 @@ export function CTASection() {
       {/* Subtle animated background accents */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          animate={{ scale: [1, 1.3, 1], opacity: [0.03, 0.08, 0.03] }}
+          animate={prefersReducedMotion ? undefined : { scale: [1, 1.3, 1], opacity: [0.03, 0.08, 0.03] }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
           className="absolute -right-1/4 top-1/4 w-1/2 h-1/2 bg-[#52842D]/20 rounded-full blur-3xl"
         />
         <motion.div
-          animate={{ scale: [1.2, 1, 1.2], opacity: [0.03, 0.06, 0.03] }}
+          animate={prefersReducedMotion ? undefined : { scale: [1.2, 1, 1.2], opacity: [0.03, 0.06, 0.03] }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
           className="absolute -left-1/4 bottom-1/4 w-1/2 h-1/2 bg-[#52842D]/15 rounded-full blur-3xl"
         />
@@ -131,7 +134,7 @@ export function CTASection() {
                 className="flex flex-col sm:flex-row gap-6"
               >
                 <a
-                  href={`tel:${COMPANY.whatsapp}`}
+                  href={`tel:${COMPANY.phone}`}
                   className="flex items-center gap-3 text-[#6e6e73] hover:text-[#52842D] transition-colors group"
                 >
                   <motion.div

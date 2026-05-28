@@ -92,7 +92,10 @@ function SolutionAccordion({
   return (
     <div>
       <button
+        type="button"
         onClick={onToggle}
+        aria-expanded={isExpanded}
+        aria-controls={`mobile-solution-${solution.id}`}
         className="flex items-center gap-3 py-3 px-1 w-full"
       >
         <div className={`p-2 rounded-lg ${solution.iconBg}`}>
@@ -110,6 +113,7 @@ function SolutionAccordion({
 
       {/* Expanded Content */}
       <div
+        id={`mobile-solution-${solution.id}`}
         className={`overflow-hidden transition-all duration-300 ${
           isExpanded ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0"
         }`}
@@ -173,7 +177,10 @@ function SegmentAccordion({
   return (
     <div>
       <button
+        type="button"
         onClick={onToggle}
+        aria-expanded={isExpanded}
+        aria-controls={`mobile-segment-${segment.id}`}
         className="flex items-center gap-3 py-2.5 px-2 w-full rounded-lg hover:bg-gray-50"
       >
         <segment.icon className="w-4 h-4 text-[#6F6F6F]" />
@@ -189,6 +196,7 @@ function SegmentAccordion({
 
       {/* Solution Types */}
       <div
+        id={`mobile-segment-${segment.id}`}
         className={`overflow-hidden transition-all duration-200 ${
           isExpanded ? "max-h-[200px] opacity-100" : "max-h-0 opacity-0"
         }`}

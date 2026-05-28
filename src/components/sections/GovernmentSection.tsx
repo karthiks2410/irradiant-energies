@@ -104,7 +104,7 @@ export function GovernmentSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
                 whileHover={{ scale: 1.05, y: -8 }}
-                className="bg-white rounded-2xl p-6 shadow-lg shadow-black/5 border border-black/5 hover:shadow-xl hover:shadow-black/10 transition-all duration-300"
+                className="bg-white rounded-2xl p-6 shadow-lg shadow-black/5 border border-black/5 hover:shadow-xl hover:shadow-black/10"
               >
                 <p className="text-3xl md:text-4xl font-bold text-[#1d1d1f] mb-2">
                   {stat.prefix}
