@@ -140,12 +140,14 @@ export function Header() {
               whileTap={PRESS_TAP}
               transition={SPRING_PRESS}
             >
-              <Button
-                className="bg-[#52842D] hover:bg-[#446F26] text-white rounded-full px-6 py-2.5 text-sm"
-              >
-                Get Quote
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
+              <Link href="/get-quote">
+                <Button
+                  className="bg-[#52842D] hover:bg-[#446F26] text-white rounded-full px-6 py-2.5 text-sm"
+                >
+                  Get Quote
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </Link>
             </motion.div>
           </div>
 
@@ -210,12 +212,14 @@ export function Header() {
                 transition={SPRING_PRESS}
                 className="w-full mt-2"
               >
-                <Button
-                  className="bg-[#52842D] hover:bg-[#446F26] text-white rounded-full px-6 py-2.5 text-sm w-full"
-                >
-                  Get Quote
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
+                <Link href="/get-quote" onClick={closeMobileMenu} className="block">
+                  <Button
+                    className="bg-[#52842D] hover:bg-[#446F26] text-white rounded-full px-6 py-2.5 text-sm w-full"
+                  >
+                    Get Quote
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </Link>
               </motion.div>
             </nav>
           </div>
