@@ -1,9 +1,15 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Zap, Users, Sun, BookOpen } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+
+export const metadata: Metadata = {
+  title: "Discover Clean Energy | Irradiant Energie",
+  description:
+    "Articles and guides on solar, virtual power plants, peer-to-peer energy trading, and the future of sustainable energy in India.",
+  alternates: { canonical: "/discover" },
+};
 
 const articles = [
   {
@@ -67,50 +73,72 @@ export default function DiscoverPage() {
 
           {/* Articles Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {articles.map((article) => (
-              <Link
-                key={article.slug}
-                href={article.comingSoon ? "#" : `/discover/${article.slug}`}
-                className={`group relative bg-white rounded-2xl border border-gray-100 p-8 transition-all duration-300 ${
-                  article.comingSoon
-                    ? "opacity-60 cursor-not-allowed"
-                    : "hover:shadow-xl hover:border-gray-200 hover:-translate-y-1"
-                }`}
-              >
-                {article.comingSoon && (
-                  <div className="absolute top-4 right-4 text-xs bg-gray-100 text-gray-500 px-2 py-1 rounded-full">
-                    Coming Soon
+            {articles.map((article) => {
+              const cardClass = `group relative bg-white rounded-2xl border border-gray-100 p-8 transition-all duration-300 ${
+                article.comingSoon
+                  ? "opacity-60 cursor-not-allowed"
+                  : "hover:shadow-xl hover:border-gray-200 hover:-translate-y-1"
+              }`;
+
+              const inner = (
+                <>
+                  {article.comingSoon && (
+                    <div className="absolute top-4 right-4 text-xs bg-gray-100 text-gray-500 px-2 py-1 rounded-full">
+                      Coming Soon
+                    </div>
+                  )}
+
+                  <div className={`inline-flex p-3 rounded-xl ${article.iconBg} mb-6`}>
+                    <article.icon className={`w-6 h-6 ${article.iconColor}`} />
                   </div>
-                )}
 
-                <div className={`inline-flex p-3 rounded-xl ${article.iconBg} mb-6`}>
-                  <article.icon className={`w-6 h-6 ${article.iconColor}`} />
-                </div>
-
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-xs uppercase tracking-wider text-[#6F6F6F]">
-                    {article.tag}
-                  </span>
-                  <span className="text-xs text-[#6F6F6F]">•</span>
-                  <span className="text-xs text-[#6F6F6F]">{article.readTime}</span>
-                </div>
-
-                <h2 className="text-xl font-medium text-[#1d1d1f] mb-3 group-hover:text-[#52842D] transition-colors">
-                  {article.title}
-                </h2>
-
-                <p className="text-[#6F6F6F] text-sm leading-relaxed mb-6">
-                  {article.description}
-                </p>
-
-                {!article.comingSoon && (
-                  <div className="flex items-center text-[#52842D] text-sm font-medium group-hover:gap-3 gap-2 transition-all">
-                    Read Article
-                    <ArrowRight className="w-4 h-4" />
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-xs uppercase tracking-wider text-[#6F6F6F]">
+                      {article.tag}
+                    </span>
+                    <span className="text-xs text-[#6F6F6F]">•</span>
+                    <span className="text-xs text-[#6F6F6F]">{article.readTime}</span>
                   </div>
-                )}
-              </Link>
-            ))}
+
+                  <h2 className="text-xl font-medium text-[#1d1d1f] mb-3 group-hover:text-[#52842D] transition-colors">
+                    {article.title}
+                  </h2>
+
+                  <p className="text-[#6F6F6F] text-sm leading-relaxed mb-6">
+                    {article.description}
+                  </p>
+
+                  {!article.comingSoon && (
+                    <div className="flex items-center text-[#52842D] text-sm font-medium group-hover:gap-3 gap-2 transition-all">
+                      Read Article
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  )}
+                </>
+              );
+
+              if (article.comingSoon) {
+                return (
+                  <div
+                    key={article.slug}
+                    aria-disabled="true"
+                    className={cardClass}
+                  >
+                    {inner}
+                  </div>
+                );
+              }
+
+              return (
+                <Link
+                  key={article.slug}
+                  href={`/discover/${article.slug}`}
+                  className={cardClass}
+                >
+                  {inner}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </main>

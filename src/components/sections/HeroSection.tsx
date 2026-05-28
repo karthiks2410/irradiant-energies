@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,6 +16,8 @@ const PLAIN_WORDS = ["Power", "Your", "Future"];
 const ITALIC_WORDS = ["With", "Solar", "Energy"];
 
 export function HeroSection() {
+  const prefersReducedMotion = useReducedMotion();
+  const wordInitial = prefersReducedMotion ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 };
   return (
     <section className="relative min-h-[85vh] w-full overflow-hidden bg-white">
       <div
@@ -57,7 +60,7 @@ export function HeroSection() {
           {PLAIN_WORDS.map((word, i) => (
             <motion.span
               key={`plain-${i}`}
-              initial={{ y: 30, opacity: 0 }}
+              initial={wordInitial}
               animate={{ y: 0, opacity: 1 }}
               transition={{
                 duration: 0.6,
@@ -72,7 +75,7 @@ export function HeroSection() {
           {ITALIC_WORDS.map((word, i) => (
             <motion.span
               key={`italic-${i}`}
-              initial={{ y: 30, opacity: 0 }}
+              initial={wordInitial}
               animate={{ y: 0, opacity: 1 }}
               transition={{
                 duration: 0.6,
@@ -110,13 +113,15 @@ export function HeroSection() {
             transition={SPRING_PRESS}
             className="inline-block"
           >
-            <Button
-              size="lg"
-              className="rounded-full px-14 py-6 text-base bg-[#52842D] hover:bg-[#446F26] text-white shadow-lg shadow-[#52842D]/25"
-            >
-              Get Free Quote
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
+            <Link href="/get-quote">
+              <Button
+                size="lg"
+                className="rounded-full px-14 py-6 text-base bg-[#52842D] hover:bg-[#446F26] text-white shadow-lg shadow-[#52842D]/25"
+              >
+                Get Free Quote
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+            </Link>
           </motion.div>
         </motion.div>
       </div>

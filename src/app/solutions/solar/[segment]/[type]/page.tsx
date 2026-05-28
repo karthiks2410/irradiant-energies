@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Clock } from "lucide-react";
 import { Header } from "@/components/layout/Header";
@@ -14,6 +15,20 @@ interface PageProps {
     segment: string;
     type: SolutionTypeId;
   }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { segment: segmentId, type: typeId } = await params;
+  const segment = getSegmentById(segmentId);
+  const solutionType = getSolutionTypeById(typeId);
+  if (!segment || !solutionType) {
+    return { title: "Not Found | Irradiant Energie", robots: { index: false, follow: false } };
+  }
+  return {
+    title: `${segment.name} Solar — ${solutionType.name} System (Coming Soon) | Irradiant Energie`,
+    description: `${segment.description} with ${solutionType.name.toLowerCase()} configuration. Coming soon.`,
+    robots: { index: false, follow: false },
+  };
 }
 
 export default async function SolarSolutionPage({ params }: PageProps) {
@@ -101,7 +116,7 @@ export default async function SolarSolutionPage({ params }: PageProps) {
                 Our team is working on comprehensive information about {segment.name.toLowerCase()} {solutionType.name.toLowerCase()} solar solutions.
                 In the meantime, get in touch for a personalized consultation.
               </p>
-              <Link href="/#contact">
+              <Link href="/get-quote">
                 <Button className="bg-[#52842D] hover:bg-[#446F26] text-white rounded-full px-8 py-3">
                   Request Consultation
                   <ArrowRight className="ml-2 w-4 h-4" />

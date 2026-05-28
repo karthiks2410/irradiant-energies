@@ -1,5 +1,4 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -27,6 +26,13 @@ import {
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
+
+export const metadata: Metadata = {
+  title: "Peer-to-Peer Energy Trading | Irradiant Energie",
+  description:
+    "How rooftop-solar owners can sell surplus energy directly to neighbors and earn from every excess unit. A guide to P2P energy markets in India.",
+  alternates: { canonical: "/discover/p2p-trading" },
+};
 
 export default function P2PTradingPage() {
   return (

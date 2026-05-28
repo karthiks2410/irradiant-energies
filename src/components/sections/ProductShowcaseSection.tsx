@@ -114,9 +114,7 @@ function ProductCard({
       className="flex items-center justify-center py-16 px-6"
     >
       <div
-        className={`max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center ${
-          isEven ? "" : "lg:direction-rtl"
-        }`}
+        className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center"
       >
         {/* Content */}
         <motion.div
@@ -201,6 +199,7 @@ function ProductCard({
               src={product.image}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
+              loading={index === 0 ? "eager" : "lazy"}
               className="object-cover transition-transform duration-700 hover:scale-105"
               alt={product.title}
             />
@@ -253,7 +252,7 @@ export function ProductShowcaseSection() {
             </div>
 
             {/* Progress indicator */}
-            <div className="hidden md:flex items-center gap-3">
+            <div className="hidden md:flex items-center gap-3" aria-hidden="true">
               {products.map((product, i) => (
                 <motion.div
                   key={product.id}
@@ -300,7 +299,7 @@ export function ProductShowcaseSection() {
           className="inline-block"
         >
           <Link
-            href="#contact"
+            href="/#contact"
             className="inline-flex items-center justify-center px-10 py-4 text-base rounded-full bg-[#1d1d1f] text-white hover:bg-black"
           >
             Talk to an Expert

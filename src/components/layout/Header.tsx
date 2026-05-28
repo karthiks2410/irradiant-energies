@@ -96,6 +96,11 @@ export function Header() {
               onMouseLeave={() => setIsSolutionsOpen(false)}
             >
               <button
+                type="button"
+                aria-haspopup="menu"
+                aria-expanded={isSolutionsOpen}
+                onClick={() => setIsSolutionsOpen((prev) => !prev)}
+                onFocus={() => setIsSolutionsOpen(true)}
                 className="nav-link flex items-center gap-1 text-sm font-medium text-[#6F6F6F] hover:text-[#000000] transition-colors"
               >
                 Solutions
@@ -120,13 +125,13 @@ export function Header() {
               Discover
             </Link>
             <Link
-              href="#about"
+              href="/#about"
               className="nav-link text-sm font-medium transition-colors text-[#6F6F6F] hover:text-[#000000]"
             >
               About
             </Link>
             <Link
-              href="#contact"
+              href="/#contact"
               className="nav-link text-sm font-medium transition-colors text-[#6F6F6F] hover:text-[#000000]"
             >
               Contact
@@ -153,6 +158,10 @@ export function Header() {
 
           {/* Mobile Menu Button */}
           <button
+            type="button"
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-nav"
             className="lg:hidden p-2 rounded-md transition-colors text-[#1d1d1f] hover:bg-gray-100"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
@@ -166,7 +175,7 @@ export function Header() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden pb-6 border-t border-gray-100 bg-white">
+          <div id="mobile-nav" className="lg:hidden pb-6 border-t border-gray-100 bg-white">
             <nav className="flex flex-col space-y-4 pt-4">
               {/* Home */}
               <Link
@@ -192,14 +201,14 @@ export function Header() {
                 Discover
               </Link>
               <Link
-                href="#about"
+                href="/#about"
                 onClick={closeMobileMenu}
                 className="text-base font-medium transition-colors text-[#6F6F6F] hover:text-[#000000]"
               >
                 About
               </Link>
               <Link
-                href="#contact"
+                href="/#contact"
                 onClick={closeMobileMenu}
                 className="text-base font-medium transition-colors text-[#6F6F6F] hover:text-[#000000]"
               >

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { DM_Sans, Instrument_Serif } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -25,6 +25,18 @@ export const metadata: Metadata = {
   title: "Irradiant Energie | Solar & Smart Energy Solutions",
   description: "Powering India's clean energy future with solar panels, smart energy systems, and peer-to-peer energy trading.",
   metadataBase: new URL("https://irradiantenergie.com"),
+  alternates: {
+    canonical: "/",
+  },
+  keywords: [
+    "solar panels India",
+    "rooftop solar Bangalore",
+    "BESCOM net metering",
+    "PM Surya Ghar subsidy",
+    "P2P energy trading",
+    "virtual power plant India",
+    "EV charging solar",
+  ],
   openGraph: {
     title: "Irradiant Energie | Solar & Smart Energy Solutions",
     description: "India's complete solar ecosystem — from rooftop to revenue. Premium solar panels, energy storage, and EV charging solutions.",
@@ -39,17 +51,39 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#52842D",
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const organizationLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Irradiant Energie",
+    url: "https://irradiantenergie.com",
+    logo: "https://irradiantenergie.com/logo.svg",
+    description:
+      "India's complete solar ecosystem — solar panels, energy storage, EV charging, and peer-to-peer energy trading.",
+    areaServed: { "@type": "Country", name: "India" },
+  };
+
   return (
     <html
       lang="en"
-      className={`${dmSans.variable} ${instrumentSerif.variable} h-full antialiased scroll-smooth`}
+      className={`${dmSans.variable} ${instrumentSerif.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
+        />
         <LenisProvider>
           <TooltipProvider>{children}</TooltipProvider>
         </LenisProvider>

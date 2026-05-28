@@ -51,7 +51,7 @@ export function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -4, scale: 0.98, transition: { duration: 0.15 } }}
             transition={{ duration: 0.22, ease: EASE_OUT_EXPO }}
-            className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden flex min-w-[920px]"
+            className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden flex min-w-[920px] max-w-[min(960px,calc(100vw-32px))]"
           >
             <div className="w-[280px] bg-gray-50/50 p-5 border-r border-gray-100">
               <p className="text-[10px] uppercase tracking-wider text-[#6F6F6F] font-medium px-3 py-2 mb-1">

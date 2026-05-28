@@ -1,5 +1,4 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -27,6 +26,13 @@ import {
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
+
+export const metadata: Metadata = {
+  title: "What is a Virtual Power Plant? | Irradiant Energie",
+  description:
+    "How distributed energy resources — solar, batteries, EVs — work together as a single networked power plant. A primer on VPPs in India.",
+  alternates: { canonical: "/discover/vpp" },
+};
 
 export default function VPPArticlePage() {
   return (
