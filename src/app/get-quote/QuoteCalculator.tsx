@@ -4,8 +4,9 @@ import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { EASE_OUT_EXPO } from "@/lib/motion";
-import { buildRecommendation, type PropertyType } from "@/lib/solar-calc";
+import { buildRecommendation, type PropertyType, type QuoteInputs } from "@/lib/solar-calc";
 import { BillSlider, type BillMode } from "./components/BillSlider";
+import { ContactPanel } from "./components/ContactPanel";
 import { PropertyTypeCards } from "./components/PropertyTypeCards";
 import { ResultPanel } from "./components/ResultPanel";
 
@@ -21,16 +22,21 @@ export function QuoteCalculator() {
 
   const validPincode = PINCODE_REGEX.test(pincode);
 
-  const recommendation = useMemo(() => {
-    if (!validPincode) return null;
-    return buildRecommendation({
+  const inputs = useMemo<QuoteInputs>(
+    () => ({
       propertyType,
       pincode,
       ...(billMode === "rupees"
         ? { monthlyBillRupees: billRupees }
         : { monthlyKwh: billKwh }),
-    });
-  }, [propertyType, pincode, billMode, billRupees, billKwh, validPincode]);
+    }),
+    [propertyType, pincode, billMode, billRupees, billKwh],
+  );
+
+  const recommendation = useMemo(() => {
+    if (!validPincode) return null;
+    return buildRecommendation(inputs);
+  }, [inputs, validPincode]);
 
   // Trigger the one-time 3D flip the first time a valid recommendation appears.
   useEffect(() => {
@@ -172,6 +178,16 @@ export function QuoteCalculator() {
             </motion.div>
           </motion.div>
         </div>
+
+        {/* Contact form — sends email + WhatsApp link */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: EASE_OUT_EXPO, delay: 0.4 }}
+          className="mx-auto mt-10 max-w-3xl lg:mt-14"
+        >
+          <ContactPanel inputs={inputs} ready={!!recommendation} />
+        </motion.div>
 
         {/* Disclaimer */}
         <motion.p
