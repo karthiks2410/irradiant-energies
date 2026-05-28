@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Bell, Zap, Users, Sun, Battery, Car } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { P2PTradingAnimation } from "@/components/ui/P2PTradingAnimation";
 import { PRESS_HOVER, PRESS_TAP, SPRING_PRESS } from "@/lib/motion";
 
 const products = [
@@ -62,6 +63,7 @@ const products = [
     description:
       "Generate more than you need? Sell it to your neighbors. Peer-to-peer energy trading coming to Karnataka first.",
     image: "/p2p-trading.jpg",
+    animation: "p2p" as const,
     icon: Users,
     iconBg: "bg-emerald-500/20",
     iconColor: "text-emerald-500",
@@ -195,16 +197,20 @@ function ProductCard({
           className={`relative ${isEven ? "lg:order-2" : "lg:order-1"}`}
         >
           <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl shadow-black/20">
-            <Image
-              src={product.image}
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              loading={index === 0 ? "eager" : "lazy"}
-              className="object-cover transition-transform duration-700 hover:scale-105"
-              alt={product.title}
-            />
+            {product.animation === "p2p" ? (
+              <P2PTradingAnimation />
+            ) : (
+              <Image
+                src={product.image}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                loading={index === 0 ? "eager" : "lazy"}
+                className="object-cover transition-transform duration-700 hover:scale-105"
+                alt={product.title}
+              />
+            )}
             {/* Subtle gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
           </div>
 
           {/* Decorative element */}
