@@ -28,15 +28,17 @@ The form **ships and works without any setup**: with `RESEND_API_KEY` unset, the
 
 On your email host (Google Workspace / Zoho / cPanel / wherever `info@irradiantenergie.com` lives), create an alias `leads@irradiantenergie.com` that forwards to the inbox(es) of whoever handles sales. This is where the lead-alert email lands when a quote comes in.
 
+> The customer-facing email is sent from `do-not-reply@irradiantenergie.com`. **You do not need to create this as a real mailbox** — it's a sender-only address. Replies bounce by design; that's the intent. All real conversations happen via WhatsApp / phone / in person, which is what the email copy tells the customer.
+
 ### 3. Set the env vars
 
 In Vercel: **Project** → **Settings** → **Environment Variables**. Add for **Production** (and Preview if you want previews to send real email):
 
-| Name              | Value                              |
-| ----------------- | ---------------------------------- |
-| `RESEND_API_KEY`  | the `re_…` key from step 1         |
-| `EMAIL_FROM`      | `quote@irradiantenergie.com`       |
-| `LEAD_EMAIL`      | `leads@irradiantenergie.com`       |
+| Name              | Value                                     |
+| ----------------- | ----------------------------------------- |
+| `RESEND_API_KEY`  | the `re_…` key from step 1                |
+| `EMAIL_FROM`      | `do-not-reply@irradiantenergie.com`       |
+| `LEAD_EMAIL`      | `leads@irradiantenergie.com`              |
 
 For local development, copy `.env.example` to `.env.local` and fill in the values.
 

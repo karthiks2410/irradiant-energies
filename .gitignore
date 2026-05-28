@@ -41,3 +41,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 *.png
+
+# local agent / tooling artifacts
+.claude/
+.playwright-mcp/

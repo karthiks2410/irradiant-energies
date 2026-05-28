@@ -11,7 +11,7 @@ import { LeadAlertEmail } from "@/lib/emails/LeadAlertEmail";
 export const runtime = "nodejs";
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const EMAIL_FROM = process.env.EMAIL_FROM ?? "quote@irradiantenergie.com";
+const EMAIL_FROM = process.env.EMAIL_FROM ?? "do-not-reply@irradiantenergie.com";
 const LEAD_EMAIL = process.env.LEAD_EMAIL ?? "leads@irradiantenergie.com";
 
 export async function POST(req: Request) {
@@ -89,7 +89,6 @@ export async function POST(req: Request) {
         to: [contact.email],
         subject: `Your ${recommendation.systemSizeKw} kWp solar plan`,
         html: userHtml,
-        replyTo: LEAD_EMAIL,
       }),
       resend.emails.send({
         from: `Irradiant Quote Bot <${EMAIL_FROM}>`,

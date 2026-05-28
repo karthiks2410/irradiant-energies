@@ -129,6 +129,14 @@ export function QuoteEmail({
             </Text>
           </Section>
 
+          {/* Next-step nudge — funnels to WhatsApp / call / in-person */}
+          <Text style={nextStepLead}>
+            When you&rsquo;re ready to take this further, the next step is
+            yours. Message us on WhatsApp, call us, or drop by — we&rsquo;ll
+            walk you through site specifics and finalise your numbers in
+            person.
+          </Text>
+
           {/* CTA buttons */}
           <Section style={{ textAlign: "center", padding: "8px 0 4px" }}>
             <Link href={whatsappLink} style={primaryBtn}>
@@ -147,8 +155,12 @@ export function QuoteEmail({
             Estimates use BESCOM 2024 domestic tariff slabs, ₹3.05/kWh
             net-metering export rate, PM Surya Ghar subsidy schedule, and
             Karnataka generation benchmarks. Actual numbers vary with shading,
-            roof orientation, and DISCOM policy. We&rsquo;ll confirm with a
-            free site survey.
+            roof orientation, and DISCOM policy.
+          </Text>
+          <Text style={noReplyNote}>
+            This is an automated acknowledgement — please don&rsquo;t reply to
+            this email; this inbox isn&rsquo;t monitored. For anything else,
+            reach us on WhatsApp, by phone, or in person.
           </Text>
           <Text style={footerBrand}>
             Irradiant Energie · Bangalore
@@ -321,6 +333,21 @@ const footerNote: React.CSSProperties = {
   fontSize: 11,
   lineHeight: 1.6,
   color: MUTED,
+  margin: "0 0 16px 0",
+};
+
+const nextStepLead: React.CSSProperties = {
+  fontSize: 14,
+  lineHeight: 1.6,
+  color: TEXT,
+  margin: "4px 0 18px 0",
+};
+
+const noReplyNote: React.CSSProperties = {
+  fontSize: 11,
+  lineHeight: 1.6,
+  color: MUTED,
+  fontStyle: "italic",
   margin: "0 0 16px 0",
 };
 
