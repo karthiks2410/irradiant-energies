@@ -295,7 +295,7 @@ export default function VPPArticlePage() {
                   step: 2,
                   title: "Connect to VPP Network",
                   description:
-                    "Join a smart energy platform through your solar provider like Irradiant Energies.",
+                    "Join a smart energy platform through your solar provider like Irradiant Energie.",
                   icon: Users,
                   color: "bg-blue-500",
                 },
@@ -472,7 +472,7 @@ export default function VPPArticlePage() {
               Where We Fit In
             </h2>
             <p className="text-lg text-[#6F6F6F] leading-relaxed mb-8">
-              At <strong className="text-[#1d1d1f]">Irradiant Energies</strong>, we are not just
+              At <strong className="text-[#1d1d1f]">Irradiant Energie</strong>, we are not just
               installing solar systems—we are preparing our customers for the{" "}
               <strong className="text-[#1d1d1f]">solar energy future in India</strong>.
             </p>

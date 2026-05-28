@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     type: "article",
     publishedTime: "2026-05-04",
     locale: "en_IN",
-    siteName: "Irradiant Energies",
+    siteName: "Irradiant Energie",
   },
   twitter: {
     card: "summary_large_image",

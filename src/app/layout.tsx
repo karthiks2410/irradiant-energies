@@ -22,19 +22,19 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Irradiant Energies | Solar & Smart Energy Solutions",
+  title: "Irradiant Energie | Solar & Smart Energy Solutions",
   description: "Powering India's clean energy future with solar panels, smart energy systems, and peer-to-peer energy trading.",
   metadataBase: new URL("https://irradiantenergie.com"),
   openGraph: {
-    title: "Irradiant Energies | Solar & Smart Energy Solutions",
+    title: "Irradiant Energie | Solar & Smart Energy Solutions",
     description: "India's complete solar ecosystem — from rooftop to revenue. Premium solar panels, energy storage, and EV charging solutions.",
-    siteName: "Irradiant Energies",
+    siteName: "Irradiant Energie",
     locale: "en_IN",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Irradiant Energies | Solar & Smart Energy Solutions",
+    title: "Irradiant Energie | Solar & Smart Energy Solutions",
     description: "India's complete solar ecosystem — from rooftop to revenue. Premium solar panels, energy storage, and EV charging solutions.",
   },
 };

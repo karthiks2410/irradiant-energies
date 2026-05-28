@@ -52,14 +52,14 @@ export function Header() {
           <Link href="/" className="flex items-center space-x-2">
             <Image
               src="/logo.svg"
-              alt="Irradiant Energies"
+              alt="Irradiant Energie"
               width={32}
               height={38}
               className="h-9 w-auto"
             />
             <Image
               src="/logo-text.svg"
-              alt="Irradiant Energies"
+              alt="Irradiant Energie"
               width={120}
               height={40}
               className="h-6 w-auto hidden sm:block"
