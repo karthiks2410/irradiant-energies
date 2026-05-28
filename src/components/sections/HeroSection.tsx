@@ -13,7 +13,7 @@ import {
 } from "@/lib/motion";
 
 const PLAIN_WORDS = ["Power", "Your", "Future"];
-const ITALIC_WORDS = ["With", "Solar", "Energy"];
+const ACCENT_WORDS = ["With", "Solar", "Energy"];
 
 export function HeroSection() {
   const prefersReducedMotion = useReducedMotion();
@@ -49,12 +49,13 @@ export function HeroSection() {
         }}
       >
         <h1
-          className="max-w-7xl font-normal font-[family-name:var(--font-display)]"
+          className="max-w-7xl font-[family-name:var(--font-display)]"
           style={{
-            fontSize: "clamp(3rem, 8vw, 6rem)",
-            lineHeight: 0.95,
-            letterSpacing: "-2.46px",
-            color: "#000000",
+            fontSize: "clamp(3.25rem, 8.5vw, 6.5rem)",
+            lineHeight: 1.02,
+            letterSpacing: "-0.035em",
+            fontWeight: 800,
+            color: "#1d1d1f",
           }}
         >
           {PLAIN_WORDS.map((word, i) => (
@@ -72,9 +73,9 @@ export function HeroSection() {
               {word}
             </motion.span>
           ))}
-          {ITALIC_WORDS.map((word, i) => (
+          {ACCENT_WORDS.map((word, i) => (
             <motion.span
-              key={`italic-${i}`}
+              key={`accent-${i}`}
               initial={wordInitial}
               animate={{ y: 0, opacity: 1 }}
               transition={{
@@ -83,7 +84,7 @@ export function HeroSection() {
                 ease: EASE_OUT_EXPO,
               }}
               className="inline-block mr-[0.25em]"
-              style={{ color: "#52842D", fontStyle: "italic" }}
+              style={{ color: "#52842D" }}
             >
               {word}
             </motion.span>
