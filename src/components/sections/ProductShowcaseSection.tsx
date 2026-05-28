@@ -230,7 +230,7 @@ export function ProductShowcaseSection() {
       className="relative bg-[#f5f5f7]"
     >
       {/* Section Header */}
-      <div className="sticky top-0 z-10 bg-[#f5f5f7]/80 backdrop-blur-md py-6 border-b border-black/5">
+      <div className="bg-[#f5f5f7] py-12 border-b border-black/5">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
