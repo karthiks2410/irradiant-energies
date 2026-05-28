@@ -15,7 +15,7 @@ export function buildWhatsappLink(
   const lines = [
     `Hi! I just got my solar recommendation from Irradiant Energie.`,
     ``,
-    `${recommendation.systemSizeKw} kWp system · ~${formatINR(recommendation.monthlySavingsRupees)}/mo savings · ${recommendation.paybackYears}-year payback`,
+    `${recommendation.systemSizeKw} kWp system · ~${formatINR(recommendation.monthlySavingsRupees)}/mo savings · ${recommendation.breakevenYears}-year breakeven`,
     ``,
     `Looking forward to discussing next steps.`,
     `— ${contact.name} (${contact.phone})`,

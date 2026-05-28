@@ -36,7 +36,7 @@ export function LeadAlertEmail({
     monthlyKwh,
     monthlySavingsRupees,
     monthlyExportEarningsRupees,
-    paybackYears,
+    breakevenYears,
     pmSuryaGharSubsidyRupees,
     estimatedInstallCostRupees,
     region,
@@ -103,8 +103,8 @@ export function LeadAlertEmail({
                     </Text>
                   </td>
                   <td style={statCell}>
-                    <Text style={statLabel}>Payback</Text>
-                    <Text style={statValue}>{paybackYears} yrs</Text>
+                    <Text style={statLabel}>Breakeven</Text>
+                    <Text style={statValue}>{breakevenYears} yrs</Text>
                   </td>
                 </tr>
               </tbody>

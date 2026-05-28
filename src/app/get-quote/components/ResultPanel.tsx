@@ -33,13 +33,14 @@ export function ResultPanel({ recommendation }: ResultPanelProps) {
   const {
     systemSizeKw,
     panelCount,
+    panelWattage,
     roofAreaSqftRequired,
     monthlySavingsRupees,
     monthlyExportEarningsRupees,
-    paybackYears,
+    breakevenYears,
     pmSuryaGharSubsidyRupees,
     estimatedInstallCostRupees,
-    twentyFiveYearSavingsRupees,
+    cumulativeSavingsRupees,
     monthlyGenerationKwh,
   } = recommendation;
 
@@ -75,7 +76,7 @@ export function ResultPanel({ recommendation }: ResultPanelProps) {
           <span className="font-display text-2xl text-[#52842D]">kWp</span>
         </div>
         <p className="mt-2 text-sm text-[#6F6F6F]">
-          {panelCount} panels · ~{roofAreaSqftRequired} sq ft of roof
+          {panelCount} panels @ {panelWattage} W · ~{roofAreaSqftRequired} sq ft of roof
         </p>
       </motion.div>
 
@@ -122,12 +123,12 @@ export function ResultPanel({ recommendation }: ResultPanelProps) {
           <div className="flex items-center gap-1.5">
             <Hourglass className="h-3.5 w-3.5 text-[#6F6F6F]" />
             <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#6F6F6F]">
-              Payback
+              Breakeven
             </p>
           </div>
           <div className="mt-2 flex items-baseline gap-1">
             <TickerNumber
-              value={paybackYears}
+              value={breakevenYears}
               format={(n) => n.toFixed(1)}
               className="font-display text-2xl text-[#1d1d1f] tabular-nums"
             />
@@ -165,16 +166,16 @@ export function ResultPanel({ recommendation }: ResultPanelProps) {
         </div>
       </motion.div>
 
-      {/* 25-year + impact */}
+      {/* 15-year + impact */}
       <motion.div
         variants={itemVariants}
         className="rounded-2xl border border-[#1d1d1f]/8 bg-[#1d1d1f] p-6 text-white"
       >
         <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-white/60">
-          25-year cumulative value
+          15-year cumulative value
         </p>
         <TickerNumber
-          value={twentyFiveYearSavingsRupees}
+          value={cumulativeSavingsRupees}
           format={(n) => formatINR(Math.round(n), { compact: true })}
           className="mt-2 block font-display text-4xl tabular-nums"
         />

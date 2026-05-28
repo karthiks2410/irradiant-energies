@@ -7,7 +7,7 @@
  *   - the /api/quote route to recompute server-side and guard against tampering
  *
  * Single source of truth: every UI surface that displays a recommended kWp,
- * monthly savings, or 25-year curve calls into this module.
+ * monthly savings, or 15-year curve calls into this module.
  */
 
 import {
@@ -17,7 +17,7 @@ import {
   BESCOM_DOMESTIC_SLABS,
   INSTALL_COST_PER_KWP_INR,
   NET_METERING_EXPORT_RATE_INR_PER_KWH,
-  PANEL_WATTAGE,
+  PANEL_WATTAGE_BY_PROPERTY,
   PM_SURYA_GHAR_SUBSIDY_INR,
   PROJECTION_HORIZON_YEARS,
   type Region,
@@ -40,13 +40,14 @@ export type QuoteRecommendation = {
   monthlyKwh: number;
   systemSizeKw: number;
   panelCount: number;
+  panelWattage: number;
   roofAreaSqftRequired: number;
   monthlyGenerationKwh: number;
   monthlySavingsRupees: number;
   monthlyExportKwh: number;
   monthlyExportEarningsRupees: number;
-  paybackYears: number;
-  twentyFiveYearSavingsRupees: number;
+  breakevenYears: number;
+  cumulativeSavingsRupees: number;
   pmSuryaGharSubsidyRupees: number;
   estimatedInstallCostRupees: number;
   region: Region;
@@ -129,7 +130,8 @@ export function buildRecommendation(inputs: QuoteInputs): QuoteRecommendation {
   })();
 
   const systemSizeKw = kwpForMonthlyKwh(monthlyKwh, region);
-  const panelCount = Math.ceil((systemSizeKw * 1000) / PANEL_WATTAGE);
+  const panelWattage = PANEL_WATTAGE_BY_PROPERTY[inputs.propertyType];
+  const panelCount = Math.ceil((systemSizeKw * 1000) / panelWattage);
   const roofAreaSqftRequired = Math.round(systemSizeKw * ROOF_SQFT_PER_KWP);
 
   const monthlyGenerationKwh =
@@ -154,11 +156,13 @@ export function buildRecommendation(inputs: QuoteInputs): QuoteRecommendation {
   const totalMonthlyBenefitYearOne =
     monthlySavingsRupees + monthlyExportEarningsRupees;
 
-  const paybackYears = totalMonthlyBenefitYearOne > 0
+  // Breakeven = years for cumulative benefit to equal post-subsidy install cost.
+  // (Same thing the industry calls "payback period" — we just use plainer English.)
+  const breakevenYears = totalMonthlyBenefitYearOne > 0
     ? estimatedInstallCostRupees / (totalMonthlyBenefitYearOne * 12)
     : 0;
 
-  const twentyFiveYearSavingsRupees = projectCumulativeSavings(
+  const cumulativeSavingsRupees = projectCumulativeSavings(
     totalMonthlyBenefitYearOne,
     PROJECTION_HORIZON_YEARS,
   );
@@ -167,13 +171,14 @@ export function buildRecommendation(inputs: QuoteInputs): QuoteRecommendation {
     monthlyKwh: Math.round(monthlyKwh),
     systemSizeKw,
     panelCount,
+    panelWattage,
     roofAreaSqftRequired,
     monthlyGenerationKwh: Math.round(monthlyGenerationKwh),
     monthlySavingsRupees: Math.round(monthlySavingsRupees),
     monthlyExportKwh: Math.round(monthlyExportKwh),
     monthlyExportEarningsRupees: Math.round(monthlyExportEarningsRupees),
-    paybackYears: Number(paybackYears.toFixed(1)),
-    twentyFiveYearSavingsRupees: Math.round(twentyFiveYearSavingsRupees),
+    breakevenYears: Number(breakevenYears.toFixed(1)),
+    cumulativeSavingsRupees: Math.round(cumulativeSavingsRupees),
     pmSuryaGharSubsidyRupees,
     estimatedInstallCostRupees: Math.round(estimatedInstallCostRupees),
     region,
@@ -194,7 +199,7 @@ export function projectCumulativeSavings(yearOneMonthlyBenefit: number, years: n
 }
 
 /**
- * Year-by-year cumulative savings curve for the result page's 25-year chart.
+ * Year-by-year cumulative savings curve for the result page's projection chart.
  * Returns {year: 1..N, cumulative: INR} pairs.
  */
 export function projectionCurve(yearOneMonthlyBenefit: number, years: number = PROJECTION_HORIZON_YEARS): Array<{ year: number; cumulative: number }> {
