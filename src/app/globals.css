@@ -310,3 +310,61 @@
 #cc-main .pm__btn {
   border-radius: 9999px !important;
 }
+
+/* Quote calculator slider — palette green fill, white thumb on green ring */
+.quote-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  background: linear-gradient(
+    to right,
+    #52842D 0%,
+    #52842D var(--fill, 0%),
+    #e5e7eb var(--fill, 0%),
+    #e5e7eb 100%
+  );
+  border-radius: 9999px;
+  outline: none;
+  cursor: pointer;
+}
+
+.quote-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 2px solid #52842D;
+  box-shadow: 0 2px 6px rgba(82, 132, 45, 0.3);
+  cursor: grab;
+  transition: transform 0.15s ease;
+}
+
+.quote-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+.quote-slider::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  transform: scale(1.05);
+}
+
+.quote-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 2px solid #52842D;
+  box-shadow: 0 2px 6px rgba(82, 132, 45, 0.3);
+  cursor: grab;
+  transition: transform 0.15s ease;
+}
+
+.quote-slider::-moz-range-thumb:hover {
+  transform: scale(1.1);
+}
+
+.quote-slider:focus-visible {
+  box-shadow: 0 0 0 3px rgba(82, 132, 45, 0.25);
+}
