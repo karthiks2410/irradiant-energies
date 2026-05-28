@@ -43,5 +43,11 @@ next-env.d.ts
 *.png
 
 # local agent / tooling artifacts
-.claude/
+.claude/*
+!.claude/skills/
+.claude/skills/*/scripts/node_modules/
+.claude/settings.local.json
 .playwright-mcp/
+
+.code-graph/*
+!.code-graph/index.md
