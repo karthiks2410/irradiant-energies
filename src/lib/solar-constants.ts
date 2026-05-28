@@ -57,20 +57,42 @@ export const PM_SURYA_GHAR_SUBSIDY_INR = {
 /** Standard residential install benchmark (post-subsidy reference for v1). */
 export const INSTALL_COST_PER_KWP_INR = 60000;
 
-/** Rooftop area required per kWp using ~540W mono PERC panels at standard tilt. */
+/** Rooftop area required per kWp using mainstream Indian rooftop modules at standard tilt. */
 export const ROOF_SQFT_PER_KWP = 70;
 
-/** Wattage per panel for panel-count math. */
-export const PANEL_WATTAGE = 540;
+/**
+ * Wattage per panel for panel-count math, by property type.
+ *
+ * Reflects what Indian installers actually quote in 2026:
+ *   - Residential (home / society): 555 W mono PERC / N-type — Waaree, Vikram,
+ *     Adani, Goldi, Loom SHARK 550 are all in this range.
+ *   - Commercial / industrial: 620 W TOPCon — these installs use higher-density
+ *     modules (Waaree Ostara, Vikram Hypersol, Loom SHARK 600/625) for fewer
+ *     mounting points and lower BOS cost per kWp.
+ *
+ * Single source of truth — change here and panel counts update everywhere.
+ */
+export const PANEL_WATTAGE_BY_PROPERTY = {
+  home: 555,
+  society: 555,
+  commercial: 620,
+  industrial: 620,
+} as const;
 
 /** Annual panel degradation rate (linear approximation). */
 export const ANNUAL_DEGRADATION = 0.005;
 
-/** Assumed annual grid tariff inflation, used for 25-yr savings projection. */
+/** Assumed annual grid tariff inflation, used for cumulative savings projection. */
 export const ANNUAL_TARIFF_INFLATION = 0.04;
 
-/** Projection horizon, years. */
-export const PROJECTION_HORIZON_YEARS = 25;
+/**
+ * Projection horizon, years.
+ *
+ * 15 years is the meaningful planning horizon: it covers the full payback
+ * window plus a decade of compound benefit, without leaning on far-future
+ * tariff assumptions that get speculative past year 15.
+ */
+export const PROJECTION_HORIZON_YEARS = 15;
 
 /**
  * Rough kWh-per-month inference from Karnataka residential pincodes.

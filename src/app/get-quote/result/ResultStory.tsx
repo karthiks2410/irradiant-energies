@@ -31,10 +31,10 @@ export function ResultStory({ recommendation }: ResultStoryProps) {
     roofAreaSqftRequired,
     monthlySavingsRupees,
     monthlyExportEarningsRupees,
-    paybackYears,
+    breakevenYears,
     pmSuryaGharSubsidyRupees,
     estimatedInstallCostRupees,
-    twentyFiveYearSavingsRupees,
+    cumulativeSavingsRupees,
     monthlyKwh,
     region,
   } = recommendation;
@@ -45,7 +45,7 @@ export function ResultStory({ recommendation }: ResultStoryProps) {
     [
       "Hi! I just reviewed my solar report from Irradiant Energie.",
       "",
-      `${systemSizeKw} kWp system · ~${formatINR(monthlySavingsRupees)}/mo savings · ${paybackYears}-year payback`,
+      `${systemSizeKw} kWp system · ~${formatINR(monthlySavingsRupees)}/mo savings · ${breakevenYears}-year breakeven`,
       "",
       "Looking forward to discussing next steps.",
     ].join("\n"),
@@ -65,14 +65,14 @@ export function ResultStory({ recommendation }: ResultStoryProps) {
       <MathAct
         monthlySavingsRupees={monthlySavingsRupees}
         monthlyExportEarningsRupees={monthlyExportEarningsRupees}
-        paybackYears={paybackYears}
+        breakevenYears={breakevenYears}
         pmSuryaGharSubsidyRupees={pmSuryaGharSubsidyRupees}
         estimatedInstallCostRupees={estimatedInstallCostRupees}
       />
 
       <FutureAct
         yearOneMonthlyBenefit={yearOneMonthlyBenefit}
-        twentyFiveYearSavingsRupees={twentyFiveYearSavingsRupees}
+        cumulativeSavingsRupees={cumulativeSavingsRupees}
       />
 
       <ClosingCta whatsappLink={whatsappLink} />
@@ -186,7 +186,7 @@ function SystemFact({ label, value }: { label: string; value: string }) {
 type MathActProps = {
   monthlySavingsRupees: number;
   monthlyExportEarningsRupees: number;
-  paybackYears: number;
+  breakevenYears: number;
   pmSuryaGharSubsidyRupees: number;
   estimatedInstallCostRupees: number;
 };
@@ -194,7 +194,7 @@ type MathActProps = {
 function MathAct({
   monthlySavingsRupees,
   monthlyExportEarningsRupees,
-  paybackYears,
+  breakevenYears,
   pmSuryaGharSubsidyRupees,
   estimatedInstallCostRupees,
 }: MathActProps) {
@@ -237,8 +237,8 @@ function MathAct({
           />
           <StatBlock
             icon={<Sun className="h-5 w-5" />}
-            label="Payback"
-            value={paybackYears}
+            label="Breakeven"
+            value={breakevenYears}
             decimals={1}
             suffix=" yrs"
             isCurrency={false}
@@ -340,20 +340,20 @@ function StatBlock({
 }
 
 /* ------------------------------------------------------------------ */
-/* ACT 3 — The 25-year future                                          */
+/* ACT 3 — The 15-year future                                          */
 /* ------------------------------------------------------------------ */
 
 type FutureActProps = {
   yearOneMonthlyBenefit: number;
-  twentyFiveYearSavingsRupees: number;
+  cumulativeSavingsRupees: number;
 };
 
 function FutureAct({
   yearOneMonthlyBenefit,
-  twentyFiveYearSavingsRupees,
+  cumulativeSavingsRupees,
 }: FutureActProps) {
   const curve = useMemo(
-    () => projectionCurve(yearOneMonthlyBenefit, 25),
+    () => projectionCurve(yearOneMonthlyBenefit, 15),
     [yearOneMonthlyBenefit],
   );
 
@@ -368,7 +368,7 @@ function FutureAct({
           className="max-w-2xl"
         >
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#86C955]">
-            Act 3 — the 25-year future
+            Act 3 — the 15-year future
           </p>
           <h2 className="mt-3 font-display text-3xl tracking-tight sm:text-4xl lg:text-5xl">
             And the curve only{" "}
@@ -376,7 +376,7 @@ function FutureAct({
           </h2>
           <p className="mt-4 text-base text-white/70">
             Tariffs go up roughly 4% a year. Your panels degrade just 0.5% a year.
-            Compounded over 25 years, that gap is where the real value lives.
+            Compounded over 15 years, that gap is where the real value lives.
           </p>
         </motion.div>
 
@@ -391,10 +391,10 @@ function FutureAct({
         >
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/50">
-              Cumulative value, year 25
+              Cumulative value, year 15
             </p>
             <p className="mt-2 font-display text-4xl text-white sm:text-5xl">
-              {formatINR(twentyFiveYearSavingsRupees, { compact: true })}
+              {formatINR(cumulativeSavingsRupees, { compact: true })}
             </p>
           </div>
           <div className="flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 text-sm text-white/70">
@@ -444,7 +444,7 @@ function SavingsCurve({
   const areaPath = `${linePath} L ${xFor(maxYear)} ${padding.top + innerH} L ${xFor(minYear)} ${padding.top + innerH} Z`;
 
   // Marker years
-  const markerYears = [5, 10, 25];
+  const markerYears = [5, 10, 15];
   const markers = markerYears
     .map((year) => curve.find((p) => p.year === year))
     .filter((p): p is { year: number; cumulative: number } => p !== undefined);
@@ -455,7 +455,7 @@ function SavingsCurve({
         viewBox={`0 0 ${width} ${height}`}
         className="h-[320px] w-full"
         role="img"
-        aria-label="25-year cumulative savings projection"
+        aria-label="15-year cumulative savings projection"
       >
         <defs>
           <linearGradient id="savings-area" x1="0" x2="0" y1="0" y2="1">

@@ -73,7 +73,7 @@ export function QuoteCalculator() {
           </h1>
           <p className="mt-4 text-base text-[#6F6F6F] sm:text-lg">
             No forms. No calls. Just adjust your bill — we'll show you the system, savings,
-            and 25-year value live.
+            and 15-year value live.
           </p>
         </motion.div>
 
@@ -137,7 +137,7 @@ export function QuoteCalculator() {
               <div className="flex items-start gap-2 rounded-xl bg-[#f5f5f7] p-4">
                 <ArrowRight className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#52842D]" />
                 <p className="text-xs leading-relaxed text-[#6F6F6F]">
-                  Numbers update live as you adjust. When you're ready, share your details
+                  When you're ready, share your details
                   and we'll send the full report to your inbox.
                 </p>
               </div>

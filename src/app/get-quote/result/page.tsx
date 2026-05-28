@@ -10,7 +10,7 @@ import { ResultStory } from "./ResultStory";
 export const metadata: Metadata = {
   title: "Your solar plan · Irradiant Energie",
   description:
-    "Personalised solar recommendation: system size, monthly savings, BESCOM export earnings, and 25-year value.",
+    "Personalised solar recommendation: system size, monthly savings, BESCOM export earnings, and 15-year value.",
 };
 
 type ResultPageProps = {

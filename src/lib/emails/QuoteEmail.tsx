@@ -37,10 +37,10 @@ export function QuoteEmail({
     panelCount,
     monthlySavingsRupees,
     monthlyExportEarningsRupees,
-    paybackYears,
+    breakevenYears,
     pmSuryaGharSubsidyRupees,
     estimatedInstallCostRupees,
-    twentyFiveYearSavingsRupees,
+    cumulativeSavingsRupees,
   } = recommendation;
 
   return (
@@ -60,7 +60,7 @@ export function QuoteEmail({
           </Heading>
           <Text style={leadStyle}>
             Based on the details you shared, this is the system we recommend —
-            and what it&rsquo;ll save you over the next 25 years.
+            and what it&rsquo;ll save you over the next 15 years.
           </Text>
 
           {/* Headline tile */}
@@ -98,8 +98,8 @@ export function QuoteEmail({
                     </Text>
                   </td>
                   <td style={{ ...financialCell, width: "33%" }}>
-                    <Text style={cellLabel}>Payback</Text>
-                    <Text style={cellValue}>{paybackYears} yrs</Text>
+                    <Text style={cellLabel}>Breakeven</Text>
+                    <Text style={cellValue}>{breakevenYears} yrs</Text>
                   </td>
                 </tr>
               </tbody>
@@ -119,13 +119,13 @@ export function QuoteEmail({
             )}
           </Section>
 
-          {/* 25-year value */}
+          {/* 15-year value */}
           <Section style={darkTile}>
             <Text style={{ ...cellLabel, color: "rgba(255,255,255,0.6)" }}>
-              25-year cumulative value
+              15-year cumulative value
             </Text>
             <Text style={{ ...cellValueLarge, color: "#fff", marginTop: 6 }}>
-              {formatINR(twentyFiveYearSavingsRupees, { compact: true })}
+              {formatINR(cumulativeSavingsRupees, { compact: true })}
             </Text>
           </Section>
 
