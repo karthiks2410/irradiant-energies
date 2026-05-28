@@ -97,10 +97,6 @@ export function P2PTradingAnimation() {
           {TRADE_AMOUNT} kWh →
         </div>
       </div>
-
-      <div className="absolute left-1/2 top-4 -translate-x-1/2 rounded-full bg-white/90 px-3 py-1.5 text-xs font-semibold text-slate-900 shadow-md backdrop-blur-sm">
-        P2P Energy Trade
-      </div>
     </div>
   );
 }
