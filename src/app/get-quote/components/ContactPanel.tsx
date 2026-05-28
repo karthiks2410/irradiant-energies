@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Check, Loader2, MessageCircle } from "lucide-react";
+import { ArrowRight, Check, ExternalLink, Loader2, MessageCircle } from "lucide-react";
 import { EASE_OUT_EXPO, PRESS_HOVER, PRESS_TAP, SPRING_PRESS } from "@/lib/motion";
 import { quoteContactSchema } from "@/lib/quote-schema";
 import type { QuoteInputs } from "@/lib/solar-calc";
@@ -134,6 +134,18 @@ export function ContactPanel({ inputs, ready }: ContactPanelProps) {
           <MessageCircle className="h-4 w-4" />
           Continue on WhatsApp
         </motion.a>
+        <div className="mt-4 flex items-center gap-1.5 text-xs text-[#6F6F6F]">
+          <span>Or</span>
+          <a
+            href={state.resultUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 font-medium text-[#446F26] underline-offset-4 hover:underline"
+          >
+            view your full report online
+            <ExternalLink className="h-3 w-3" />
+          </a>
+        </div>
       </motion.div>
     );
   }
