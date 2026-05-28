@@ -26,7 +26,7 @@ export function BillSlider({
 }: BillSliderProps) {
   const min = mode === "rupees" ? MIN_RUPEES : MIN_KWH;
   const max = mode === "rupees" ? MAX_RUPEES : MAX_KWH;
-  const step = mode === "rupees" ? 100 : 10;
+  const step = mode === "rupees" ? 50 : 5;
   const unit = mode === "rupees" ? "₹/month" : "kWh/month";
 
   return (
