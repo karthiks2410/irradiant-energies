@@ -134,8 +134,9 @@ export function LeadAlertEmail({
 
           <Hr style={{ borderColor: "#e5e7eb", margin: "20px 0 12px" }} />
           <Text style={footerNote}>
-            Sent automatically from the /get-quote calculator. Reply directly
-            to this address to coordinate next steps internally.
+            Sent automatically from the /get-quote calculator. Reply-to is set
+            to the customer&rsquo;s email — hitting reply goes straight to{" "}
+            {contact.name.split(" ")[0]}.
           </Text>
         </Container>
       </Body>
