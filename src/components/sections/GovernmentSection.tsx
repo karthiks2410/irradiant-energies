@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Calculator } from "lucide-react";
 import { TextReveal, MaskReveal } from "@/components/animations/TextReveal";
@@ -34,36 +33,18 @@ const subsidyStats = [
 ];
 
 export function GovernmentSection() {
-  const sectionRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
-  const orbScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.2, 0.9]);
-
   return (
     <section
-      ref={sectionRef}
       id="government"
       className="min-h-screen relative overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-[#f5f5f7] via-white to-[#f5f5f7]" />
 
-      <motion.div
-        style={{ y: backgroundY }}
-        className="absolute inset-0 scale-110"
-      >
-        <motion.div
-          style={{ scale: orbScale }}
-          className="absolute top-1/4 -left-32 w-96 h-96 bg-[#52842D]/20 rounded-full blur-3xl"
-        />
-        <motion.div
-          style={{ scale: orbScale }}
-          className="absolute bottom-1/4 -right-32 w-96 h-96 bg-[#52842D]/15 rounded-full blur-3xl"
-        />
-      </motion.div>
+      {/* Static glow orbs — no scroll-driven scale, just ambient atmosphere */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-[#52842D]/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-[#52842D]/15 rounded-full blur-3xl" />
+      </div>
 
       <div className="relative z-10 min-h-screen flex flex-col justify-center px-8 md:px-16 py-20">
         <div className="max-w-7xl mx-auto w-full">
