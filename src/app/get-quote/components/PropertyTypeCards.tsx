@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Home, Building2, Briefcase, Factory } from "lucide-react";
+import { Home, Building2, Factory } from "lucide-react";
 import {
   PRESS_HOVER,
   PRESS_TAP,
@@ -12,7 +12,6 @@ import type { PropertyType } from "@/lib/solar-calc";
 const OPTIONS: { id: PropertyType; label: string; icon: typeof Home }[] = [
   { id: "home", label: "Home", icon: Home },
   { id: "society", label: "Society", icon: Building2 },
-  { id: "commercial", label: "Commercial", icon: Briefcase },
   { id: "industrial", label: "Industrial", icon: Factory },
 ];
 
@@ -23,7 +22,7 @@ type PropertyTypeCardsProps = {
 
 export function PropertyTypeCards({ value, onChange }: PropertyTypeCardsProps) {
   return (
-    <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+    <div className="grid grid-cols-3 gap-2">
       {OPTIONS.map((opt) => {
         const Icon = opt.icon;
         const selected = opt.id === value;
