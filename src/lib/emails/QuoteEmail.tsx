@@ -36,11 +36,11 @@ export function QuoteEmail({
     systemSizeKw,
     panelCount,
     monthlySavingsRupees,
-    monthlyExportEarningsRupees,
     breakevenYears,
     pmSuryaGharSubsidyRupees,
     cumulativeSavingsRupees,
   } = recommendation;
+  const yearlyBenefitRupees = monthlySavingsRupees * 12;
 
   return (
     <Html>
@@ -91,9 +91,9 @@ export function QuoteEmail({
                     </Text>
                   </td>
                   <td style={{ ...financialCell, width: "34%" }}>
-                    <Text style={cellLabel}>Export earnings / mo</Text>
+                    <Text style={cellLabel}>Yearly benefit</Text>
                     <Text style={cellValue}>
-                      {formatINR(monthlyExportEarningsRupees)}
+                      {formatINR(yearlyBenefitRupees)}
                     </Text>
                   </td>
                   <td style={{ ...financialCell, width: "33%" }}>

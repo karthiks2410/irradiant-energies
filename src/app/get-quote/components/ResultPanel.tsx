@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
-import { Sun, IndianRupee, Banknote, Hourglass, TreePine, BadgeIndianRupee } from "lucide-react";
+import { Sun, IndianRupee, CalendarDays, Hourglass, TreePine, BadgeIndianRupee } from "lucide-react";
 import { EASE_OUT_EXPO } from "@/lib/motion";
 import { formatINR, type QuoteRecommendation } from "@/lib/solar-calc";
 import { TickerNumber } from "./TickerNumber";
@@ -36,7 +36,6 @@ export function ResultPanel({ recommendation }: ResultPanelProps) {
     panelWattage,
     roofAreaSqftRequired,
     monthlySavingsRupees,
-    monthlyExportEarningsRupees,
     breakevenYears,
     pmSuryaGharSubsidyRupees,
     cumulativeSavingsRupees,
@@ -47,6 +46,7 @@ export function ResultPanel({ recommendation }: ResultPanelProps) {
   const annualKwh = monthlyGenerationKwh * 12;
   const annualCo2KgAvoided = Math.round(annualKwh * 0.82);
   const equivalentTrees = Math.round(annualCo2KgAvoided / 22);
+  const yearlyBenefitRupees = monthlySavingsRupees * 12;
 
   return (
     <motion.div
@@ -103,13 +103,13 @@ export function ResultPanel({ recommendation }: ResultPanelProps) {
           className="rounded-2xl border border-[#e5e7eb] bg-white p-5"
         >
           <div className="flex items-center gap-1.5">
-            <Banknote className="h-3.5 w-3.5 text-[#6F6F6F]" />
+            <CalendarDays className="h-3.5 w-3.5 text-[#6F6F6F]" />
             <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#6F6F6F]">
-              Export earnings / mo
+              Yearly benefit
             </p>
           </div>
           <TickerNumber
-            value={monthlyExportEarningsRupees}
+            value={yearlyBenefitRupees}
             format={(n) => formatINR(Math.round(n))}
             className="mt-2 block font-display text-2xl text-[#1d1d1f] tabular-nums"
           />

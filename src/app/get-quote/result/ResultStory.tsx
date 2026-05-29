@@ -5,12 +5,12 @@ import Link from "next/link";
 import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
 import {
   ArrowRight,
+  CalendarDays,
   IndianRupee,
   Leaf,
   MessageCircle,
   PanelTop,
   Sun,
-  TrendingUp,
 } from "lucide-react";
 import { COMPANY } from "@/lib/constants";
 import { EASE_OUT_EXPO, PRESS_HOVER, PRESS_TAP, SPRING_PRESS } from "@/lib/motion";
@@ -63,7 +63,7 @@ export function ResultStory({ recommendation }: ResultStoryProps) {
 
       <MathAct
         monthlySavingsRupees={monthlySavingsRupees}
-        monthlyExportEarningsRupees={monthlyExportEarningsRupees}
+        yearlyBenefitRupees={monthlySavingsRupees * 12}
         breakevenYears={breakevenYears}
         pmSuryaGharSubsidyRupees={pmSuryaGharSubsidyRupees}
       />
@@ -183,14 +183,14 @@ function SystemFact({ label, value }: { label: string; value: string }) {
 
 type MathActProps = {
   monthlySavingsRupees: number;
-  monthlyExportEarningsRupees: number;
+  yearlyBenefitRupees: number;
   breakevenYears: number;
   pmSuryaGharSubsidyRupees: number;
 };
 
 function MathAct({
   monthlySavingsRupees,
-  monthlyExportEarningsRupees,
+  yearlyBenefitRupees,
   breakevenYears,
   pmSuryaGharSubsidyRupees,
 }: MathActProps) {
@@ -208,12 +208,13 @@ function MathAct({
             Act 2 — the math
           </p>
           <h2 className="mt-3 font-display text-3xl tracking-tight text-[#1d1d1f] sm:text-4xl lg:text-5xl">
-            Every month, the system{" "}
-            <span className="text-[#52842D]">pays you back two ways.</span>
+            Every year, your roof{" "}
+            <span className="text-[#52842D]">earns its keep.</span>
           </h2>
           <p className="mt-4 text-base text-[#6F6F6F]">
-            What you don&rsquo;t draw from BESCOM is money you keep. What you push
-            back into the grid is money they pay <em>you</em>.
+            Solar pays you back twice — what you don&rsquo;t draw from BESCOM is
+            money you keep, and the system keeps doing it month after month, year
+            after year.
           </p>
         </motion.div>
 
@@ -226,9 +227,9 @@ function MathAct({
             delay={0}
           />
           <StatBlock
-            icon={<TrendingUp className="h-5 w-5" />}
-            label="Export earnings / month"
-            value={monthlyExportEarningsRupees}
+            icon={<CalendarDays className="h-5 w-5" />}
+            label="Yearly benefit"
+            value={yearlyBenefitRupees}
             delay={0.12}
           />
           <StatBlock
