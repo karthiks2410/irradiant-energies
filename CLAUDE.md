@@ -25,6 +25,47 @@ Whenever building **any new UI component, page, or visual element**, use the fol
    - Treat it as **inspiration + starting code**, not a copy-paste source — adapt to our palette and motion rules above. Always strip third-party scroll-parallax patterns before importing.
    - When you find a fitting component, mention the 21st.dev category/name you drew from so the user can preview it.
 
+### 21st.dev integration checklist
+
+When the user pastes a 21st.dev integration prompt (the auto-generated "You are given a task to integrate an existing React component…" block), follow this order. The prompt assumes a generic shadcn project — our project has specifics that need handling.
+
+1. **Paths are already correct.** Our `components.json` aliases `@/components/ui`, `@/lib/utils`, `@/components`, `@/hooks`, `@/lib` to the standard locations. Don't relocate.
+
+2. **Check `src/components/ui/` for existing primitives BEFORE pasting any "dependency" file.** As of this writing we already ship: `badge`, `button`, `input`, `label`, `separator`, `textarea`, `tooltip`. If 21st.dev's prompt asks you to paste `label.tsx` or `tooltip.tsx`, **skip those files** and import from our existing ones — pasting overwrites and risks regressing styles or types elsewhere. Run `ls src/components/ui/` first to confirm.
+
+3. **Install only the npm deps that are actually missing.** Run `npm ls <pkg>` for each before `npm install`. Many 21st.dev sliders need `@radix-ui/react-slider` + `@radix-ui/react-tooltip` — we already have `@radix-ui/react-tooltip` from our own `tooltip.tsx`. Don't reinstall.
+
+4. **Token swap pass before committing.** 21st.dev components use shadcn theme tokens (`bg-primary`, `text-primary`, `bg-secondary`, `text-foreground`, `bg-popover`, `border-border`, etc.). Our brand uses **literal hex values**, not tokens. Map them:
+
+   | 21st.dev token | Irradiant value | When to use |
+   |---|---|---|
+   | `bg-primary` / `text-primary` / `border-primary` | `#52842D` | brand-green fills, accents |
+   | hover variant of primary | `#446F26` | hover/active brand-green |
+   | `text-foreground` | `#1d1d1f` | primary text |
+   | `text-muted-foreground` | `#6F6F6F` | secondary/muted text |
+   | `bg-secondary` / `bg-muted` | `#f5f5f7` | surface fills |
+   | `bg-background` | `#ffffff` | card backgrounds |
+   | `border-border` / `border-input` | `#e5e7eb` | hairlines |
+   | `bg-popover` / `text-popover-foreground` | `#ffffff` / `#1d1d1f` | popovers, tooltips |
+   | `ring-ring` / `focus-visible:ring-*` | `#52842D` (with `/20` opacity for the ring) | focus states |
+
+   Do this pass even if the component "looks fine" with the default tokens — our globals.css doesn't define them all, so some will silently render wrong on prod.
+
+5. **Motion strip-down.** Before merging, audit the pasted component for:
+   - `useScroll` / `useTransform` parallax → **remove**, replace with `whileInView` once-per-entry fade per the project's motion rules.
+   - Auto-playing carousels / marquees with `setInterval` → keep, but wire `useReducedMotion()` to pause them.
+   - Spring stiffness > 200 or damping < 20 → calm them down (we use `stiffness: 40, damping: 24` for our ticker pattern; `SPRING_PRESS` from `src/lib/motion.ts` for press feedback).
+
+6. **Stock images & icons.**
+   - The integration prompt suggests Unsplash for placeholders — **don't ship Unsplash URLs to production**. Use our local `/public/*.jpg` assets where they exist (`/solar-panel.jpg`, `/smart-box.jpg`, etc.) or add `TODO: replace with branded asset` and surface it to the user.
+   - Always swap heroicons/feather/etc. for `lucide-react` — that's our project standard.
+
+7. **Final integration steps** (after paste + token swap + motion audit):
+   - `npm run build` — must be clean.
+   - `npx tsc --noEmit` — must be zero errors.
+   - Open the page that uses the new component locally, scroll/click through it, confirm motion + colors look right.
+   - Then PR it (one component per PR, like everything else in this repo).
+
 ### Brand aesthetic guardrails
 
 - **Palette is fixed:** `#52842D` (primary), `#446F26` (primary-dark), `#1d1d1f` (text), `#6F6F6F` (muted), `#f5f5f7` (surface), white. Don't introduce new dark/aurora/glassmorphism canvases.
