@@ -33,7 +33,6 @@ export function ResultStory({ recommendation }: ResultStoryProps) {
     monthlyExportEarningsRupees,
     breakevenYears,
     pmSuryaGharSubsidyRupees,
-    estimatedInstallCostRupees,
     cumulativeSavingsRupees,
     monthlyKwh,
     region,
@@ -67,7 +66,6 @@ export function ResultStory({ recommendation }: ResultStoryProps) {
         monthlyExportEarningsRupees={monthlyExportEarningsRupees}
         breakevenYears={breakevenYears}
         pmSuryaGharSubsidyRupees={pmSuryaGharSubsidyRupees}
-        estimatedInstallCostRupees={estimatedInstallCostRupees}
       />
 
       <FutureAct
@@ -188,7 +186,6 @@ type MathActProps = {
   monthlyExportEarningsRupees: number;
   breakevenYears: number;
   pmSuryaGharSubsidyRupees: number;
-  estimatedInstallCostRupees: number;
 };
 
 function MathAct({
@@ -196,7 +193,6 @@ function MathAct({
   monthlyExportEarningsRupees,
   breakevenYears,
   pmSuryaGharSubsidyRupees,
-  estimatedInstallCostRupees,
 }: MathActProps) {
   return (
     <section className="relative bg-[#f5f5f7]">
@@ -251,31 +247,22 @@ function MathAct({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.7, ease: EASE_OUT_EXPO, delay: 0.3 }}
-          className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6"
+          className="mt-8"
         >
-          <div className="rounded-2xl border border-[#e5e7eb] bg-white p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#6F6F6F]">
-              Estimated install cost (after subsidy)
+          <div className="rounded-2xl border border-[#52842D]/25 bg-gradient-to-br from-[#52842D]/8 to-[#52842D]/3 p-8 sm:p-10">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#446F26]">
+              Estimated government subsidy
             </p>
-            <p className="mt-2 font-display text-3xl text-[#1d1d1f] sm:text-4xl">
-              {formatINR(estimatedInstallCostRupees)}
-            </p>
-          </div>
-          <div className="rounded-2xl border border-[#52842D]/20 bg-[#52842D]/5 p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#446F26]">
-              PM Surya Ghar subsidy applied
-            </p>
-            <p className="mt-2 font-display text-3xl text-[#1d1d1f] sm:text-4xl">
+            <p className="mt-3 font-display text-4xl text-[#1d1d1f] sm:text-5xl">
               {pmSuryaGharSubsidyRupees > 0
                 ? formatINR(pmSuryaGharSubsidyRupees)
-                : "Not eligible"}
+                : "Not eligible at this scale"}
             </p>
-            {pmSuryaGharSubsidyRupees === 0 && (
-              <p className="mt-2 text-xs text-[#6F6F6F]">
-                Commercial &amp; industrial installs aren&rsquo;t covered by PM Surya
-                Ghar — but you typically save more on the higher tariff slabs.
-              </p>
-            )}
+            <p className="mt-3 max-w-xl text-sm text-[#6F6F6F] sm:text-base">
+              {pmSuryaGharSubsidyRupees > 0
+                ? "Direct benefit transfer under PM Surya Ghar — paid straight to your bank account after your system is installed and inspected."
+                : "Commercial & industrial installs aren't covered by PM Surya Ghar — but you typically save more on the higher tariff slabs."}
+            </p>
           </div>
         </motion.div>
       </div>

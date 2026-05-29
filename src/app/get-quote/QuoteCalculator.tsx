@@ -18,19 +18,31 @@ export function QuoteCalculator() {
   const [billMode, setBillMode] = useState<BillMode>("rupees");
   const [billRupees, setBillRupees] = useState<number>(3500);
   const [billKwh, setBillKwh] = useState<number>(350);
+  const [debouncedBillRupees, setDebouncedBillRupees] = useState<number>(3500);
+  const [debouncedBillKwh, setDebouncedBillKwh] = useState<number>(350);
   const [hasRevealed, setHasRevealed] = useState<boolean>(false);
 
   const validPincode = PINCODE_REGEX.test(pincode);
+
+  // Debounce slider-driven values so the recommendation doesn't churn during drag.
+  useEffect(() => {
+    const t = setTimeout(() => setDebouncedBillRupees(billRupees), 180);
+    return () => clearTimeout(t);
+  }, [billRupees]);
+  useEffect(() => {
+    const t = setTimeout(() => setDebouncedBillKwh(billKwh), 180);
+    return () => clearTimeout(t);
+  }, [billKwh]);
 
   const inputs = useMemo<QuoteInputs>(
     () => ({
       propertyType,
       pincode,
       ...(billMode === "rupees"
-        ? { monthlyBillRupees: billRupees }
-        : { monthlyKwh: billKwh }),
+        ? { monthlyBillRupees: debouncedBillRupees }
+        : { monthlyKwh: debouncedBillKwh }),
     }),
-    [propertyType, pincode, billMode, billRupees, billKwh],
+    [propertyType, pincode, billMode, debouncedBillRupees, debouncedBillKwh],
   );
 
   const recommendation = useMemo(() => {

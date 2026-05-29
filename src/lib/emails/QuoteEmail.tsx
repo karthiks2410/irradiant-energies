@@ -39,7 +39,6 @@ export function QuoteEmail({
     monthlyExportEarningsRupees,
     breakevenYears,
     pmSuryaGharSubsidyRupees,
-    estimatedInstallCostRupees,
     cumulativeSavingsRupees,
   } = recommendation;
 
@@ -106,17 +105,19 @@ export function QuoteEmail({
             </table>
           </Section>
 
-          {/* Subsidy + cost */}
+          {/* Government subsidy callout */}
           <Section style={subsidyTile}>
-            <Text style={cellLabel}>Estimated install cost (after subsidy)</Text>
-            <Text style={cellValueLarge}>
-              {formatINR(estimatedInstallCostRupees)}
+            <Text style={cellLabel}>Estimated government subsidy</Text>
+            <Text style={{ ...cellValueLarge, color: PRIMARY }}>
+              {pmSuryaGharSubsidyRupees > 0
+                ? formatINR(pmSuryaGharSubsidyRupees)
+                : "Not eligible at this scale"}
             </Text>
-            {pmSuryaGharSubsidyRupees > 0 && (
-              <Text style={subsidyBadge}>
-                PM Surya Ghar subsidy applied · {formatINR(pmSuryaGharSubsidyRupees)}
-              </Text>
-            )}
+            <Text style={subsidyHelp}>
+              {pmSuryaGharSubsidyRupees > 0
+                ? "Direct benefit transfer under PM Surya Ghar — paid to your bank account post-installation."
+                : "Commercial & industrial installs aren't covered by PM Surya Ghar — but you typically save more on the higher tariff slabs."}
+            </Text>
           </Section>
 
           {/* 15-year value */}
@@ -281,21 +282,17 @@ const cellValueLarge: React.CSSProperties = {
 
 const subsidyTile: React.CSSProperties = {
   marginTop: 12,
-  padding: "16px 18px",
+  padding: "18px 20px",
   borderRadius: 14,
-  backgroundColor: BG,
+  backgroundColor: `${PRIMARY}0d`,
+  border: `1px solid ${PRIMARY}40`,
 };
 
-const subsidyBadge: React.CSSProperties = {
-  marginTop: 10,
-  display: "inline-block",
+const subsidyHelp: React.CSSProperties = {
   fontSize: 12,
-  fontWeight: 500,
-  color: PRIMARY_DARK,
-  backgroundColor: "#fff",
-  border: `1px solid ${PRIMARY}4d`,
-  padding: "6px 10px",
-  borderRadius: 999,
+  lineHeight: 1.5,
+  color: MUTED,
+  margin: "8px 0 0 0",
 };
 
 const darkTile: React.CSSProperties = {

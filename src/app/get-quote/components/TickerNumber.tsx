@@ -24,9 +24,9 @@ export function TickerNumber({ value, format, className }: TickerNumberProps) {
   const reduce = useReducedMotion();
   const motionValue = useMotionValue(value);
   const spring = useSpring(motionValue, {
-    stiffness: 120,
-    damping: 30,
-    mass: 0.6,
+    stiffness: 40,
+    damping: 24,
+    mass: 1,
   });
   const display = useTransform(reduce ? motionValue : spring, (latest) =>
     format(latest),
