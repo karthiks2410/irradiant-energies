@@ -11,6 +11,8 @@ type ContactPanelProps = {
   inputs: QuoteInputs;
   /** Whether the calculator currently has a valid recommendation. Disables submit if not. */
   ready: boolean;
+  /** Optional pre-fill from the home-page CTA form so the user doesn't retype. */
+  prefill?: { name: string; phone: string; email: string };
 };
 
 type SubmitState =
@@ -26,10 +28,10 @@ type SubmitState =
 
 type FieldErrors = Partial<Record<"name" | "phone" | "email" | "consent", string>>;
 
-export function ContactPanel({ inputs, ready }: ContactPanelProps) {
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
+export function ContactPanel({ inputs, ready, prefill }: ContactPanelProps) {
+  const [name, setName] = useState(prefill?.name ?? "");
+  const [phone, setPhone] = useState(prefill?.phone ?? "");
+  const [email, setEmail] = useState(prefill?.email ?? "");
   const [whatsappOptIn, setWhatsappOptIn] = useState(true);
   const [consent, setConsent] = useState(false);
   const [errors, setErrors] = useState<FieldErrors>({});
@@ -160,8 +162,9 @@ export function ContactPanel({ inputs, ready }: ContactPanelProps) {
           Send this report to your inbox
         </h3>
         <p className="mt-1 text-sm text-[#6F6F6F]">
-          We'll email the breakdown and connect you on WhatsApp for the next steps.
-          No spam, no calls without permission.
+          {prefill
+            ? "We've pre-filled your details from the home page — give them a quick check and hit send."
+            : "We'll email the breakdown and connect you on WhatsApp for the next steps. No spam, no calls without permission."}
         </p>
       </div>
 
