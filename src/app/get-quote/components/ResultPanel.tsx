@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
-import { Sun, IndianRupee, Banknote, Hourglass, TreePine } from "lucide-react";
+import { Sun, IndianRupee, Banknote, Hourglass, TreePine, BadgeIndianRupee } from "lucide-react";
 import { EASE_OUT_EXPO } from "@/lib/motion";
 import { formatINR, type QuoteRecommendation } from "@/lib/solar-calc";
 import { TickerNumber } from "./TickerNumber";
@@ -39,7 +39,6 @@ export function ResultPanel({ recommendation }: ResultPanelProps) {
     monthlyExportEarningsRupees,
     breakevenYears,
     pmSuryaGharSubsidyRupees,
-    estimatedInstallCostRupees,
     cumulativeSavingsRupees,
     monthlyGenerationKwh,
   } = recommendation;
@@ -137,33 +136,35 @@ export function ResultPanel({ recommendation }: ResultPanelProps) {
         </motion.div>
       </div>
 
-      {/* Subsidy + cost row */}
+      {/* Government subsidy callout */}
       <motion.div
         variants={itemVariants}
-        className="rounded-2xl border border-[#e5e7eb] bg-[#f5f5f7] p-5"
+        className="rounded-2xl border border-[#52842D]/25 bg-gradient-to-br from-[#52842D]/8 to-[#52842D]/3 p-5"
       >
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#6F6F6F]">
-              Estimated install cost (after subsidy)
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-2">
+            <BadgeIndianRupee className="h-4 w-4 text-[#52842D]" />
+            <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#446F26]">
+              Estimated government subsidy
             </p>
-            <TickerNumber
-              value={estimatedInstallCostRupees}
-              format={(n) => formatINR(Math.round(n))}
-              className="mt-1 block font-display text-2xl text-[#1d1d1f] tabular-nums"
-            />
           </div>
-          {pmSuryaGharSubsidyRupees > 0 && (
-            <div className="rounded-full border border-[#52842D]/30 bg-white px-3 py-1.5">
-              <p className="text-xs font-medium text-[#446F26]">
-                PM Surya Ghar subsidy ·{" "}
-                <span className="tabular-nums">
-                  {formatINR(pmSuryaGharSubsidyRupees)}
-                </span>
-              </p>
-            </div>
+          {pmSuryaGharSubsidyRupees > 0 ? (
+            <TickerNumber
+              value={pmSuryaGharSubsidyRupees}
+              format={(n) => formatINR(Math.round(n))}
+              className="font-display text-2xl text-[#52842D] tabular-nums"
+            />
+          ) : (
+            <p className="text-sm text-[#6F6F6F]">
+              Not eligible at this scale — commercial incentives apply separately.
+            </p>
           )}
         </div>
+        {pmSuryaGharSubsidyRupees > 0 && (
+          <p className="mt-2 text-xs text-[#6F6F6F]">
+            Direct benefit transfer under PM Surya Ghar — paid to your bank account post-installation.
+          </p>
+        )}
       </motion.div>
 
       {/* 15-year + impact */}
