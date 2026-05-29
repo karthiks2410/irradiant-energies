@@ -90,13 +90,13 @@ export function QuoteCalculator() {
         </motion.div>
 
         {/* Calculator: input ⬌ result */}
-        <div className="mt-12 grid gap-6 lg:mt-16 lg:grid-cols-[1fr_1.1fr] lg:gap-8">
+        <div className="mt-12 grid gap-6 lg:mt-16 lg:grid-cols-[1fr_1.1fr] lg:items-stretch lg:gap-8">
           {/* Input panel */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: EASE_OUT_EXPO, delay: 0.1 }}
-            className="rounded-3xl border border-[#e5e7eb] bg-white p-6 sm:p-8"
+            className="flex flex-col rounded-3xl border border-[#e5e7eb] bg-white p-6 sm:p-8"
           >
             <div className="space-y-7">
               {/* Property */}
@@ -154,6 +154,28 @@ export function QuoteCalculator() {
                 </p>
               </div>
             </div>
+
+            {/* Disclaimer — pinned to bottom so panel matches result panel height */}
+            <div className="mt-6 border-t border-[#e5e7eb] pt-5 lg:mt-auto lg:pt-6">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#6F6F6F]">
+                Disclaimer
+              </p>
+              <p className="mt-2 text-[11px] leading-relaxed text-[#6F6F6F]">
+                Estimates use BESCOM 2024 domestic tariff slabs, ₹3.05/kWh
+                net-metering export rate, the PM Surya Ghar subsidy schedule,
+                and average Karnataka generation (4.5 kWh per kWp per day). The
+                long-term projection assumes 0.5% annual panel degradation and
+                4% annual tariff inflation. Subsidy eligibility is limited to
+                residential consumers and depends on DISCOM approval.
+              </p>
+              <p className="mt-2 text-[11px] leading-relaxed text-[#6F6F6F]">
+                Actual numbers may vary with roof orientation, shading, panel
+                and inverter brand, mounting structure, available roof area,
+                DISCOM charges, after-sales contract, financing terms, and
+                policy changes. We&rsquo;ll confirm your exact figures with a
+                free site survey before any commitment.
+              </p>
+            </div>
           </motion.div>
 
           {/* Result panel — flips into view first time only */}
@@ -200,19 +222,6 @@ export function QuoteCalculator() {
         >
           <ContactPanel inputs={inputs} ready={!!recommendation} />
         </motion.div>
-
-        {/* Disclaimer */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.6 }}
-          className="mx-auto mt-10 max-w-3xl text-center text-xs leading-relaxed text-[#6F6F6F]"
-        >
-          Estimates use BESCOM 2024 domestic tariff slabs, ₹3.05/kWh net-metering export
-          rate, PM Surya Ghar subsidy schedule, and Karnataka generation benchmarks.
-          Actual numbers vary with shading, roof orientation, and DISCOM policy. We'll
-          confirm with a free site survey.
-        </motion.p>
       </div>
     </section>
   );
