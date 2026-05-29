@@ -252,16 +252,16 @@ export function ProductShowcaseSection() {
               {products.map((product, i) => (
                 <motion.div
                   key={product.id}
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-3"
                 >
-                  <span className="text-xs text-[#6F6F6F]">
+                  <span className="text-sm font-medium text-[#6F6F6F]">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="text-xs uppercase tracking-wider text-[#6F6F6F]">
+                  <span className="text-sm font-medium uppercase tracking-wider text-[#6F6F6F]">
                     {product.tag}
                   </span>
                   {i < products.length - 1 && (
-                    <span className="w-8 h-px bg-black/10 mx-2" />
+                    <span className="w-10 h-px bg-black/10 mx-2" />
                   )}
                 </motion.div>
               ))}
