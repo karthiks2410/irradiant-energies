@@ -1,5 +1,35 @@
 @AGENTS.md
 
+## UI / Component Development Stack
+
+Whenever building **any new UI component, page, or visual element**, use the following stack together — don't pick one in isolation:
+
+1. **framer-motion** — motion engine.
+   - **Default to `whileInView` once-per-entry fades.** Fire on enter, then stop listening. No continuous scroll subscription.
+   - **Avoid `useScroll` + `useTransform` parallax.** It caused the "stuck → jerk" trackpad bug we already fixed in `ProductShowcaseSection` / `CTASection` / `GovernmentSection`. Don't reintroduce it.
+   - Time-based ambient motion (slow orb pulses, looping background atmosphere) is fine — that's not scroll-driven.
+   - Always wire `useReducedMotion()` for accessibility.
+   - Reuse `EASE_OUT_EXPO`, `SPRING_PRESS`, `PRESS_HOVER`, `PRESS_TAP` from `src/lib/motion.ts`. Don't invent new ease curves.
+
+2. **`ui-ux-pro-max` skill** (installed at `.claude/skills/ui-ux-pro-max/`, source: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill).
+   - Use it for **system-level decisions**: which of 67 UI styles, which of 161 palettes, which of 57 font pairings, which UX/accessibility guideline applies.
+   - Consult it **before** composing layout — pick the style family that fits the brand (Apple-clean / quiet luxury), then build inside it.
+
+3. **`frontend-design` skill** (`plugin:frontend-design:frontend-design`).
+   - Use it for **component-level polish**: distinctive aesthetics that avoid generic AI slop, typography refinement, motion timing, editorial details.
+   - Pairs with #2 — `ui-ux-pro-max` decides the style family, `frontend-design` executes the specific component well.
+
+### Brand aesthetic guardrails
+
+- **Palette is fixed:** `#52842D` (primary), `#446F26` (primary-dark), `#1d1d1f` (text), `#6F6F6F` (muted), `#f5f5f7` (surface), white. Don't introduce new dark/aurora/glassmorphism canvases.
+- **Tone:** Apple-clean / quiet luxury. Generous whitespace, restrained typography, brand-green accents on white. Not "AI agency demo with parallax everywhere."
+- **Reach for shadcn primitives** before hand-rolling components (Button, Input, Label, Tabs, Card already exist in `src/components/ui/`).
+- **One well-orchestrated entrance beats scattered micro-animations** across the page.
+
+### Before writing JSX for any new component
+
+State briefly which of the three (framer-motion / ui-ux-pro-max / frontend-design) you're drawing from and why. Example: *"Using `frontend-design` for the editorial typography pass and `ui-ux-pro-max` style #N for the card layout; motion is `whileInView` only — no scroll subscription."*
+
 <!-- code-graph:start -->
 ## Code Graph
 
