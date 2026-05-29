@@ -1,13 +1,12 @@
 "use client";
 
-import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, Bell, Zap, Users, Sun, Battery, Car } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { P2PTradingAnimation } from "@/components/ui/P2PTradingAnimation";
-import { PRESS_HOVER, PRESS_TAP, SPRING_PRESS } from "@/lib/motion";
+import { EASE_OUT_EXPO, PRESS_HOVER, PRESS_TAP, SPRING_PRESS } from "@/lib/motion";
 
 const products = [
   {
@@ -96,31 +95,23 @@ function ProductCard({
   product: (typeof products)[0];
   index: number;
 }) {
-  const cardRef = useRef<HTMLDivElement>(null);
   const isEven = index % 2 === 0;
 
-  const { scrollYProgress } = useScroll({
-    target: cardRef,
-    offset: ["start end", "end start"],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [60, -60]);
-  const opacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0, 1, 1, 0.4]);
-  const scale = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], [0.95, 1, 1, 0.97]);
-  const imageY = useTransform(scrollYProgress, [0, 1], [30, -30]);
-
+  // Gentle once-per-entry fade — no continuous scroll listener,
+  // so trackpad momentum scroll stays smooth.
   return (
     <motion.div
-      ref={cardRef}
-      style={{ opacity, scale }}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-15% 0px" }}
+      transition={{ duration: 0.7, ease: EASE_OUT_EXPO }}
       className="flex items-center justify-center py-16 px-6"
     >
       <div
         className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center"
       >
         {/* Content */}
-        <motion.div
-          style={{ y }}
+        <div
           className={`space-y-6 ${isEven ? "lg:order-1" : "lg:order-2"}`}
         >
           {product.badge && (
@@ -189,11 +180,10 @@ function ProductCard({
               </Link>
             </motion.div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Image */}
-        <motion.div
-          style={{ y: imageY }}
+        <div
           className={`relative ${isEven ? "lg:order-2" : "lg:order-1"}`}
         >
           <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl shadow-black/20">
@@ -214,7 +204,7 @@ function ProductCard({
           </div>
 
           {/* Decorative element */}
-          <motion.div
+          <div
             className={`absolute -z-10 w-full h-full rounded-3xl ${
               product.available ? "bg-[#52842D]/10" : "bg-amber-500/10"
             }`}
@@ -223,7 +213,7 @@ function ProductCard({
               left: isEven ? "20px" : "-20px",
             }}
           />
-        </motion.div>
+        </div>
       </div>
     </motion.div>
   );
