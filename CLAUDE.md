@@ -19,6 +19,12 @@ Whenever building **any new UI component, page, or visual element**, use the fol
    - Use it for **component-level polish**: distinctive aesthetics that avoid generic AI slop, typography refinement, motion timing, editorial details.
    - Pairs with #2 — `ui-ux-pro-max` decides the style family, `frontend-design` executes the specific component well.
 
+4. **21st.dev community components** (https://21st.dev/community/components).
+   - Use it as a **reference library** for section ideas, component patterns, and animation primitives — bento grids, hero variants, pricing tables, sliders, marquees, carousels, animated counters, etc.
+   - Browse before hand-rolling anything non-trivial: hero sections, feature grids, testimonial layouts, footers, pricing UI, scroll-driven storytelling, animated icons.
+   - Treat it as **inspiration + starting code**, not a copy-paste source — adapt to our palette and motion rules above. Always strip third-party scroll-parallax patterns before importing.
+   - When you find a fitting component, mention the 21st.dev category/name you drew from so the user can preview it.
+
 ### Brand aesthetic guardrails
 
 - **Palette is fixed:** `#52842D` (primary), `#446F26` (primary-dark), `#1d1d1f` (text), `#6F6F6F` (muted), `#f5f5f7` (surface), white. Don't introduce new dark/aurora/glassmorphism canvases.
@@ -28,7 +34,7 @@ Whenever building **any new UI component, page, or visual element**, use the fol
 
 ### Before writing JSX for any new component
 
-State briefly which of the three (framer-motion / ui-ux-pro-max / frontend-design) you're drawing from and why. Example: *"Using `frontend-design` for the editorial typography pass and `ui-ux-pro-max` style #N for the card layout; motion is `whileInView` only — no scroll subscription."*
+State briefly which of the four (framer-motion / ui-ux-pro-max / frontend-design / 21st.dev) you're drawing from and why. Example: *"Browsed 21st.dev's bento section for layout, using `ui-ux-pro-max` style #N for the visual language and `frontend-design` for typography polish; motion is `whileInView` only — no scroll subscription."*
 
 <!-- code-graph:start -->
 ## Code Graph
