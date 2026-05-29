@@ -12,7 +12,12 @@ import { ResultPanel } from "./components/ResultPanel";
 
 const PINCODE_REGEX = /^[1-9][0-9]{5}$/;
 
-export function QuoteCalculator() {
+type QuoteCalculatorProps = {
+  /** Optional pre-fill carried over from the home-page CTA form. */
+  prefill?: { name: string; phone: string; email: string };
+};
+
+export function QuoteCalculator({ prefill }: QuoteCalculatorProps) {
   const [propertyType, setPropertyType] = useState<PropertyType>("home");
   const [pincode, setPincode] = useState<string>("560001");
   const [billMode, setBillMode] = useState<BillMode>("rupees");
@@ -222,7 +227,7 @@ export function QuoteCalculator() {
           transition={{ duration: 0.7, ease: EASE_OUT_EXPO, delay: 0.4 }}
           className="mx-auto mt-10 max-w-3xl lg:mt-14"
         >
-          <ContactPanel inputs={inputs} ready={!!recommendation} />
+          <ContactPanel inputs={inputs} ready={!!recommendation} prefill={prefill} />
         </motion.div>
       </div>
     </section>

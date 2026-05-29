@@ -24,10 +24,19 @@ export function CTASection() {
   const router = useRouter();
   const prefersReducedMotion = useReducedMotion();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // The detailed quote flow lives at /get-quote — funnel users there for real lead capture.
-    router.push("/get-quote");
+    // Funnel users into the full quote calculator at /get-quote, but carry
+    // whatever they typed here so the contact panel down there is pre-filled.
+    // Empty fields are dropped so a direct /get-quote visit stays clean.
+    const data = new FormData(e.currentTarget);
+    const params = new URLSearchParams();
+    for (const key of ["name", "phone", "email"] as const) {
+      const value = (data.get(key) ?? "").toString().trim();
+      if (value) params.set(key, value);
+    }
+    const qs = params.toString();
+    router.push(qs ? `/get-quote?${qs}` : "/get-quote");
   };
 
   return (
@@ -170,7 +179,7 @@ export function CTASection() {
                     className="space-y-2"
                   >
                     <Label htmlFor="name" className="text-[#1d1d1f]">Name</Label>
-                    <Input id="name" placeholder="Your name" className="border-black/10 focus:border-[#52842D]" />
+                    <Input id="name" name="name" placeholder="Your name" className="border-black/10 focus:border-[#52842D]" />
                   </motion.div>
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
@@ -180,7 +189,7 @@ export function CTASection() {
                     className="space-y-2"
                   >
                     <Label htmlFor="phone" className="text-[#1d1d1f]">Phone</Label>
-                    <Input id="phone" type="tel" placeholder="+91" className="border-black/10 focus:border-[#52842D]" />
+                    <Input id="phone" name="phone" type="tel" placeholder="+91" className="border-black/10 focus:border-[#52842D]" />
                   </motion.div>
                 </div>
                 <motion.div
@@ -191,7 +200,7 @@ export function CTASection() {
                   className="space-y-2"
                 >
                   <Label htmlFor="email" className="text-[#1d1d1f]">Email</Label>
-                  <Input id="email" type="email" placeholder="your@email.com" className="border-black/10 focus:border-[#52842D]" />
+                  <Input id="email" name="email" type="email" placeholder="your@email.com" className="border-black/10 focus:border-[#52842D]" />
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
