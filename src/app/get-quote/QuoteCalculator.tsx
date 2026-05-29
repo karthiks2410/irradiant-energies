@@ -146,7 +146,7 @@ export function QuoteCalculator() {
               />
 
               {/* Footer hint */}
-              <div className="flex items-start gap-2 rounded-xl bg-[#f5f5f7] p-4">
+              <div className="mt-auto flex items-start gap-2 rounded-xl bg-[#f5f5f7] p-4">
                 <ArrowRight className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#52842D]" />
                 <p className="text-xs leading-relaxed text-[#6F6F6F]">
                   When you're ready, share your details
@@ -154,34 +154,12 @@ export function QuoteCalculator() {
                 </p>
               </div>
             </div>
-
-            {/* Disclaimer — pinned to bottom so panel matches result panel height */}
-            <div className="mt-6 border-t border-[#e5e7eb] pt-5 lg:mt-auto lg:pt-6">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#6F6F6F]">
-                Disclaimer
-              </p>
-              <p className="mt-2 text-[11px] leading-relaxed text-[#6F6F6F]">
-                Estimates use BESCOM 2024 domestic tariff slabs, ₹3.05/kWh
-                net-metering export rate, the PM Surya Ghar subsidy schedule,
-                and average Karnataka generation (4.5 kWh per kWp per day). The
-                long-term projection assumes 0.5% annual panel degradation and
-                4% annual tariff inflation. Subsidy eligibility is limited to
-                residential consumers and depends on DISCOM approval.
-              </p>
-              <p className="mt-2 text-[11px] leading-relaxed text-[#6F6F6F]">
-                Actual numbers may vary with roof orientation, shading, panel
-                and inverter brand, mounting structure, available roof area,
-                DISCOM charges, after-sales contract, financing terms, and
-                policy changes. We&rsquo;ll confirm your exact figures with a
-                free site survey before any commitment.
-              </p>
-            </div>
           </motion.div>
 
           {/* Result panel — flips into view first time only */}
           <motion.div
             style={{ perspective: 1400 }}
-            className="relative"
+            className="relative flex flex-col"
           >
             <motion.div
               initial={
@@ -210,6 +188,30 @@ export function QuoteCalculator() {
                 </div>
               )}
             </motion.div>
+
+            {/* Disclaimer — sits under the calculation, two short bullets */}
+            <div className="mt-6 lg:mt-8">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#6F6F6F]">
+                Disclaimer
+              </p>
+              <ul className="mt-2 space-y-1.5 text-[11px] leading-relaxed text-[#6F6F6F]">
+                <li className="flex gap-2">
+                  <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-[#6F6F6F]" />
+                  <span>
+                    Based on BESCOM tariffs, PM Surya Ghar subsidy, and Karnataka
+                    generation averages — assumes 0.5% panel degradation and 4%
+                    tariff inflation per year.
+                  </span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-[#6F6F6F]" />
+                  <span>
+                    Final numbers depend on roof, shading, and DISCOM approval.
+                    We&rsquo;ll confirm exact figures with a free site survey.
+                  </span>
+                </li>
+              </ul>
+            </div>
           </motion.div>
         </div>
 
