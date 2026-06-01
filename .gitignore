@@ -46,6 +46,8 @@ next-env.d.ts
 .claude/*
 !.claude/skills/
 .claude/skills/*/scripts/node_modules/
+# Personal skills installed via uipro / external CLIs — keep local, not in repo.
+.claude/skills/ui-ux-pro-max/
 .claude/settings.local.json
 .playwright-mcp/
 
