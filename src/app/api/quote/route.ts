@@ -7,6 +7,7 @@ import { encodeQuoteToken } from "@/lib/quote-token";
 import { buildWhatsappLink } from "@/lib/whatsapp";
 import { QuoteEmail } from "@/lib/emails/QuoteEmail";
 import { LeadAlertEmail } from "@/lib/emails/LeadAlertEmail";
+import { hasReceivableMx } from "@/lib/email-validation";
 
 export const runtime = "nodejs";
 
@@ -42,6 +43,20 @@ export async function POST(req: Request) {
 
   const { inputs, contact } = parsed.data;
 
+  // Pre-flight: if the domain doesn't accept mail, don't bother sending —
+  // that just bounces and wastes a leads@ alert. Fail-open on DNS errors.
+  const mxOk = await hasReceivableMx(contact.email);
+  if (!mxOk) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error:
+          "We couldn't reach that email address. Double-check the spelling and try again.",
+      },
+      { status: 422 },
+    );
+  }
+
   // Server-side recompute — never trust client-rendered numbers.
   const recommendation = buildRecommendation(inputs);
 
@@ -63,61 +78,75 @@ export async function POST(req: Request) {
 
   const resend = new Resend(RESEND_API_KEY);
 
+  // Customer email goes FIRST. If Resend rejects it (malformed address that
+  // slipped past zod + DNS, suspended domain, etc.), we never send the
+  // leads@ alert — sales shouldn't get pinged about a quote the customer
+  // never received.
   try {
-    const [userHtml, leadHtml] = await Promise.all([
-      render(
-        QuoteEmail({
-          customerName: contact.name,
-          recommendation,
-          whatsappLink,
-          resultUrl,
-        }),
-      ),
-      render(
+    const userHtml = await render(
+      QuoteEmail({
+        customerName: contact.name,
+        recommendation,
+        whatsappLink,
+        resultUrl,
+      }),
+    );
+
+    const userResp = await resend.emails.send({
+      from: `Irradiant Energie <${EMAIL_FROM}>`,
+      to: [contact.email],
+      subject: `Your ${recommendation.systemSizeKw} kWp solar plan`,
+      html: userHtml,
+    });
+
+    if (userResp.error) {
+      console.error("[/api/quote] Customer email failed", userResp.error);
+      // Tell the user gently — don't expose Resend error details — and
+      // skip the lead alert entirely.
+      return NextResponse.json(
+        {
+          ok: false,
+          error:
+            "We couldn't deliver to that address. Please double-check it and try again.",
+        },
+        { status: 422 },
+      );
+    }
+
+    // Customer email accepted — now alert sales. Lead-alert failure is
+    // logged but doesn't block the user, who already got their email.
+    try {
+      const leadHtml = await render(
         LeadAlertEmail({
           contact,
           recommendation,
           resultUrl,
           whatsappLink,
         }),
-      ),
-    ]);
-
-    const [userResp, leadResp] = await Promise.all([
-      resend.emails.send({
-        from: `Irradiant Energie <${EMAIL_FROM}>`,
-        to: [contact.email],
-        subject: `Your ${recommendation.systemSizeKw} kWp solar plan`,
-        html: userHtml,
-      }),
-      resend.emails.send({
+      );
+      const leadResp = await resend.emails.send({
         from: `Irradiant Quote Bot <${EMAIL_FROM}>`,
         to: [LEAD_EMAIL],
         subject: `New lead · ${contact.name} · ${recommendation.systemSizeKw} kWp`,
         html: leadHtml,
         replyTo: contact.email,
-      }),
-    ]);
-
-    const userOk = !userResp.error;
-    const leadOk = !leadResp.error;
-
-    if (!userOk || !leadOk) {
-      console.error("[/api/quote] Resend partial failure", {
-        userError: userResp.error,
-        leadError: leadResp.error,
       });
+      if (leadResp.error) {
+        console.error("[/api/quote] Lead alert failed", leadResp.error);
+      }
+    } catch (err) {
+      console.error("[/api/quote] Lead alert exception", err);
     }
 
     return NextResponse.json({
       ok: true,
-      emailDelivered: userOk && leadOk,
+      emailDelivered: true,
       whatsappLink,
       resultToken,
       resultUrl,
     });
   } catch (err) {
-    console.error("[/api/quote] Resend exception", err);
+    console.error("[/api/quote] Customer email exception", err);
     // Fail soft — user still gets the WhatsApp path.
     return NextResponse.json({
       ok: true,

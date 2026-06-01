@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Check, ExternalLink, Loader2, MessageCircle } from "lucide-react";
 import { EASE_OUT_EXPO, PRESS_HOVER, PRESS_TAP, SPRING_PRESS } from "@/lib/motion";
-import { quoteContactSchema } from "@/lib/quote-schema";
+import { quoteContactSchema, suggestEmailFix } from "@/lib/quote-schema";
 import type { QuoteInputs } from "@/lib/solar-calc";
 
 type ContactPanelProps = {
@@ -32,10 +32,21 @@ export function ContactPanel({ inputs, ready, prefill }: ContactPanelProps) {
   const [name, setName] = useState(prefill?.name ?? "");
   const [phone, setPhone] = useState(prefill?.phone ?? "");
   const [email, setEmail] = useState(prefill?.email ?? "");
+  const [dismissedSuggestion, setDismissedSuggestion] = useState<string | null>(null);
   const [whatsappOptIn, setWhatsappOptIn] = useState(true);
   const [consent, setConsent] = useState(false);
   const [errors, setErrors] = useState<FieldErrors>({});
   const [state, setState] = useState<SubmitState>({ status: "idle" });
+
+  // Cheap typo nudge — only suggest if the entry looks roughly like a finished
+  // email and the user hasn't already dismissed this exact suggestion.
+  const emailSuggestion = useMemo(() => {
+    if (!email.includes("@") || !email.includes(".")) return null;
+    const fix = suggestEmailFix(email);
+    if (!fix || fix === email) return null;
+    if (dismissedSuggestion === fix) return null;
+    return fix;
+  }, [email, dismissedSuggestion]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -200,6 +211,35 @@ export function ContactPanel({ inputs, ready, prefill }: ContactPanelProps) {
           autoComplete="email"
           placeholder="you@example.com"
         />
+        <AnimatePresence>
+          {emailSuggestion && (
+            <motion.div
+              initial={{ opacity: 0, y: -2 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="mt-1.5 flex items-center gap-2 text-xs"
+            >
+              <span className="text-[#6F6F6F]">Did you mean</span>
+              <button
+                type="button"
+                onClick={() => setEmail(emailSuggestion)}
+                className="font-medium text-[#446F26] underline-offset-2 hover:underline"
+              >
+                {emailSuggestion}
+              </button>
+              <span className="text-[#6F6F6F]">?</span>
+              <button
+                type="button"
+                onClick={() => setDismissedSuggestion(emailSuggestion)}
+                className="ml-auto text-[#6F6F6F] hover:text-[#1d1d1f]"
+                aria-label="Dismiss suggestion"
+              >
+                ✕
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       <div className="mt-5 space-y-2.5">
