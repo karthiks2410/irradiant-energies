@@ -29,17 +29,17 @@ const footerLinks = {
 const socialLinks = [
   {
     name: "Instagram",
-    href: "",
+    href: "https://www.instagram.com/irradiantenergie",
     logo: "https://img.logo.dev/instagram.com?token=pk_HTrnQ1UQST6HmLe5roSfjg",
   },
   {
     name: "LinkedIn",
-    href: "",
+    href: "https://in.linkedin.com/company/irradiant-energie",
     logo: "https://img.logo.dev/linkedin.com?token=pk_HTrnQ1UQST6HmLe5roSfjg",
   },
   {
     name: "Facebook",
-    href: "",
+    href: "https://www.facebook.com/p/Irradiant-Energie-61589586895539/",
     logo: "https://img.logo.dev/facebook.com?token=pk_HTrnQ1UQST6HmLe5roSfjg",
   },
   {
