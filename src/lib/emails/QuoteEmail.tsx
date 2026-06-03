@@ -58,8 +58,10 @@ export function QuoteEmail({
             Hi {customerName.split(" ")[0]}, here&rsquo;s your solar plan.
           </Heading>
           <Text style={leadStyle}>
-            Based on the details you shared, this is the system we recommend —
-            and what it&rsquo;ll save you over the next 15 years.
+            Thanks for taking the first step toward going solar with Irradiant
+            Energie &mdash; we&rsquo;re glad you&rsquo;re here. Based on the
+            details you shared, this is the system we recommend, and what
+            it&rsquo;ll save you over the next 15 years.
           </Text>
 
           {/* Headline tile */}
@@ -148,6 +150,15 @@ export function QuoteEmail({
             <Link href={resultUrl} style={secondaryLink}>
               View your full report online ↗
             </Link>
+          </Section>
+
+          {/* Reassurance: a real human follows up so they don't feel ghosted */}
+          <Section style={reassuranceTile}>
+            <Text style={reassuranceText}>
+              One of our solar consultants will reach out within 24 hours to
+              walk you through these numbers, answer your questions, and book a
+              free site survey when you&rsquo;re ready.
+            </Text>
           </Section>
 
           <Hr style={hrStyle} />
@@ -324,6 +335,25 @@ const secondaryLink: React.CSSProperties = {
 const hrStyle: React.CSSProperties = {
   borderColor: "#e5e7eb",
   margin: "20px 0 16px",
+};
+
+// Soft brand-tinted card under the CTA buttons — frames the human follow-up
+// promise so it doesn't feel like just another paragraph.
+const reassuranceTile: React.CSSProperties = {
+  marginTop: 4,
+  marginBottom: 8,
+  padding: "14px 18px",
+  borderRadius: 12,
+  backgroundColor: `${PRIMARY}0d`,
+  border: `1px solid ${PRIMARY}26`,
+};
+
+const reassuranceText: React.CSSProperties = {
+  fontSize: 13,
+  lineHeight: 1.55,
+  color: TEXT,
+  margin: 0,
+  textAlign: "center",
 };
 
 const footerNote: React.CSSProperties = {
