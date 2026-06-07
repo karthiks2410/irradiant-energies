@@ -45,15 +45,19 @@ export function Header() {
     }
   };
 
+  const isHomePage = pathname === "/";
+
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 border-b ${
         isMobileMenuOpen
           ? "bg-white border-gray-200/50 shadow-sm"
-          : ""
+          : !isHomePage
+            ? "bg-white border-gray-200/50 shadow-sm"
+            : ""
       }`}
       style={
-        isMobileMenuOpen
+        isMobileMenuOpen || !isHomePage
           ? undefined
           : { backgroundColor, borderBottomColor, boxShadow }
       }
@@ -125,7 +129,7 @@ export function Header() {
               Discover
             </Link>
             <Link
-              href="/#about"
+              href="/about"
               className="nav-link text-sm font-medium transition-colors text-[#6F6F6F] hover:text-[#000000]"
             >
               About
@@ -201,7 +205,7 @@ export function Header() {
                 Discover
               </Link>
               <Link
-                href="/#about"
+                href="/about"
                 onClick={closeMobileMenu}
                 className="text-base font-medium transition-colors text-[#6F6F6F] hover:text-[#000000]"
               >

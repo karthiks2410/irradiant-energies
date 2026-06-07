@@ -17,7 +17,7 @@ const footerLinks = {
     { name: "P2P Trading", href: "/discover/p2p-trading" },
   ],
   company: [
-    { name: "About Us", href: "/#about" },
+    { name: "About Us", href: "/about" },
     { name: "Discover", href: "/discover" },
   ],
   support: [
