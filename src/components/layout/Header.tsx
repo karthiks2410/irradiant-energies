@@ -11,9 +11,11 @@ import { MegaMenu } from "./MegaMenu";
 import { MobileSolutionsMenu } from "./MobileSolutionsMenu";
 import { SPRING_PRESS, PRESS_HOVER, PRESS_TAP } from "@/lib/motion";
 
+type OpenMenu = "solar" | "other" | null;
+
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState<OpenMenu>(null);
   const pathname = usePathname();
 
   const { scrollY } = useScroll();
@@ -93,31 +95,61 @@ export function Header() {
               Home
             </Link>
 
-            {/* Solutions Mega Menu */}
+            {/* Solar Solutions Mega Menu — audience-first (Home / Society / Commercial) */}
             <div
               className="relative"
-              onMouseEnter={() => setIsSolutionsOpen(true)}
-              onMouseLeave={() => setIsSolutionsOpen(false)}
+              onMouseEnter={() => setOpenMenu("solar")}
+              onMouseLeave={() => setOpenMenu(null)}
             >
               <button
                 type="button"
                 aria-haspopup="menu"
-                aria-expanded={isSolutionsOpen}
-                onClick={() => setIsSolutionsOpen((prev) => !prev)}
-                onFocus={() => setIsSolutionsOpen(true)}
+                aria-expanded={openMenu === "solar"}
+                onClick={() => setOpenMenu((prev) => (prev === "solar" ? null : "solar"))}
+                onFocus={() => setOpenMenu("solar")}
                 className="nav-link flex items-center gap-1 text-sm font-medium text-[#6F6F6F] hover:text-[#000000] transition-colors"
               >
-                Solutions
+                Solar Solutions
                 <ChevronDown
                   className={`w-4 h-4 transition-transform duration-200 ${
-                    isSolutionsOpen ? "rotate-180" : ""
+                    openMenu === "solar" ? "rotate-180" : ""
                   }`}
                 />
               </button>
 
               <MegaMenu
-                isOpen={isSolutionsOpen}
-                onClose={() => setIsSolutionsOpen(false)}
+                kind="solar"
+                isOpen={openMenu === "solar"}
+                onClose={() => setOpenMenu(null)}
+              />
+            </div>
+
+            {/* Other Offerings — ESS, EV Charging, P2P, VPP */}
+            <div
+              className="relative"
+              onMouseEnter={() => setOpenMenu("other")}
+              onMouseLeave={() => setOpenMenu(null)}
+            >
+              <button
+                type="button"
+                aria-haspopup="menu"
+                aria-expanded={openMenu === "other"}
+                onClick={() => setOpenMenu((prev) => (prev === "other" ? null : "other"))}
+                onFocus={() => setOpenMenu("other")}
+                className="nav-link flex items-center gap-1 text-sm font-medium text-[#6F6F6F] hover:text-[#000000] transition-colors"
+              >
+                Other Offerings
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform duration-200 ${
+                    openMenu === "other" ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+
+              <MegaMenu
+                kind="other"
+                isOpen={openMenu === "other"}
+                onClose={() => setOpenMenu(null)}
               />
             </div>
 
