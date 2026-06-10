@@ -58,7 +58,7 @@ function SolarMenu({ onClose }: { onClose: () => void }) {
   return (
     <div className="w-[640px] max-w-[min(640px,calc(100vw-32px))] p-7">
       <p className="text-[10px] uppercase tracking-wider text-[#6F6F6F] font-medium mb-4">
-        Solar Solutions
+        Solar for You
       </p>
 
       <motion.div
@@ -123,7 +123,7 @@ function OtherOfferingsMenu({ onClose }: { onClose: () => void }) {
   return (
     <div className="w-[420px] max-w-[min(420px,calc(100vw-32px))] p-5">
       <p className="text-[10px] uppercase tracking-wider text-[#6F6F6F] font-medium mb-3 px-2">
-        Other Offerings
+        Beyond Solar
       </p>
       <motion.div
         className="space-y-1"

@@ -109,7 +109,7 @@ export function Header() {
                 onFocus={() => setOpenMenu("solar")}
                 className="nav-link flex items-center gap-1 text-sm font-medium text-[#6F6F6F] hover:text-[#000000] transition-colors"
               >
-                Solar Solutions
+                Solar for You
                 <ChevronDown
                   className={`w-4 h-4 transition-transform duration-200 ${
                     openMenu === "solar" ? "rotate-180" : ""
@@ -138,7 +138,7 @@ export function Header() {
                 onFocus={() => setOpenMenu("other")}
                 className="nav-link flex items-center gap-1 text-sm font-medium text-[#6F6F6F] hover:text-[#000000] transition-colors"
               >
-                Other Offerings
+                Beyond Solar
                 <ChevronDown
                   className={`w-4 h-4 transition-transform duration-200 ${
                     openMenu === "other" ? "rotate-180" : ""

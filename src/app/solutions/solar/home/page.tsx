@@ -13,7 +13,15 @@ export default function HomeSolarPage() {
   return (
     <>
       <Header />
-      <SegmentLandingPage segmentId="home" />
+      <SegmentLandingPage
+        segmentId="home"
+        heroImage="/segments/home-hero.jpg"
+        showLeadForm
+        showJourney
+        showWhyTrust
+        showStats
+        showFAQ
+      />
       <Footer />
     </>
   );

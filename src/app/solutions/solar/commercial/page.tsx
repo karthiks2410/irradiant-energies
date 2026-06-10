@@ -13,7 +13,7 @@ export default function CommercialSolarPage() {
   return (
     <>
       <Header />
-      <SegmentLandingPage segmentId="commercial" />
+      <SegmentLandingPage segmentId="commercial" heroImage="/segments/commercial-hero.jpg" />
       <Footer />
     </>
   );

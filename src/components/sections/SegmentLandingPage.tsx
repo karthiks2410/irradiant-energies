@@ -1,46 +1,67 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, BadgeCheck, ShieldCheck, Sparkles } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { EASE_OUT_EXPO, PRESS_HOVER, PRESS_TAP, SPRING_PRESS } from "@/lib/motion";
 import { solutionTypes, getSegmentById } from "@/lib/solutions-data";
+import { LeadCaptureForm } from "@/components/sections/segment/LeadCaptureForm";
+import { SolarJourney } from "@/components/sections/segment/SolarJourney";
+import { WhyTrustGrid } from "@/components/sections/segment/WhyTrustGrid";
+import { StatStrip } from "@/components/sections/segment/StatStrip";
+import { FAQ } from "@/components/sections/segment/FAQ";
 
+/**
+ * Segment-level landing page (Home / Society / Commercial).
+ *
+ * The page is composed of opt-in sections — each segment can decide which
+ * to show. Today, /solutions/solar/home opts into all of them; Society and
+ * Commercial start with the lean variant (hero + system-type cards + CTA)
+ * and we light up more sections segment-by-segment as content for each
+ * audience matures.
+ */
 interface SegmentLandingPageProps {
   /** Segment id (e.g. "home", "housing-society", "commercial"). Looked up client-side
    *  so we never try to serialize Lucide icon components across the server boundary. */
   segmentId: string;
   /** Optional hero image path under /public — leave undefined for the placeholder gradient. */
   heroImage?: string;
+  /** Section opt-ins. Default false (lean) so segments stay opt-in until their copy is ready. */
+  showLeadForm?: boolean;
+  showJourney?: boolean;
+  showWhyTrust?: boolean;
+  showStats?: boolean;
+  showFAQ?: boolean;
 }
-
-// TODO(content): replace with real, third-party-verified numbers when we have them.
-const TRUST_BADGES: Array<{ icon: LucideIcon; label: string; sublabel: string }> = [
-  { icon: BadgeCheck, label: "MNRE", sublabel: "Approved channel partner" },
-  { icon: ShieldCheck, label: "End-to-end", sublabel: "Site visit → install → after-sales" },
-  { icon: Sparkles, label: "Tier-1 panels", sublabel: "25-year performance warranty" },
-];
 
 const fadeInOnce = {
   hidden: { opacity: 0, y: 16 },
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE_OUT_EXPO } },
 };
 
-export function SegmentLandingPage({ segmentId, heroImage }: SegmentLandingPageProps) {
+export function SegmentLandingPage({
+  segmentId,
+  heroImage,
+  showLeadForm = false,
+  showJourney = false,
+  showWhyTrust = false,
+  showStats = false,
+  showFAQ = false,
+}: SegmentLandingPageProps) {
   const reduceMotion = useReducedMotion();
   const segment = getSegmentById(segmentId);
 
   if (!segment) {
-    // Defensive fallback — should never hit since the page-level wrappers pass known ids.
+    // Defensive fallback — shouldn't hit since the page-level wrappers pass known ids.
     return null;
   }
 
   const SegmentIcon = segment.icon;
   const landing = segment.landing;
 
-  // Segment-specific WhatsApp / quote prefill so the lead lands segmented.
+  // Segment-specific quote prefill so leads land tagged with the segment they came from.
   const quoteHref = `/get-quote?segment=${segment.id}`;
 
   return (
@@ -49,7 +70,6 @@ export function SegmentLandingPage({ segmentId, heroImage }: SegmentLandingPageP
          Hero
       ────────────────────────────────────────────────────────────────────── */}
       <section className="relative pt-32 pb-20 overflow-hidden">
-        {/* Soft brand-green ambient wash — time-based, not scroll-driven. */}
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#52842D]/5 via-white to-white" />
 
         <div className="max-w-6xl mx-auto px-6">
@@ -99,7 +119,7 @@ export function SegmentLandingPage({ segmentId, heroImage }: SegmentLandingPageP
             </div>
           </motion.div>
 
-          {/* Hero visual — placeholder block for now. Swap to <Image> once branded asset is ready. */}
+          {/* Hero visual */}
           <motion.div
             variants={fadeInOnce}
             initial={reduceMotion ? false : "hidden"}
@@ -107,23 +127,30 @@ export function SegmentLandingPage({ segmentId, heroImage }: SegmentLandingPageP
             viewport={{ once: true, amount: 0.2 }}
             className="mt-14"
           >
-            <div className="relative aspect-[16/9] sm:aspect-[21/9] rounded-2xl overflow-hidden bg-gradient-to-br from-[#52842D]/15 via-[#52842D]/5 to-[#f5f5f7] border border-gray-100 flex items-center justify-center">
+            <div className="relative aspect-[16/9] sm:aspect-[21/9] rounded-2xl overflow-hidden bg-gradient-to-br from-[#52842D]/15 via-[#52842D]/5 to-[#f5f5f7] border border-gray-100">
               {heroImage ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={heroImage}
-                  alt={`${segment.name} solar installation`}
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
+                <>
+                  <Image
+                    src={heroImage}
+                    alt={`${segment.name} solar installation`}
+                    fill
+                    priority
+                    sizes="(max-width: 640px) 100vw, (max-width: 1280px) 90vw, 1152px"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-black/15 via-transparent to-transparent pointer-events-none" />
+                </>
               ) : (
-                <div className="text-center">
-                  <div className="inline-flex p-5 rounded-2xl bg-white/60 backdrop-blur-sm border border-white/80 mb-3">
-                    <SegmentIcon className="w-10 h-10 text-[#52842D]" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="inline-flex p-5 rounded-2xl bg-white/60 backdrop-blur-sm border border-white/80 mb-3">
+                      <SegmentIcon className="w-10 h-10 text-[#52842D]" />
+                    </div>
+                    <p className="text-xs text-[#6F6F6F]">
+                      {/* TODO: replace with branded {segment.name} hero photo */}
+                      Branded photo coming soon
+                    </p>
                   </div>
-                  <p className="text-xs text-[#6F6F6F]">
-                    {/* TODO: replace with branded {segment.name} hero photo */}
-                    Branded photo coming soon
-                  </p>
                 </div>
               )}
             </div>
@@ -132,36 +159,19 @@ export function SegmentLandingPage({ segmentId, heroImage }: SegmentLandingPageP
       </section>
 
       {/* ──────────────────────────────────────────────────────────────────────
-         Trust strip
+         Lead capture form (opt-in)
       ────────────────────────────────────────────────────────────────────── */}
-      <section className="py-10 border-y border-gray-100 bg-[#f5f5f7]/40">
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-            whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.4, ease: EASE_OUT_EXPO }}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-6"
-          >
-            {TRUST_BADGES.map(({ icon: Icon, label, sublabel }) => (
-              <div key={label} className="flex items-start gap-3">
-                <div className="p-2 rounded-lg bg-white border border-gray-100">
-                  <Icon className="w-5 h-5 text-[#52842D]" />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-[#1d1d1f]">{label}</p>
-                  <p className="text-xs text-[#6F6F6F]">{sublabel}</p>
-                </div>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+      {showLeadForm && <LeadCaptureForm segment={segment.id} />}
 
       {/* ──────────────────────────────────────────────────────────────────────
-         "Which system fits you?" — plain-English type cards
+         Solar Journey — 4 steps + benefit pills (opt-in)
       ────────────────────────────────────────────────────────────────────── */}
-      <section id="system-types" className="py-24">
+      {showJourney && <SolarJourney />}
+
+      {/* ──────────────────────────────────────────────────────────────────────
+         "Which system fits you?" — plain-English type cards (always shown)
+      ────────────────────────────────────────────────────────────────────── */}
+      <section id="system-types" className="py-20 sm:py-24 bg-[#f5f5f7]/40 border-y border-gray-100">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
             initial={reduceMotion ? false : { opacity: 0, y: 12 }}
@@ -195,7 +205,7 @@ export function SegmentLandingPage({ segmentId, heroImage }: SegmentLandingPageP
                 >
                   <Link
                     href={`/solutions/solar/${segment.id}/${type.id}`}
-                    className="group flex flex-col h-full p-7 rounded-2xl border border-gray-100 hover:border-[#52842D]/30 hover:shadow-sm hover:bg-[#52842D]/[0.02] transition-all"
+                    className="group flex flex-col h-full p-7 rounded-2xl bg-white border border-gray-100 hover:border-[#52842D]/30 hover:shadow-sm transition-all"
                   >
                     <div className="p-3 rounded-xl bg-[#52842D]/10 w-fit mb-5">
                       <TypeIcon className="w-6 h-6 text-[#52842D]" />
@@ -222,7 +232,22 @@ export function SegmentLandingPage({ segmentId, heroImage }: SegmentLandingPageP
       </section>
 
       {/* ──────────────────────────────────────────────────────────────────────
-         CTA band
+         Why families trust us — 4-card grid (opt-in)
+      ────────────────────────────────────────────────────────────────────── */}
+      {showWhyTrust && <WhyTrustGrid />}
+
+      {/* ──────────────────────────────────────────────────────────────────────
+         Stat strip (opt-in)
+      ────────────────────────────────────────────────────────────────────── */}
+      {showStats && <StatStrip />}
+
+      {/* ──────────────────────────────────────────────────────────────────────
+         FAQ (opt-in)
+      ────────────────────────────────────────────────────────────────────── */}
+      {showFAQ && <FAQ />}
+
+      {/* ──────────────────────────────────────────────────────────────────────
+         Closing CTA band (always shown)
       ────────────────────────────────────────────────────────────────────── */}
       <section className="py-20 bg-gradient-to-br from-[#52842D] to-[#446F26]">
         <div className="max-w-4xl mx-auto px-6 text-center">

@@ -33,7 +33,7 @@ export function MobileSolutionsMenu({ onLinkClick }: MobileSolutionsMenuProps) {
         className="flex items-center justify-between w-full py-2 px-1"
       >
         <span className="text-base font-medium text-[#1d1d1f]">
-          Solar Solutions
+          Solar for You
         </span>
         <ChevronDown
           className={`w-4 h-4 text-[#6F6F6F] transition-transform duration-200 ${
@@ -102,7 +102,7 @@ export function MobileSolutionsMenu({ onLinkClick }: MobileSolutionsMenuProps) {
         className="flex items-center justify-between w-full py-2 px-1"
       >
         <span className="text-base font-medium text-[#1d1d1f]">
-          Other Offerings
+          Beyond Solar
         </span>
         <ChevronDown
           className={`w-4 h-4 text-[#6F6F6F] transition-transform duration-200 ${
