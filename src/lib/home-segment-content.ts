@@ -24,18 +24,24 @@ import {
   IndianRupee,
 } from "lucide-react";
 import type { FAQContent } from "./faq-types";
+import type {
+  JourneyContent,
+  TrustContent,
+  LeadFormContent,
+} from "./segment-content-types";
 
 /* -------------------------------------------------------------------------------------
    Lead capture form — "Book a free consultation"
 ------------------------------------------------------------------------------------- */
 
-export const homeLeadForm = {
+export const homeLeadForm: LeadFormContent = {
   eyebrow: "Free consultation",
   heading: "Talk to a real solar expert — no pressure.",
   subheading:
     "Tell us a few details. We'll call you back, do a free site visit, and put a number on your roof. You decide what happens next.",
   pill: "Free site visit · 7 days a week",
   submitLabel: "Book my free consultation",
+  billLabel: "Monthly electricity bill",
   /** 5 monthly-bill ranges, in rupees, mirroring how Indian visitors think about their bill. */
   billRanges: [
     { value: "lt-1500", label: "Less than ₹1,500" },
@@ -43,21 +49,14 @@ export const homeLeadForm = {
     { value: "2500-4000", label: "₹2,500 – ₹4,000" },
     { value: "4000-8000", label: "₹4,000 – ₹8,000" },
     { value: "gt-8000", label: "More than ₹8,000" },
-  ] as const,
+  ],
 };
 
 /* -------------------------------------------------------------------------------------
    "Simplified Solar Journey" — 4 steps + benefit pills
 ------------------------------------------------------------------------------------- */
 
-export interface JourneyStep {
-  number: string;
-  title: string;
-  description: string;
-  icon: LucideIcon;
-}
-
-export const homeJourney = {
+export const homeJourney: JourneyContent = {
   eyebrow: "How it works",
   heading: "Your solar journey, simplified.",
   subheading:
@@ -97,20 +96,14 @@ export const homeJourney = {
         "Your system goes live, your bill drops the same month, and we handle 5 years of maintenance — cleaning, monitoring, and parts.",
       icon: ShieldCheck,
     },
-  ] satisfies JourneyStep[],
+  ],
 };
 
 /* -------------------------------------------------------------------------------------
    "Why families across India trust Irradiant" — 4-card grid
 ------------------------------------------------------------------------------------- */
 
-export interface TrustCard {
-  title: string;
-  description: string;
-  icon: LucideIcon;
-}
-
-export const homeTrustCards = {
+export const homeTrustCards: TrustContent = {
   eyebrow: "Why us",
   heading: "Why families across India trust Irradiant.",
   subheading:
@@ -140,7 +133,7 @@ export const homeTrustCards = {
         "Cleaning, monitoring, and parts — included for 5 years. Your panels stay clean, your generation stays high, and we come to you.",
       icon: Wrench,
     },
-  ] satisfies TrustCard[],
+  ],
 };
 
 /* -------------------------------------------------------------------------------------
@@ -153,18 +146,31 @@ export interface Stat {
   icon: LucideIcon;
 }
 
+/* -------------------------------------------------------------------------------------
+   Stat strip — currently DISABLED in the page composition. We're early enough
+   that we don't have verified ops numbers, and we'd rather ship no stats than
+   plausible-looking ones. Re-enable from page wrappers (showStats) once ops
+   gives real verified numbers. The data below is intentionally ALL ZEROS so
+   nothing accidentally lights up if a section flag flips.
+------------------------------------------------------------------------------------- */
+
+export interface Stat {
+  value: string;
+  label: string;
+  icon: LucideIcon;
+}
+
 export const homeStats = {
   heading: "Powering homes across India.",
   subheading:
-    "Every install, on a real Indian roof. We update these numbers as new systems go live — last refresh: June 2026.",
-  // TODO(ops): replace with verified ops numbers each quarter. Current values
-  // reflect installs to date — if anything, slightly conservative. Do NOT
-  // inflate; the value of these numbers is in their honesty, not their size.
+    "Every install, on a real Indian roof. We update these numbers as new systems go live.",
+  // TODO(ops): replace with verified numbers from ops dashboard. Section is
+  // intentionally hidden in the page composition until we have real data.
   stats: [
-    { value: "60+", label: "Homes solarized", icon: Home },
-    { value: "210+ kW", label: "Power installed", icon: Zap },
-    { value: "₹18+ L", label: "Subsidy delivered", icon: PiggyBank },
-    { value: "9", label: "Cities served", icon: BadgeCheck },
+    { value: "—", label: "Homes solarized", icon: Home },
+    { value: "—", label: "Power installed", icon: Zap },
+    { value: "—", label: "Subsidy delivered", icon: PiggyBank },
+    { value: "—", label: "Cities served", icon: BadgeCheck },
   ] satisfies Stat[],
 };
 

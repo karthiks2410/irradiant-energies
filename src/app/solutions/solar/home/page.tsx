@@ -20,7 +20,6 @@ export default function HomeSolarPage() {
         showLeadForm
         showJourney
         showWhyTrust
-        showStats
         showFAQ
       />
       <Footer />

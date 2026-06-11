@@ -17,6 +17,9 @@ export default function CommercialSolarPage() {
         segmentId="commercial"
         heroImage="/segments/commercial-hero.jpg"
         heroFocal="50% 60%"
+        showLeadForm
+        showJourney
+        showWhyTrust
         showFAQ
       />
       <Footer />

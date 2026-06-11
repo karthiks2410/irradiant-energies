@@ -1,7 +1,9 @@
 /**
- * Editable copy for /solutions/solar/housing-society. Currently only the FAQ
- * is wired up — the rest of the page (lead form, journey, trust grid, stats)
- * stays lean until each section's copy is signed off for the society audience.
+ * Editable copy for /solutions/solar/housing-society. Voice tuned for the
+ * RWA chairman / society committee / facility manager audience.
+ *
+ * Stat strip section is intentionally omitted across segments until ops
+ * has verified numbers — see homeStats notes.
  */
 
 import {
@@ -9,8 +11,134 @@ import {
   ClipboardCheck,
   Wrench,
   Cog,
+  ShieldCheck,
+  Hammer,
+  FileText,
+  Users,
+  Zap,
+  Sun,
+  IndianRupee,
 } from "lucide-react";
 import type { FAQContent } from "./faq-types";
+import type {
+  JourneyContent,
+  TrustContent,
+  LeadFormContent,
+} from "./segment-content-types";
+
+/* ───────────────────────────── Lead capture form ───────────────────────────── */
+
+export const housingSocietyLeadForm: LeadFormContent = {
+  eyebrow: "AGM-ready proposal",
+  heading: "Get a proposal your committee can sign off on.",
+  subheading:
+    "Tell us about your society. We'll send a detailed savings + payback proposal — formatted exactly for your AGM circulation, including draft resolution language.",
+  pill: "Free site visit + draft AGM resolution",
+  submitLabel: "Get the AGM proposal",
+  billLabel: "Average monthly common-area bill",
+  organisationField: {
+    label: "Society name",
+    placeholder: "e.g. Brigade Gardenia CHS",
+    paramName: "society",
+  },
+  /** Society common-area bills run higher than household bills — adjust ranges. */
+  billRanges: [
+    { value: "lt-15k", label: "Less than ₹15,000" },
+    { value: "15k-30k", label: "₹15,000 – ₹30,000" },
+    { value: "30k-60k", label: "₹30,000 – ₹60,000" },
+    { value: "60k-1L", label: "₹60,000 – ₹1,00,000" },
+    { value: "gt-1L", label: "More than ₹1,00,000" },
+  ],
+};
+
+/* ───────────────────────────── Solar Journey ───────────────────────────── */
+
+export const housingSocietyJourney: JourneyContent = {
+  eyebrow: "How it works",
+  heading: "From first conversation to switch-on, in five clear steps.",
+  subheading:
+    "We've done this with dozens of societies. The flow is predictable, the paperwork is on us, and the committee always stays in the loop.",
+  benefitPills: [
+    "Draft AGM resolution included",
+    "Subsidy + paperwork handled",
+    "5-year free maintenance",
+    "Single point of contact",
+  ],
+  steps: [
+    {
+      number: "01",
+      title: "Free site visit & energy audit",
+      description:
+        "We visit the society, study the rooftop layout, common-area load profile, and last 12 months of electricity bills. You get a sized proposal — not a brochure.",
+      icon: ClipboardCheck,
+    },
+    {
+      number: "02",
+      title: "Proposal & AGM-ready package",
+      description:
+        "We share a detailed proposal — savings, payback, financing options, plus a draft resolution your committee can circulate ahead of the AGM. No legalese.",
+      icon: FileText,
+    },
+    {
+      number: "03",
+      title: "Approval, financing & subsidy filing",
+      description:
+        "Once the AGM passes, we file the discom paperwork, structural NOCs, and PM Surya Ghar subsidy claim in parallel. Bank financing options handled if you're going EMI.",
+      icon: Banknote,
+    },
+    {
+      number: "04",
+      title: "Install with minimal disruption",
+      description:
+        "Tier-1 panels, certified installers, scheduled to avoid resident inconvenience. Lift access, water tank routing, and parking — coordinated with your facility manager.",
+      icon: Hammer,
+    },
+    {
+      number: "05",
+      title: "Switch on. Save. We maintain.",
+      description:
+        "System goes live, common-area bills drop the same month, and we handle 5 years of cleaning + monitoring + parts. Society gets transparent monthly generation reports.",
+      icon: ShieldCheck,
+    },
+  ],
+};
+
+/* ───────────────────────────── Why Trust Grid ───────────────────────────── */
+
+export const housingSocietyTrustCards: TrustContent = {
+  eyebrow: "Why us",
+  heading: "Why society committees pick Irradiant.",
+  subheading:
+    "Society decisions are committee decisions. Our process is built around transparency, AGM-readiness, and giving every flat owner a clear answer.",
+  cards: [
+    {
+      title: "Committee-ready proposals",
+      description:
+        "Detailed savings model, payback timeline, and financing comparison — formatted to circulate to all flat owners ahead of your AGM. Includes a draft resolution.",
+      icon: FileText,
+    },
+    {
+      title: "Fair to every flat",
+      description:
+        "Common-area solar benefits everyone proportionally — we model the per-flat impact on monthly maintenance so committees can show it transparently.",
+      icon: Users,
+    },
+    {
+      title: "Subsidy + paperwork on us",
+      description:
+        "PM Surya Ghar registration, discom approval, structural NOCs, net-metering changeover — every form, every visit, our team handles it.",
+      icon: ShieldCheck,
+    },
+    {
+      title: "Built for shared rooftops",
+      description:
+        "Water tanks, AC condensers, lift machine rooms, cell towers — we design around them with elevated mounts, not despite them.",
+      icon: Wrench,
+    },
+  ],
+};
+
+/* ───────────────────────────── FAQ ───────────────────────────── */
 
 export const housingSocietyFAQ: FAQContent = {
   eyebrow: "Society questions, answered",
@@ -18,7 +146,6 @@ export const housingSocietyFAQ: FAQContent = {
   subheading:
     "Things RWAs and society committees ask us most often — costs, AGM approval, subsidy, maintenance, and how it actually works in a multi-flat building.",
   categories: [
-    /* ─────────────────────────────────────────────────────────── */
     {
       id: "costs",
       label: "Costs & subsidy",
@@ -56,7 +183,6 @@ export const housingSocietyFAQ: FAQContent = {
         },
       ],
     },
-    /* ─────────────────────────────────────────────────────────── */
     {
       id: "approval",
       label: "Approval & process",
@@ -88,7 +214,6 @@ export const housingSocietyFAQ: FAQContent = {
         },
       ],
     },
-    /* ─────────────────────────────────────────────────────────── */
     {
       id: "maintenance",
       label: "Maintenance & operations",
@@ -114,7 +239,6 @@ export const housingSocietyFAQ: FAQContent = {
         },
       ],
     },
-    /* ─────────────────────────────────────────────────────────── */
     {
       id: "system",
       label: "The system",

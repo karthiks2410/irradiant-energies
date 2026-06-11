@@ -3,14 +3,13 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { EASE_OUT_EXPO } from "@/lib/motion";
 import { homeTrustCards } from "@/lib/home-segment-content";
+import type { TrustContent } from "@/lib/segment-content-types";
 
 /**
- * "Why families across India trust Irradiant" — 4-card grid.
- * Each card: icon-on-tinted-bg + heading + description. No photos
- * (yet) — the icons keep the section clean, and the next iteration
- * can swap in real customer photos one at a time.
+ * "Why families/societies/businesses trust Irradiant" — 4-card grid.
+ * Content-driven (each segment passes its own cards); falls back to Home.
  */
-export function WhyTrustGrid() {
+export function WhyTrustGrid({ content = homeTrustCards }: { content?: TrustContent }) {
   const reduceMotion = useReducedMotion();
 
   return (
@@ -24,18 +23,16 @@ export function WhyTrustGrid() {
           className="max-w-2xl mb-12"
         >
           <p className="text-xs uppercase tracking-wider text-[#52842D] font-medium mb-3">
-            {homeTrustCards.eyebrow}
+            {content.eyebrow}
           </p>
           <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#1d1d1f] mb-4 leading-tight">
-            {homeTrustCards.heading}
+            {content.heading}
           </h2>
-          <p className="text-base text-[#6F6F6F] leading-relaxed">
-            {homeTrustCards.subheading}
-          </p>
+          <p className="text-base text-[#6F6F6F] leading-relaxed">{content.subheading}</p>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {homeTrustCards.cards.map((card, idx) => {
+          {content.cards.map((card, idx) => {
             const Icon = card.icon;
             return (
               <motion.div
@@ -56,9 +53,7 @@ export function WhyTrustGrid() {
                 <h3 className="text-base font-semibold text-[#1d1d1f] mb-2 leading-snug">
                   {card.title}
                 </h3>
-                <p className="text-sm text-[#6F6F6F] leading-relaxed">
-                  {card.description}
-                </p>
+                <p className="text-sm text-[#6F6F6F] leading-relaxed">{card.description}</p>
               </motion.div>
             );
           })}

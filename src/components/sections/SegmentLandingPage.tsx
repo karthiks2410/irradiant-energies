@@ -13,6 +13,9 @@ import { WhyTrustGrid } from "@/components/sections/segment/WhyTrustGrid";
 import { StatStrip } from "@/components/sections/segment/StatStrip";
 import { FAQ } from "@/components/sections/segment/FAQ";
 import { getFAQContent } from "@/lib/faq-registry";
+import { getJourneyContent } from "@/lib/journey-registry";
+import { getTrustContent } from "@/lib/trust-registry";
+import { getLeadFormContent } from "@/lib/lead-form-registry";
 
 /**
  * Segment-level landing page (Home / Society / Commercial).
@@ -57,9 +60,14 @@ export function SegmentLandingPage({
 }: SegmentLandingPageProps) {
   const reduceMotion = useReducedMotion();
   const segment = getSegmentById(segmentId);
-  // Resolve FAQ content by id inside the client component — Lucide icons can't
-  // be serialized across the server → client boundary, so we look up here.
+  // Resolve content by id inside the client component — Lucide icons can't be
+  // serialized across the server → client boundary, so each section's content
+  // is looked up here. Each registry falls through to undefined for unknown
+  // segments; sections fall back to home defaults in that case.
   const faqContent = getFAQContent(segmentId);
+  const journeyContent = getJourneyContent(segmentId);
+  const trustContent = getTrustContent(segmentId);
+  const leadFormContent = getLeadFormContent(segmentId);
 
   if (!segment) {
     // Defensive fallback — shouldn't hit since the page-level wrappers pass known ids.
@@ -68,6 +76,20 @@ export function SegmentLandingPage({
 
   const SegmentIcon = segment.icon;
   const landing = segment.landing;
+
+  // The "Which system fits you?" heading reads naturally for some segments
+  // ("your home") but not others ("your commercial" is broken English). Map
+  // each segment to its noun phrase so we keep one heading template but it
+  // always reads right.
+  const systemTypeNounByid: Record<string, string> = {
+    home: "home",
+    "housing-society": "housing society",
+    commercial: "business",
+    "roof-rental": "rooftop",
+    "utility-scale": "site",
+    industrial: "facility",
+  };
+  const systemTypeNoun = systemTypeNounByid[segment.id] ?? segment.name.toLowerCase();
 
   // Segment-specific quote prefill so leads land tagged with the segment they came from.
   const quoteHref = `/get-quote?segment=${segment.id}`;
@@ -170,12 +192,12 @@ export function SegmentLandingPage({
       {/* ──────────────────────────────────────────────────────────────────────
          Lead capture form (opt-in)
       ────────────────────────────────────────────────────────────────────── */}
-      {showLeadForm && <LeadCaptureForm segment={segment.id} />}
+      {showLeadForm && <LeadCaptureForm segment={segment.id} content={leadFormContent} />}
 
       {/* ──────────────────────────────────────────────────────────────────────
          Solar Journey — 4 steps + benefit pills (opt-in)
       ────────────────────────────────────────────────────────────────────── */}
-      {showJourney && <SolarJourney />}
+      {showJourney && <SolarJourney content={journeyContent} />}
 
       {/* ──────────────────────────────────────────────────────────────────────
          "Which system fits you?" — plain-English type cards (always shown)
@@ -193,7 +215,7 @@ export function SegmentLandingPage({
               Choose what fits
             </p>
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#1d1d1f] mb-4">
-              Which solar system suits your {segment.name.toLowerCase()}?
+              Which solar system suits your {systemTypeNoun}?
             </h2>
             <p className="text-base text-[#6F6F6F] leading-relaxed">
               Not sure which one is right? Don&apos;t worry — pick what sounds closest to your
@@ -243,7 +265,7 @@ export function SegmentLandingPage({
       {/* ──────────────────────────────────────────────────────────────────────
          Why families trust us — 4-card grid (opt-in)
       ────────────────────────────────────────────────────────────────────── */}
-      {showWhyTrust && <WhyTrustGrid />}
+      {showWhyTrust && <WhyTrustGrid content={trustContent} />}
 
       {/* ──────────────────────────────────────────────────────────────────────
          Stat strip (opt-in)

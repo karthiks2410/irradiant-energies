@@ -1,12 +1,142 @@
 /**
- * Editable copy for /solutions/solar/commercial. Currently only the FAQ is
- * wired up — the rest of the page (lead form, journey, trust grid, stats)
- * stays lean until each section's copy is signed off for the commercial
- * audience (factories, offices, warehouses, hotels, schools, etc).
+ * Editable copy for /solutions/solar/commercial. Voice tuned for business
+ * owners, CFOs, facility heads — talk in CAPEX/OPEX, depreciation, GST,
+ * payback, and book treatment, not in vague "savings" language.
  */
 
-import { Banknote, Receipt, Cog } from "lucide-react";
+import {
+  Banknote,
+  Receipt,
+  Cog,
+  ClipboardCheck,
+  FileText,
+  TrendingUp,
+  ShieldCheck,
+  Hammer,
+  PlugZap,
+  Briefcase,
+  IndianRupee,
+} from "lucide-react";
 import type { FAQContent } from "./faq-types";
+import type {
+  JourneyContent,
+  TrustContent,
+  LeadFormContent,
+} from "./segment-content-types";
+
+/* ───────────────────────────── Lead capture form ───────────────────────────── */
+
+export const commercialLeadForm: LeadFormContent = {
+  eyebrow: "CAPEX vs OPEX comparison",
+  heading: "Get a financial proposal your CFO can actually use.",
+  subheading:
+    "Tell us about your business. We'll send a side-by-side CAPEX-vs-OPEX comparison with payback, IRR, depreciation impact, and balance-sheet treatment for your specific load profile.",
+  pill: "Free site visit + financial model",
+  submitLabel: "Get the financial proposal",
+  billLabel: "Average monthly electricity bill",
+  organisationField: {
+    label: "Company / facility name",
+    placeholder: "e.g. Acme Manufacturing Pvt Ltd",
+    paramName: "company",
+  },
+  /** Commercial bills are an order of magnitude higher than residential. */
+  billRanges: [
+    { value: "lt-50k", label: "Less than ₹50,000" },
+    { value: "50k-1L", label: "₹50,000 – ₹1,00,000" },
+    { value: "1L-3L", label: "₹1,00,000 – ₹3,00,000" },
+    { value: "3L-10L", label: "₹3,00,000 – ₹10,00,000" },
+    { value: "gt-10L", label: "More than ₹10,00,000" },
+  ],
+};
+
+/* ───────────────────────────── Solar Journey ───────────────────────────── */
+
+export const commercialJourney: JourneyContent = {
+  eyebrow: "How it works",
+  heading: "From load study to switch-on, with zero business disruption.",
+  subheading:
+    "We design around your operations, not the other way around. The plan is concrete, the financials are bankable, and the install fits your downtime window.",
+  benefitPills: [
+    "40% accelerated depreciation",
+    "12% GST with full ITC",
+    "CAPEX or OPEX flexibility",
+    "Zero operational downtime",
+  ],
+  steps: [
+    {
+      number: "01",
+      title: "Free site visit & load study",
+      description:
+        "Our team studies your facility, last 12 months of bills, sanctioned load, demand profile, and rooftop / open-area availability. You get a sized proposal grounded in your actual consumption — not a brochure number.",
+      icon: ClipboardCheck,
+    },
+    {
+      number: "02",
+      title: "CAPEX vs OPEX financial model",
+      description:
+        "We build a side-by-side: payback, IRR, NPV, depreciation impact under Section 32, GST + ITC handling, and balance-sheet treatment. Your CFO sees real numbers in their format.",
+      icon: TrendingUp,
+    },
+    {
+      number: "03",
+      title: "Approval, financing & paperwork",
+      description:
+        "Bank financing tied up if going CAPEX with EMI. PPA negotiated if going OPEX. Discom approval, structural certifications, and net-metering paperwork — all on us.",
+      icon: FileText,
+    },
+    {
+      number: "04",
+      title: "Install around your operations",
+      description:
+        "Tier-1 panels, certified installers, scheduled around your downtime window. Grid-tie cutover happens in a single 2–4 hour planned window, weekend or off-peak — your choice.",
+      icon: Hammer,
+    },
+    {
+      number: "05",
+      title: "Switch on. Save. CFO-grade reports.",
+      description:
+        "System goes live, savings start the same month, and you get monthly generation + savings reports formatted for Tally / SAP / your audit trail. Annual 3rd-party generation audit certificate available for ESG / BRSR.",
+      icon: ShieldCheck,
+    },
+  ],
+};
+
+/* ───────────────────────────── Why Trust Grid ───────────────────────────── */
+
+export const commercialTrustCards: TrustContent = {
+  eyebrow: "Why us",
+  heading: "Why Indian businesses pick Irradiant.",
+  subheading:
+    "A solar system on a commercial roof is a 25-year capital decision. Here's what matters when you're putting it on the books.",
+  cards: [
+    {
+      title: "Bankable financial models",
+      description:
+        "Every proposal includes payback, IRR, NPV, depreciation impact, and ITC handling — calculated for your specific tariff slab. The financials hold up in front of a bank, an auditor, or a board.",
+      icon: TrendingUp,
+    },
+    {
+      title: "CAPEX, OPEX or hybrid",
+      description:
+        "We're agnostic to financing. Pay upfront, take a bank loan, or sign a 15–25 year PPA where we own and operate — the model that fits your books wins.",
+      icon: IndianRupee,
+    },
+    {
+      title: "Zero operational downtime",
+      description:
+        "Install happens on the roof while business runs below. Grid-tie cutover scheduled in a planned 2–4 hour window of your choice. We've never disrupted a customer's operations.",
+      icon: PlugZap,
+    },
+    {
+      title: "Reports the books need",
+      description:
+        "Monthly kWh + ₹-savings reports in formats your CA / auditor can drop into Tally or SAP. Annual generation audit certificates for ISO, GRI, BRSR, and ESG reporting.",
+      icon: Receipt,
+    },
+  ],
+};
+
+/* ───────────────────────────── FAQ ───────────────────────────── */
 
 export const commercialFAQ: FAQContent = {
   eyebrow: "Business questions, answered",
@@ -14,7 +144,6 @@ export const commercialFAQ: FAQContent = {
   subheading:
     "What CFOs and facility heads ask us before signing off — financing models, tax treatment, payback, GST, and how it actually changes the books.",
   categories: [
-    /* ─────────────────────────────────────────────────────────── */
     {
       id: "costs",
       label: "Costs & financing",
@@ -40,7 +169,6 @@ export const commercialFAQ: FAQContent = {
         },
       ],
     },
-    /* ─────────────────────────────────────────────────────────── */
     {
       id: "tax",
       label: "Tax & GST",
@@ -60,7 +188,6 @@ export const commercialFAQ: FAQContent = {
         },
       ],
     },
-    /* ─────────────────────────────────────────────────────────── */
     {
       id: "system",
       label: "Operations & system",

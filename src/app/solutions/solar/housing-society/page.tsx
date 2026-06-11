@@ -17,6 +17,9 @@ export default function HousingSocietySolarPage() {
         segmentId="housing-society"
         heroImage="/segments/housing-society-hero.jpg"
         heroFocal="50% 30%"
+        showLeadForm
+        showJourney
+        showWhyTrust
         showFAQ
       />
       <Footer />
