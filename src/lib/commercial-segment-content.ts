@@ -150,12 +150,6 @@ export const commercialFAQ: FAQContent = {
       icon: Banknote,
       items: [
         {
-          id: "com-payback",
-          question: "What's the payback period for a commercial solar system?",
-          answer:
-            "For commercial customers paying industrial / commercial tariffs (typically ₹8–₹12/kWh), payback under CAPEX with accelerated depreciation claimed is 3–4 years. Without depreciation it's 4–5 years.\n\nAfter payback, the system continues generating for another 20+ years at near-zero variable cost — turning a fixed-tariff exposure into a near-fixed-cost asset on the books.",
-        },
-        {
           id: "com-models",
           question: "CAPEX or OPEX (PPA) — which is right for my business?",
           answer:
