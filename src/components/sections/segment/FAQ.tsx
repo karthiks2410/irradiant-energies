@@ -6,21 +6,26 @@ import { MessageCircle, Phone } from "lucide-react";
 import { EASE_OUT_EXPO } from "@/lib/motion";
 import { Accordion, type AccordionItem } from "@/components/ui/accordion";
 import { homeFAQ } from "@/lib/home-segment-content";
+import type { FAQContent } from "@/lib/faq-types";
 import { COMPANY } from "@/lib/constants";
 
 /**
- * FAQ section. Category tabs (Costs / Installation / Maintenance / The system)
- * inspired by Arkahub's tabbed approach but with our own grouping. Below the
- * accordion sits a "Still have questions?" footer card pointing the visitor
- * straight to WhatsApp + phone — better than a dead-end "Learn" link.
+ * FAQ section. Category tabs (e.g. Costs / Installation / Maintenance / The system)
+ * inspired by Arkahub's tabbed approach but with our own grouping per segment.
+ * Below the accordion sits a "Still have questions?" footer card pointing the
+ * visitor straight to WhatsApp + phone — better than a dead-end "Learn" link.
+ *
+ * Pass a `content` object to swap in segment-specific Q&As (Society, Commercial).
+ * Defaults to the Home segment's FAQ.
  */
-export function FAQ() {
+export function FAQ({ content = homeFAQ }: { content?: FAQContent }) {
   const reduceMotion = useReducedMotion();
-  const [activeId, setActiveId] = useState(homeFAQ.categories[0].id);
+  const [activeId, setActiveId] = useState(content.categories[0]?.id ?? "");
 
-  const activeCategory = homeFAQ.categories.find((c) => c.id === activeId) ?? homeFAQ.categories[0];
+  const activeCategory = content.categories.find((c) => c.id === activeId) ?? content.categories[0];
+  if (!activeCategory) return null;
 
-  // The Accordion expects { id, question, answer } — answers can carry line
+  // The Accordion expects { id, question, answer } — answers can carry blank-line
   // breaks that we render as paragraph splits.
   const accordionItems: AccordionItem[] = activeCategory.items.map((item) => ({
     id: item.id,
@@ -34,9 +39,9 @@ export function FAQ() {
     ),
   }));
 
-  const whatsappLink = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(
-    "Hi! I have a question about home solar — could you help?",
-  )}`;
+  const whatsappPrompt =
+    content.stillHaveQuestions.whatsappPrompt ?? "Hi! I have a question — could you help?";
+  const whatsappLink = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(whatsappPrompt)}`;
   const phoneLink = `tel:${COMPANY.phone.replace(/\s+/g, "")}`;
 
   return (
@@ -50,12 +55,12 @@ export function FAQ() {
           className="max-w-2xl mb-10"
         >
           <p className="text-xs uppercase tracking-wider text-[#52842D] font-medium mb-3">
-            {homeFAQ.eyebrow}
+            {content.eyebrow}
           </p>
           <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#1d1d1f] mb-4 leading-tight">
-            {homeFAQ.heading}
+            {content.heading}
           </h2>
-          <p className="text-base text-[#6F6F6F] leading-relaxed">{homeFAQ.subheading}</p>
+          <p className="text-base text-[#6F6F6F] leading-relaxed">{content.subheading}</p>
         </motion.div>
 
         {/* Category tabs */}
@@ -67,7 +72,7 @@ export function FAQ() {
           className="flex flex-wrap gap-2 mb-8"
           role="tablist"
         >
-          {homeFAQ.categories.map((cat) => {
+          {content.categories.map((cat) => {
             const Icon = cat.icon;
             const isActive = cat.id === activeId;
             return (
@@ -110,10 +115,10 @@ export function FAQ() {
         >
           <div>
             <h3 className="text-lg font-semibold text-[#1d1d1f] mb-1.5">
-              {homeFAQ.stillHaveQuestions.heading}
+              {content.stillHaveQuestions.heading}
             </h3>
             <p className="text-sm text-[#6F6F6F] leading-relaxed max-w-md">
-              {homeFAQ.stillHaveQuestions.body}
+              {content.stillHaveQuestions.body}
             </p>
           </div>
           <div className="flex flex-wrap gap-2.5">
@@ -124,14 +129,14 @@ export function FAQ() {
               className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#52842D] hover:bg-[#446F26] text-white text-sm font-medium transition-colors"
             >
               <MessageCircle className="w-4 h-4" />
-              {homeFAQ.stillHaveQuestions.whatsappLabel}
+              {content.stillHaveQuestions.whatsappLabel}
             </a>
             <a
               href={phoneLink}
               className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white border border-gray-200 text-[#1d1d1f] text-sm font-medium hover:bg-gray-50 transition-colors"
             >
               <Phone className="w-4 h-4 text-[#52842D]" />
-              {homeFAQ.stillHaveQuestions.callLabel}
+              {content.stillHaveQuestions.callLabel}
             </a>
           </div>
         </motion.div>

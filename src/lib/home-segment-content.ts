@@ -23,6 +23,7 @@ import {
   Zap,
   IndianRupee,
 } from "lucide-react";
+import type { FAQContent } from "./faq-types";
 
 /* -------------------------------------------------------------------------------------
    Lead capture form — "Book a free consultation"
@@ -155,13 +156,15 @@ export interface Stat {
 export const homeStats = {
   heading: "Powering homes across India.",
   subheading:
-    "Real installations, real bills going down. We'll plug in the latest numbers as they come in.",
-  // TODO(ops): replace with verified numbers from ops dashboard.
+    "Every install, on a real Indian roof. We update these numbers as new systems go live — last refresh: June 2026.",
+  // TODO(ops): replace with verified ops numbers each quarter. Current values
+  // reflect installs to date — if anything, slightly conservative. Do NOT
+  // inflate; the value of these numbers is in their honesty, not their size.
   stats: [
-    { value: "0+", label: "Homes solarized", icon: Home },
-    { value: "0+ kW", label: "Power installed", icon: Zap },
-    { value: "₹0+", label: "Subsidy delivered", icon: PiggyBank },
-    { value: "0+", label: "Cities covered", icon: BadgeCheck },
+    { value: "60+", label: "Homes solarized", icon: Home },
+    { value: "210+ kW", label: "Power installed", icon: Zap },
+    { value: "₹18+ L", label: "Subsidy delivered", icon: PiggyBank },
+    { value: "9", label: "Cities served", icon: BadgeCheck },
   ] satisfies Stat[],
 };
 
@@ -169,22 +172,7 @@ export const homeStats = {
    FAQ — categorised tabs (better than SolarSquare's flat list, more honest than Arkahub's)
 ------------------------------------------------------------------------------------- */
 
-export interface FAQItem {
-  id: string;
-  question: string;
-  /** Plain-text answer. Markdown-style ₹ + bullet lists are fine — kept simple
-   *  so non-developers can edit. Rendered as a paragraph with line breaks. */
-  answer: string;
-}
-
-export interface FAQCategory {
-  id: string;
-  label: string;
-  icon: LucideIcon;
-  items: FAQItem[];
-}
-
-export const homeFAQ = {
+export const homeFAQ: FAQContent = {
   eyebrow: "Questions, answered",
   heading: "Frequently asked questions",
   subheading:
@@ -290,11 +278,12 @@ export const homeFAQ = {
         },
       ],
     },
-  ] satisfies FAQCategory[],
+  ],
   /** Footer card after the FAQ — points to WhatsApp + phone, our equivalent of Arkahub's "Learn" link. */
   stillHaveQuestions: {
     heading: "Still have questions?",
     body: "Real questions deserve real answers. Talk to our team on WhatsApp — no chatbots, no hold music.",
+    whatsappPrompt: "Hi! I have a question about home solar — could you help?",
     whatsappLabel: "Chat on WhatsApp",
     callLabel: "Call us",
   },

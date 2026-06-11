@@ -12,6 +12,7 @@ import { SolarJourney } from "@/components/sections/segment/SolarJourney";
 import { WhyTrustGrid } from "@/components/sections/segment/WhyTrustGrid";
 import { StatStrip } from "@/components/sections/segment/StatStrip";
 import { FAQ } from "@/components/sections/segment/FAQ";
+import { getFAQContent } from "@/lib/faq-registry";
 
 /**
  * Segment-level landing page (Home / Society / Commercial).
@@ -28,6 +29,9 @@ interface SegmentLandingPageProps {
   segmentId: string;
   /** Optional hero image path under /public — leave undefined for the placeholder gradient. */
   heroImage?: string;
+  /** CSS object-position for the hero image. Use this to bias the crop when the
+   *  source photo is portrait or has its subject off-center. Defaults to 'center'. */
+  heroFocal?: string;
   /** Section opt-ins. Default false (lean) so segments stay opt-in until their copy is ready. */
   showLeadForm?: boolean;
   showJourney?: boolean;
@@ -44,6 +48,7 @@ const fadeInOnce = {
 export function SegmentLandingPage({
   segmentId,
   heroImage,
+  heroFocal = "center",
   showLeadForm = false,
   showJourney = false,
   showWhyTrust = false,
@@ -52,6 +57,9 @@ export function SegmentLandingPage({
 }: SegmentLandingPageProps) {
   const reduceMotion = useReducedMotion();
   const segment = getSegmentById(segmentId);
+  // Resolve FAQ content by id inside the client component — Lucide icons can't
+  // be serialized across the server → client boundary, so we look up here.
+  const faqContent = getFAQContent(segmentId);
 
   if (!segment) {
     // Defensive fallback — shouldn't hit since the page-level wrappers pass known ids.
@@ -127,7 +135,7 @@ export function SegmentLandingPage({
             viewport={{ once: true, amount: 0.2 }}
             className="mt-14"
           >
-            <div className="relative aspect-[16/9] sm:aspect-[21/9] rounded-2xl overflow-hidden bg-gradient-to-br from-[#52842D]/15 via-[#52842D]/5 to-[#f5f5f7] border border-gray-100">
+            <div className="relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-[21/9] rounded-2xl overflow-hidden bg-gradient-to-br from-[#52842D]/15 via-[#52842D]/5 to-[#f5f5f7] border border-gray-100">
               {heroImage ? (
                 <>
                   <Image
@@ -137,6 +145,7 @@ export function SegmentLandingPage({
                     priority
                     sizes="(max-width: 640px) 100vw, (max-width: 1280px) 90vw, 1152px"
                     className="object-cover"
+                    style={{ objectPosition: heroFocal }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-tr from-black/15 via-transparent to-transparent pointer-events-none" />
                 </>
@@ -244,7 +253,7 @@ export function SegmentLandingPage({
       {/* ──────────────────────────────────────────────────────────────────────
          FAQ (opt-in)
       ────────────────────────────────────────────────────────────────────── */}
-      {showFAQ && <FAQ />}
+      {showFAQ && <FAQ content={faqContent} />}
 
       {/* ──────────────────────────────────────────────────────────────────────
          Closing CTA band (always shown)

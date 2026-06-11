@@ -13,7 +13,12 @@ export default function HousingSocietySolarPage() {
   return (
     <>
       <Header />
-      <SegmentLandingPage segmentId="housing-society" heroImage="/segments/housing-society-hero.jpg" />
+      <SegmentLandingPage
+        segmentId="housing-society"
+        heroImage="/segments/housing-society-hero.jpg"
+        heroFocal="50% 30%"
+        showFAQ
+      />
       <Footer />
     </>
   );
