@@ -90,7 +90,7 @@ export function Header() {
             <Link
               href="/"
               onClick={handleHomeClick}
-              className="nav-link text-sm font-medium transition-colors text-[#000000]"
+              className="nav-link text-[15px] font-semibold transition-colors text-[#0a0a0a]"
             >
               Home
             </Link>
@@ -107,7 +107,7 @@ export function Header() {
                 aria-expanded={openMenu === "solar"}
                 onClick={() => setOpenMenu((prev) => (prev === "solar" ? null : "solar"))}
                 onFocus={() => setOpenMenu("solar")}
-                className="nav-link flex items-center gap-1 text-sm font-medium text-[#6F6F6F] hover:text-[#000000] transition-colors"
+                className="nav-link flex items-center gap-1 text-[15px] font-semibold text-[#1d1d1f] hover:text-[#0a0a0a] transition-colors"
               >
                 Solar for You
                 <ChevronDown
@@ -136,7 +136,7 @@ export function Header() {
                 aria-expanded={openMenu === "other"}
                 onClick={() => setOpenMenu((prev) => (prev === "other" ? null : "other"))}
                 onFocus={() => setOpenMenu("other")}
-                className="nav-link flex items-center gap-1 text-sm font-medium text-[#6F6F6F] hover:text-[#000000] transition-colors"
+                className="nav-link flex items-center gap-1 text-[15px] font-semibold text-[#1d1d1f] hover:text-[#0a0a0a] transition-colors"
               >
                 Beyond Solar
                 <ChevronDown
@@ -156,19 +156,19 @@ export function Header() {
             {/* Other Nav Links */}
             <Link
               href="/discover"
-              className="nav-link text-sm font-medium transition-colors text-[#6F6F6F] hover:text-[#000000]"
+              className="nav-link text-[15px] font-semibold transition-colors text-[#1d1d1f] hover:text-[#0a0a0a]"
             >
               Discover
             </Link>
             <Link
               href="/about"
-              className="nav-link text-sm font-medium transition-colors text-[#6F6F6F] hover:text-[#000000]"
+              className="nav-link text-[15px] font-semibold transition-colors text-[#1d1d1f] hover:text-[#0a0a0a]"
             >
               About
             </Link>
             <Link
               href="/#contact"
-              className="nav-link text-sm font-medium transition-colors text-[#6F6F6F] hover:text-[#000000]"
+              className="nav-link text-[15px] font-semibold transition-colors text-[#1d1d1f] hover:text-[#0a0a0a]"
             >
               Contact
             </Link>
@@ -220,7 +220,7 @@ export function Header() {
                   handleHomeClick(e);
                   closeMobileMenu();
                 }}
-                className="text-base font-medium transition-colors text-[#000000]"
+                className="text-base font-semibold transition-colors text-[#0a0a0a]"
               >
                 Home
               </Link>
@@ -232,21 +232,21 @@ export function Header() {
               <Link
                 href="/discover"
                 onClick={closeMobileMenu}
-                className="text-base font-medium transition-colors text-[#6F6F6F] hover:text-[#000000]"
+                className="text-base font-semibold transition-colors text-[#1d1d1f] hover:text-[#0a0a0a]"
               >
                 Discover
               </Link>
               <Link
                 href="/about"
                 onClick={closeMobileMenu}
-                className="text-base font-medium transition-colors text-[#6F6F6F] hover:text-[#000000]"
+                className="text-base font-semibold transition-colors text-[#1d1d1f] hover:text-[#0a0a0a]"
               >
                 About
               </Link>
               <Link
                 href="/#contact"
                 onClick={closeMobileMenu}
-                className="text-base font-medium transition-colors text-[#6F6F6F] hover:text-[#000000]"
+                className="text-base font-semibold transition-colors text-[#1d1d1f] hover:text-[#0a0a0a]"
               >
                 Contact
               </Link>

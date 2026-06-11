@@ -117,12 +117,12 @@ export function SegmentLandingPage({
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-[#1d1d1f] leading-[1.05] mb-6">
+            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tighter text-[#0a0a0a] leading-[1.02] mb-6">
               {landing?.heading ?? segment.description}
             </h1>
 
             {landing?.subheading && (
-              <p className="text-lg sm:text-xl text-[#6F6F6F] leading-relaxed mb-10 max-w-2xl">
+              <p className="text-lg sm:text-xl text-[#1d1d1f] leading-relaxed mb-10 max-w-2xl">
                 {landing.subheading}
               </p>
             )}
@@ -214,10 +214,10 @@ export function SegmentLandingPage({
             <p className="text-xs uppercase tracking-wider text-[#52842D] font-medium mb-3">
               Choose what fits
             </p>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#1d1d1f] mb-4">
+            <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-[#0a0a0a] mb-4">
               Which solar system suits your {systemTypeNoun}?
             </h2>
-            <p className="text-base text-[#6F6F6F] leading-relaxed">
+            <p className="text-base text-[#1d1d1f] leading-relaxed">
               Not sure which one is right? Don&apos;t worry — pick what sounds closest to your
               situation, or skip ahead and our team will help you decide on the call.
             </p>
@@ -244,7 +244,7 @@ export function SegmentLandingPage({
                     <p className="text-[10px] uppercase tracking-wider text-[#6F6F6F] font-medium mb-2">
                       {type.name}
                     </p>
-                    <h3 className="text-lg font-semibold text-[#1d1d1f] mb-3 leading-snug">
+                    <h3 className="text-lg font-semibold text-[#0a0a0a] mb-3 leading-snug">
                       {type.plainName}
                     </h3>
                     <p className="text-sm text-[#6F6F6F] leading-relaxed flex-1 mb-5">
@@ -288,10 +288,10 @@ export function SegmentLandingPage({
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.45, ease: EASE_OUT_EXPO }}
           >
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-white mb-4 leading-tight">
+            <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4 leading-tight">
               Ready to see your savings?
             </h2>
-            <p className="text-base sm:text-lg text-white/85 mb-8 max-w-xl mx-auto">
+            <p className="text-base sm:text-lg text-white/90 mb-8 max-w-xl mx-auto">
               Free site visit. Free quote. Zero pressure. We&apos;ll show you exactly what
               you&apos;ll save — in rupees, on your bill.
             </p>
