@@ -11,8 +11,16 @@ type ContactPanelProps = {
   inputs: QuoteInputs;
   /** Whether the calculator currently has a valid recommendation. Disables submit if not. */
   ready: boolean;
-  /** Optional pre-fill from the home-page CTA form so the user doesn't retype. */
-  prefill?: { name: string; phone: string; email: string };
+  /** Optional pre-fill from a CTA form so the user doesn't retype. The
+   *  `organisation` and `segment` fields are tracking-only — forwarded
+   *  through to the lead alert email but not shown as form inputs. */
+  prefill?: {
+    name: string;
+    phone: string;
+    email: string;
+    organisation?: string;
+    segment?: string;
+  };
 };
 
 type SubmitState =
@@ -58,6 +66,10 @@ export function ContactPanel({ inputs, ready, prefill }: ContactPanelProps) {
       email,
       whatsappOptIn,
       consent,
+      // Lead-attribution fields — only included when present, the schema
+      // marks them optional so direct visits don't break.
+      ...(prefill?.organisation ? { organisation: prefill.organisation } : {}),
+      ...(prefill?.segment ? { segment: prefill.segment } : {}),
     });
 
     if (!parsed.success) {

@@ -68,6 +68,20 @@ export function LeadAlertEmail({
               </Link>
             </Text>
 
+            {contact.organisation && (
+              <>
+                <Text style={rowLabel}>Organisation</Text>
+                <Text style={rowValue}>{contact.organisation}</Text>
+              </>
+            )}
+
+            {contact.segment && (
+              <>
+                <Text style={rowLabel}>Came from</Text>
+                <Text style={rowValue}>{formatSegmentLabel(contact.segment)}</Text>
+              </>
+            )}
+
             <Text style={rowLabel}>WhatsApp opt-in</Text>
             <Text style={rowValue}>
               {contact.whatsappOptIn ? "Yes" : "No"}
@@ -145,6 +159,22 @@ export function LeadAlertEmail({
 }
 
 export default LeadAlertEmail;
+
+/** Segment slug → human label for the lead alert email. */
+function formatSegmentLabel(segment: string): string {
+  switch (segment) {
+    case "home":
+      return "Home segment page (/solutions/solar/home)";
+    case "housing-society":
+      return "Housing Society page (/solutions/solar/housing-society)";
+    case "commercial":
+      return "Commercial page (/solutions/solar/commercial)";
+    case "industrial":
+      return "Industrial page (now redirects to Commercial)";
+    default:
+      return segment;
+  }
+}
 
 const bodyStyle: React.CSSProperties = {
   backgroundColor: "#f5f5f7",
