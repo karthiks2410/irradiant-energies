@@ -90,10 +90,10 @@ export function LeadCaptureForm({
             <Sparkles className="w-3.5 h-3.5" />
             {content.eyebrow}
           </span>
-          <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#1d1d1f] mb-4 leading-tight">
+          <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-[#0a0a0a] mb-4 leading-tight">
             {content.heading}
           </h2>
-          <p className="text-base text-[#6F6F6F] leading-relaxed mb-5 max-w-md">
+          <p className="text-base text-[#1d1d1f] leading-relaxed mb-5 max-w-md">
             {content.subheading}
           </p>
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-gray-200">

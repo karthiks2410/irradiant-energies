@@ -25,10 +25,10 @@ export function WhyTrustGrid({ content = homeTrustCards }: { content?: TrustCont
           <p className="text-xs uppercase tracking-wider text-[#52842D] font-medium mb-3">
             {content.eyebrow}
           </p>
-          <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-[#1d1d1f] mb-4 leading-tight">
+          <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-[#0a0a0a] mb-4 leading-tight">
             {content.heading}
           </h2>
-          <p className="text-base text-[#6F6F6F] leading-relaxed">{content.subheading}</p>
+          <p className="text-base text-[#1d1d1f] leading-relaxed">{content.subheading}</p>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -50,7 +50,7 @@ export function WhyTrustGrid({ content = homeTrustCards }: { content?: TrustCont
                 <div className="p-3 rounded-xl bg-[#52842D]/10 w-fit mb-5">
                   <Icon className="w-5 h-5 text-[#52842D]" />
                 </div>
-                <h3 className="text-base font-semibold text-[#1d1d1f] mb-2 leading-snug">
+                <h3 className="text-base font-semibold text-[#0a0a0a] mb-2 leading-snug">
                   {card.title}
                 </h3>
                 <p className="text-sm text-[#6F6F6F] leading-relaxed">{card.description}</p>
