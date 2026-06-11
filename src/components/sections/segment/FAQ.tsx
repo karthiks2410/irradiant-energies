@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type KeyboardEvent } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { MessageCircle, Phone } from "lucide-react";
 import { EASE_OUT_EXPO } from "@/lib/motion";
@@ -24,6 +24,34 @@ export function FAQ({ content = homeFAQ }: { content?: FAQContent }) {
 
   const activeCategory = content.categories.find((c) => c.id === activeId) ?? content.categories[0];
   if (!activeCategory) return null;
+
+  /**
+   * Arrow-key navigation across the tab strip — Left/Right move focus to the
+   * neighbouring tab and activate it (manual activation would also be valid;
+   * automatic feels right for this content where the panel renders instantly).
+   * Home/End jump to the first/last tab. Matches the WAI-ARIA tab pattern.
+   */
+  const handleTabKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
+    const cats = content.categories;
+    const idx = cats.findIndex((c) => c.id === activeId);
+    if (idx < 0) return;
+
+    let nextIdx: number | null = null;
+    if (e.key === "ArrowRight") nextIdx = (idx + 1) % cats.length;
+    else if (e.key === "ArrowLeft") nextIdx = (idx - 1 + cats.length) % cats.length;
+    else if (e.key === "Home") nextIdx = 0;
+    else if (e.key === "End") nextIdx = cats.length - 1;
+
+    if (nextIdx !== null) {
+      e.preventDefault();
+      const nextId = cats[nextIdx].id;
+      setActiveId(nextId);
+      // Move focus to the newly active tab so the user knows where they are.
+      requestAnimationFrame(() => {
+        document.getElementById(`faq-tab-${nextId}`)?.focus();
+      });
+    }
+  };
 
   // The Accordion expects { id, question, answer } — answers can carry blank-line
   // breaks that we render as paragraph splits.
@@ -75,13 +103,19 @@ export function FAQ({ content = homeFAQ }: { content?: FAQContent }) {
           {content.categories.map((cat) => {
             const Icon = cat.icon;
             const isActive = cat.id === activeId;
+            const tabId = `faq-tab-${cat.id}`;
+            const panelId = `faq-panel-${cat.id}`;
             return (
               <button
                 key={cat.id}
                 type="button"
                 role="tab"
+                id={tabId}
                 aria-selected={isActive}
+                aria-controls={panelId}
+                tabIndex={isActive ? 0 : -1}
                 onClick={() => setActiveId(cat.id)}
+                onKeyDown={handleTabKeyDown}
                 className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium transition-all ${
                   isActive
                     ? "bg-[#52842D] text-white shadow-sm"
@@ -98,6 +132,9 @@ export function FAQ({ content = homeFAQ }: { content?: FAQContent }) {
         {/* Accordion — re-keyed when the active tab changes so it cleanly resets open state. */}
         <motion.div
           key={activeCategory.id}
+          role="tabpanel"
+          id={`faq-panel-${activeCategory.id}`}
+          aria-labelledby={`faq-tab-${activeCategory.id}`}
           initial={reduceMotion ? false : { opacity: 0, y: 8 }}
           animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
           transition={{ duration: 0.3, ease: EASE_OUT_EXPO }}

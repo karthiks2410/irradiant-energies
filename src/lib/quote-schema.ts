@@ -42,6 +42,11 @@ export const quoteContactSchema = z.object({
     .regex(EMAIL_REGEX, "Enter a valid email address"),
   whatsappOptIn: z.boolean().default(true),
   consent: z.literal(true, { message: "Consent is required" }),
+  // Optional lead-attribution fields. Forwarded from the segment-page CTA
+  // form when the visitor came in via /solutions/solar/{home,housing-society,
+  // commercial}. Bounded so a malicious URL can't push huge payloads through.
+  organisation: z.string().trim().max(120).optional(),
+  segment: z.string().trim().max(40).optional(),
 });
 
 export const quoteRequestSchema = z.object({

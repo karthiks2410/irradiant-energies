@@ -13,17 +13,33 @@ import { ResultPanel } from "./components/ResultPanel";
 const PINCODE_REGEX = /^[1-9][0-9]{5}$/;
 
 type QuoteCalculatorProps = {
-  /** Optional pre-fill carried over from the home-page CTA form. */
-  prefill?: { name: string; phone: string; email: string };
+  /** Optional pre-fill carried over from a CTA form (home page or any of the
+   *  segment landing pages). Contact fields go to the contact panel; the
+   *  inputs side (property type, pincode, bill) initialises the calculator
+   *  state but stays editable. */
+  prefill?: {
+    name: string;
+    phone: string;
+    email: string;
+    propertyType?: PropertyType;
+    pincode?: string;
+    billRupees?: number;
+    organisation?: string;
+    segment?: string;
+  };
 };
 
 export function QuoteCalculator({ prefill }: QuoteCalculatorProps) {
-  const [propertyType, setPropertyType] = useState<PropertyType>("home");
-  const [pincode, setPincode] = useState<string>("560001");
+  const [propertyType, setPropertyType] = useState<PropertyType>(
+    prefill?.propertyType ?? "home",
+  );
+  const [pincode, setPincode] = useState<string>(prefill?.pincode ?? "560001");
   const [billMode, setBillMode] = useState<BillMode>("rupees");
-  const [billRupees, setBillRupees] = useState<number>(3500);
+  const [billRupees, setBillRupees] = useState<number>(prefill?.billRupees ?? 3500);
   const [billKwh, setBillKwh] = useState<number>(350);
-  const [debouncedBillRupees, setDebouncedBillRupees] = useState<number>(3500);
+  const [debouncedBillRupees, setDebouncedBillRupees] = useState<number>(
+    prefill?.billRupees ?? 3500,
+  );
   const [debouncedBillKwh, setDebouncedBillKwh] = useState<number>(350);
   const [hasRevealed, setHasRevealed] = useState<boolean>(false);
 
