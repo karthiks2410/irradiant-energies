@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { LenisProvider } from "@/components/providers/LenisProvider";
 import { CookieConsentProvider } from "@/components/providers/CookieConsentProvider";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import { MobileStickyQuoteButton } from "@/components/ui/MobileStickyQuoteButton";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -87,6 +88,7 @@ export default function RootLayout({
           <TooltipProvider>{children}</TooltipProvider>
         </LenisProvider>
         <WhatsAppButton />
+        <MobileStickyQuoteButton />
         <CookieConsentProvider />
         <Analytics />
       </body>

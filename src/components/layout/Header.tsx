@@ -183,7 +183,7 @@ export function Header() {
             >
               <Link href="/get-quote">
                 <Button
-                  className="bg-[#52842D] hover:bg-[#446F26] text-white rounded-full px-6 py-2.5 text-sm"
+                  className="bg-[#52842D] hover:bg-[#446F26] text-white rounded-full px-6 py-2.5 text-sm font-semibold shadow-md shadow-[#52842D]/25 hover:shadow-lg hover:shadow-[#52842D]/35 transition-shadow"
                 >
                   Get Quote
                   <ArrowRight className="ml-2 w-4 h-4" />

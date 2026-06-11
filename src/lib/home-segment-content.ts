@@ -190,12 +190,6 @@ export const homeFAQ: FAQContent = {
       icon: Banknote,
       items: [
         {
-          id: "cost-system-cost",
-          question: "How much does a rooftop solar system cost?",
-          answer:
-            "For a typical Indian home, a 3 kW system costs around ₹1.8–2.4 lakh before subsidy, and a 5 kW system around ₹3–3.8 lakh. The exact number depends on your roof, panel choice, and inverter type. Our quote shows you both the upfront cost and the post-subsidy net cost — clearly.",
-        },
-        {
           id: "cost-emi",
           question: "Do I need to pay everything upfront, or is there EMI?",
           answer:
