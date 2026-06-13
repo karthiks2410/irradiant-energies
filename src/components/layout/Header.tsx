@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Menu, X, ArrowRight, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { MegaMenu } from "./MegaMenu";
 import { MobileSolutionsMenu } from "./MobileSolutionsMenu";
 import { SPRING_PRESS, PRESS_HOVER, PRESS_TAP } from "@/lib/motion";
@@ -16,24 +17,56 @@ type OpenMenu = "solar" | "other" | null;
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<OpenMenu>(null);
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
+  const [mobileMenuTop, setMobileMenuTop] = useState(88);
+  const headerBarRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
-  const { scrollY } = useScroll();
-  const backgroundColor = useTransform(
-    scrollY,
-    [0, 100],
-    ["rgba(255,255,255,0)", "rgba(255,255,255,1)"]
-  );
-  const borderBottomColor = useTransform(
-    scrollY,
-    [0, 100],
-    ["rgba(229,231,235,0)", "rgba(229,231,235,0.5)"]
-  );
-  const boxShadow = useTransform(
-    scrollY,
-    [0, 100],
-    ["0 1px 2px 0 rgba(0,0,0,0)", "0 1px 2px 0 rgba(0,0,0,0.06)"]
-  );
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 1023px)");
+    const handleViewportChange = (event: MediaQueryListEvent) => {
+      setIsMobileViewport(event.matches);
+    };
+
+    setIsMobileViewport(mediaQuery.matches);
+    mediaQuery.addEventListener("change", handleViewportChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleViewportChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    const measureHeader = () => {
+      const measured = headerBarRef.current?.offsetHeight;
+      if (measured) {
+        setMobileMenuTop(measured);
+      }
+    };
+
+    measureHeader();
+    window.addEventListener("resize", measureHeader);
+
+    return () => {
+      window.removeEventListener("resize", measureHeader);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!(isMobileViewport && isMobileMenuOpen)) {
+      return;
+    }
+
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow = previousHtmlOverflow;
+    };
+  }, [isMobileViewport, isMobileMenuOpen]);
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
@@ -47,25 +80,13 @@ export function Header() {
     }
   };
 
-  const isHomePage = pathname === "/";
-
   return (
     <motion.header
-      className={`fixed top-0 left-0 right-0 z-50 border-b ${
-        isMobileMenuOpen
-          ? "bg-white border-gray-200/50 shadow-sm"
-          : !isHomePage
-            ? "bg-white border-gray-200/50 shadow-sm"
-            : ""
-      }`}
-      style={
-        isMobileMenuOpen || !isHomePage
-          ? undefined
-          : { backgroundColor, borderBottomColor, boxShadow }
-      }
+      className="fixed top-0 left-0 right-0 z-50 border-b bg-white border-gray-200/50 shadow-sm"
     >
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="flex items-center justify-between py-5">
+      <ScrollProgress />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div ref={headerBarRef} className="flex items-center justify-between py-5">
           {/* Logo */}
           <Link href="/" onClick={handleHomeClick} className="flex items-center space-x-2.5">
             <Image
@@ -111,9 +132,8 @@ export function Header() {
               >
                 Solar for You
                 <ChevronDown
-                  className={`w-4 h-4 transition-transform duration-200 ${
-                    openMenu === "solar" ? "rotate-180" : ""
-                  }`}
+                  className={`w-4 h-4 transition-transform duration-200 ${openMenu === "solar" ? "rotate-180" : ""
+                    }`}
                 />
               </button>
 
@@ -140,9 +160,8 @@ export function Header() {
               >
                 Beyond Solar
                 <ChevronDown
-                  className={`w-4 h-4 transition-transform duration-200 ${
-                    openMenu === "other" ? "rotate-180" : ""
-                  }`}
+                  className={`w-4 h-4 transition-transform duration-200 ${openMenu === "other" ? "rotate-180" : ""
+                    }`}
                 />
               </button>
 
@@ -211,8 +230,12 @@ export function Header() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div id="mobile-nav" className="lg:hidden pb-6 border-t border-gray-100 bg-white">
-            <nav className="flex flex-col space-y-4 pt-4">
+          <div
+            id="mobile-nav"
+            className="lg:hidden fixed inset-x-0 bottom-0 z-40 border-t border-gray-100 bg-white overflow-y-auto overscroll-contain touch-pan-y"
+            style={{ top: mobileMenuTop, WebkitOverflowScrolling: "touch" }}
+          >
+            <nav className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col space-y-4 pt-4 pb-6">
               {/* Home */}
               <Link
                 href="/"

@@ -36,17 +36,15 @@ export function MobileSolutionsMenu({ onLinkClick }: MobileSolutionsMenuProps) {
           Solar for You
         </span>
         <ChevronDown
-          className={`w-4 h-4 text-[#6F6F6F] transition-transform duration-200 ${
-            openSection === "solar" ? "rotate-180" : ""
-          }`}
+          className={`w-4 h-4 text-[#6F6F6F] transition-transform duration-200 ${openSection === "solar" ? "rotate-180" : ""
+            }`}
         />
       </button>
 
       <div
         id="mobile-solar-solutions"
-        className={`overflow-hidden transition-all duration-300 ${
-          openSection === "solar" ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
-        }`}
+        className={`overflow-hidden transition-all duration-300 ${openSection === "solar" ? "max-h-[1400px] opacity-100" : "max-h-0 opacity-0"
+          }`}
       >
         <div className="pl-2 pb-2 space-y-1">
           {primarySolarSegments.map((segment) => (
@@ -105,17 +103,15 @@ export function MobileSolutionsMenu({ onLinkClick }: MobileSolutionsMenuProps) {
           Beyond Solar
         </span>
         <ChevronDown
-          className={`w-4 h-4 text-[#6F6F6F] transition-transform duration-200 ${
-            openSection === "other" ? "rotate-180" : ""
-          }`}
+          className={`w-4 h-4 text-[#6F6F6F] transition-transform duration-200 ${openSection === "other" ? "rotate-180" : ""
+            }`}
         />
       </button>
 
       <div
         id="mobile-other-offerings"
-        className={`overflow-hidden transition-all duration-300 ${
-          openSection === "other" ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
-        }`}
+        className={`overflow-hidden transition-all duration-300 ${openSection === "other" ? "max-h-[1400px] opacity-100" : "max-h-0 opacity-0"
+          }`}
       >
         <div className="pl-2 pb-2 space-y-1">
           {otherOfferings.map((offering) => (
