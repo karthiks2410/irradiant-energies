@@ -43,13 +43,15 @@ export default function P2PTradingPage() {
         <section className="pt-32 pb-16 bg-gradient-to-b from-[#52842D]/10 to-white">
           <div className="max-w-4xl mx-auto px-6 text-center">
             {/* Back Link */}
-            <Link
-              href="/discover"
-              className="inline-flex items-center gap-2 text-[#6F6F6F] hover:text-[#1d1d1f] transition-colors mb-8"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back to Discover
-            </Link>
+            <div className="w-full text-left">
+              <Link
+                href="/discover"
+                className="inline-flex items-center gap-2 text-[#6F6F6F] hover:text-[#1d1d1f] transition-colors mb-8"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                Back to Discover
+              </Link>
+            </div>
 
             {/* Tag */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#52842D]/10 text-[#52842D] text-sm font-medium mb-6">

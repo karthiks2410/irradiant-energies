@@ -20,13 +20,15 @@ export default function BESSPage() {
         {/* Hero */}
         <section className="pt-32 pb-16 bg-gradient-to-b from-blue-50 to-white">
           <div className="max-w-4xl mx-auto px-6 text-center">
-            <Link
-              href="/#products"
-              className="inline-flex items-center gap-2 text-[#6F6F6F] hover:text-[#1d1d1f] transition-colors mb-8"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back to Solutions
-            </Link>
+            <div className="w-full text-left">
+              <Link
+                href="/#products"
+                className="inline-flex items-center gap-2 text-[#6F6F6F] hover:text-[#1d1d1f] transition-colors mb-8"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                Back to Solutions
+              </Link>
+            </div>
 
             <div className="inline-flex p-4 rounded-2xl bg-blue-500/10 mb-6">
               <Battery className="w-10 h-10 text-blue-500" />

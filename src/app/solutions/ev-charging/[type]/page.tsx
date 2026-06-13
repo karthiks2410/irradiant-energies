@@ -80,13 +80,15 @@ export default async function EVChargingPage({ params }: PageProps) {
         {/* Hero */}
         <section className="pt-32 pb-16 bg-gradient-to-b from-purple-50 to-white">
           <div className="max-w-4xl mx-auto px-6 text-center">
-            <Link
-              href="/#products"
-              className="inline-flex items-center gap-2 text-[#6F6F6F] hover:text-[#1d1d1f] transition-colors mb-8"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back to Solutions
-            </Link>
+            <div className="w-full text-left">
+              <Link
+                href="/#products"
+                className="inline-flex items-center gap-2 text-[#6F6F6F] hover:text-[#1d1d1f] transition-colors mb-8"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                Back to Solutions
+              </Link>
+            </div>
 
             <div className="flex items-center justify-center gap-3 mb-6">
               <div className="p-3 rounded-xl bg-purple-500/10">
