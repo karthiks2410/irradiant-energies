@@ -61,12 +61,12 @@ export default function DiscoverPage() {
               Knowledge Hub
             </div>
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl font-normal font-[family-name:var(--font-display)] mb-6"
-              style={{ lineHeight: 1, letterSpacing: "-1.5px", color: "#1d1d1f" }}
+              className="text-5xl md:text-6xl lg:text-7xl font-bold font-[family-name:var(--font-display)] mb-6"
+              style={{ lineHeight: 1.02, letterSpacing: "-2px", color: "#0a0a0a" }}
             >
               Discover Clean Energy
             </h1>
-            <p className="text-lg text-[#6F6F6F] max-w-2xl mx-auto">
+            <p className="text-lg text-[#1d1d1f] max-w-2xl mx-auto">
               Explore articles and guides about solar energy, virtual power plants, and the future of sustainable energy.
             </p>
           </div>
@@ -100,7 +100,7 @@ export default function DiscoverPage() {
                     <span className="text-xs text-[#6F6F6F]">{article.readTime}</span>
                   </div>
 
-                  <h2 className="text-xl font-medium text-[#1d1d1f] mb-3 group-hover:text-[#52842D] transition-colors">
+                  <h2 className="font-display text-xl font-semibold text-[#0a0a0a] mb-3 group-hover:text-[#52842D] transition-colors">
                     {article.title}
                   </h2>
 

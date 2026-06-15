@@ -57,14 +57,14 @@ export function GovernmentSection() {
           <div className="text-center mb-6">
             <TextReveal
               as="h2"
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1d1d1f] tracking-tight justify-center"
+              className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-[#0a0a0a] tracking-tight justify-center"
             >
               Maximize Your Savings
             </TextReveal>
           </div>
 
           <MaskReveal delay={0.2} className="text-center mb-16">
-            <p className="text-xl text-[#6e6e73] max-w-2xl mx-auto">
+            <p className="text-xl text-[#1d1d1f] max-w-2xl mx-auto">
               Take advantage of central and state government subsidies to reduce
               your solar investment cost by up to 40%.
             </p>
@@ -87,7 +87,7 @@ export function GovernmentSection() {
                 whileHover={{ scale: 1.05, y: -8 }}
                 className="min-w-0 bg-white rounded-2xl p-4 md:p-6 shadow-lg shadow-black/5 border border-black/5 hover:shadow-xl hover:shadow-black/10"
               >
-                <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1d1d1f] mb-2 leading-tight break-words">
+                <p className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-[#0a0a0a] mb-2 leading-tight break-words">
                   {stat.prefix}
                   {stat.amount}
                 </p>

@@ -95,7 +95,7 @@ function TeamCard({ member, index }: { member: TeamMember; index: number }) {
             alt={member.name}
             className="w-36 h-36 mb-5 rounded-full object-cover flex-shrink-0"
           />
-          <h3 className="font-display text-xl font-semibold text-[#1d1d1f] mb-1">
+          <h3 className="font-display text-xl font-semibold text-[#0a0a0a] mb-1">
             {member.name}
           </h3>
           <p className="text-sm font-semibold text-[#52842D] tracking-wide mb-3">
@@ -146,10 +146,10 @@ export function AboutTeam() {
           transition={{ duration: 0.6, ease: EASE_OUT_EXPO }}
           className="text-center mb-16"
         >
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-[#1d1d1f] tracking-tight">
+          <h2 className="font-display text-3xl sm:text-4xl font-bold text-[#0a0a0a] tracking-tight">
             Meet the Visionaries
           </h2>
-          <p className="text-[#6e6e73] mt-3 text-lg">
+          <p className="text-[#1d1d1f] mt-3 text-lg">
             The experts leading the charge toward energy independence.
           </p>
         </motion.div>

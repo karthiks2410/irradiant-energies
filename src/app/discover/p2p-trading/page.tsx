@@ -61,14 +61,14 @@ export default function P2PTradingPage() {
 
             {/* H1 - Primary Keyword */}
             <h1
-              className="text-3xl sm:text-4xl md:text-5xl font-normal font-[family-name:var(--font-display)] mb-6"
+              className="text-4xl sm:text-5xl md:text-6xl font-bold font-[family-name:var(--font-display)] mb-6"
               style={{ lineHeight: 1.15, letterSpacing: "-1px", color: "#1d1d1f" }}
             >
               Peer-to-Peer Energy Trading in India
             </h1>
 
             {/* Hero Description */}
-            <p className="text-lg sm:text-xl text-[#6F6F6F] max-w-2xl mx-auto mb-8">
+            <p className="text-lg sm:text-xl text-[#1d1d1f] max-w-2xl mx-auto mb-8">
               Turn your solar system into an{" "}
               <strong className="text-[#1d1d1f]">income-generating asset</strong>. Buy and sell
               electricity directly with others using smart digital platforms.
@@ -96,15 +96,15 @@ export default function P2PTradingPage() {
         <article className="max-w-4xl mx-auto px-6 py-12">
           {/* What is P2P Section */}
           <section className="mb-16">
-            <h2 className="text-2xl sm:text-3xl font-[family-name:var(--font-display)] text-[#1d1d1f] mb-6">
+            <h2 className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-display)] text-[#0a0a0a] mb-6">
               What is Peer-to-Peer Energy Trading?
             </h2>
-            <p className="text-lg text-[#6F6F6F] leading-relaxed mb-6">
+            <p className="text-lg text-[#1d1d1f] leading-relaxed mb-6">
               <strong className="text-[#1d1d1f]">Peer-to-Peer (P2P) energy trading</strong> is a
               government-supported program that allows electricity consumers and rooftop solar
               producers to buy and sell electricity directly through a secure digital platform.
             </p>
-            <p className="text-lg text-[#6F6F6F] leading-relaxed mb-8">
+            <p className="text-lg text-[#1d1d1f] leading-relaxed mb-8">
               Instead of sending your excess solar power back to the grid at lower net-metering
               rates, you can{" "}
               <strong className="text-[#1d1d1f]">sell solar electricity in India</strong> directly
@@ -172,10 +172,10 @@ export default function P2PTradingPage() {
 
           {/* Why India Needs P2P */}
           <section className="mb-16 p-8 rounded-3xl bg-gray-50">
-            <h2 className="text-2xl sm:text-3xl font-[family-name:var(--font-display)] text-[#1d1d1f] mb-6 text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-display)] text-[#0a0a0a] mb-6 text-center">
               Why P2P Energy Trading is Important for India
             </h2>
-            <p className="text-lg text-[#6F6F6F] leading-relaxed mb-8 text-center max-w-2xl mx-auto">
+            <p className="text-lg text-[#1d1d1f] leading-relaxed mb-8 text-center max-w-2xl mx-auto">
               India's energy landscape is rapidly evolving, making{" "}
               <strong className="text-[#1d1d1f]">P2P energy trading</strong> more relevant than
               ever.
@@ -203,7 +203,7 @@ export default function P2PTradingPage() {
 
           {/* How It Works */}
           <section className="mb-16">
-            <h2 className="text-2xl sm:text-3xl font-[family-name:var(--font-display)] text-[#1d1d1f] mb-8 text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-display)] text-[#0a0a0a] mb-8 text-center">
               How P2P Energy Trading Works
             </h2>
 
@@ -253,7 +253,7 @@ export default function P2PTradingPage() {
                   </div>
                   <div className="flex-1 pb-10">
                     <div className="text-xs text-[#6F6F6F] mb-1">Step {item.step}</div>
-                    <h3 className="text-lg font-semibold text-[#1d1d1f] mb-2">{item.title}</h3>
+                    <h3 className="font-display text-lg font-semibold text-[#0a0a0a] mb-2">{item.title}</h3>
                     <p className="text-[#6F6F6F]">{item.description}</p>
                   </div>
                 </div>
@@ -263,7 +263,7 @@ export default function P2PTradingPage() {
 
           {/* Who Can Participate */}
           <section className="mb-16">
-            <h2 className="text-2xl sm:text-3xl font-[family-name:var(--font-display)] text-[#1d1d1f] mb-8 text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-display)] text-[#0a0a0a] mb-8 text-center">
               Who Can Participate?
             </h2>
 
@@ -274,7 +274,7 @@ export default function P2PTradingPage() {
                   <div className="p-3 rounded-xl bg-blue-500/20">
                     <Home className="w-6 h-6 text-blue-500" />
                   </div>
-                  <h3 className="text-xl font-semibold text-[#1d1d1f]">Consumers (Buyers)</h3>
+                  <h3 className="font-display text-xl font-semibold text-[#0a0a0a]">Consumers (Buyers)</h3>
                 </div>
                 <ul className="space-y-3">
                   {[
@@ -297,7 +297,7 @@ export default function P2PTradingPage() {
                   <div className="p-3 rounded-xl bg-[#52842D]/20">
                     <Sun className="w-6 h-6 text-[#52842D]" />
                   </div>
-                  <h3 className="text-xl font-semibold text-[#1d1d1f]">Prosumers (Sellers)</h3>
+                  <h3 className="font-display text-xl font-semibold text-[#0a0a0a]">Prosumers (Sellers)</h3>
                 </div>
                 <ul className="space-y-3">
                   {[
@@ -318,7 +318,7 @@ export default function P2PTradingPage() {
 
           {/* Benefits Section */}
           <section className="mb-16 p-8 rounded-3xl bg-gradient-to-b from-[#52842D]/10 to-white">
-            <h2 className="text-2xl sm:text-3xl font-[family-name:var(--font-display)] text-[#1d1d1f] mb-4 text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-display)] text-[#0a0a0a] mb-4 text-center">
               Benefits of P2P Energy Trading
             </h2>
             <p className="text-[#6F6F6F] text-center mb-8 max-w-xl mx-auto">
@@ -368,7 +368,7 @@ export default function P2PTradingPage() {
                   <div className={`inline-flex p-3 rounded-xl ${benefit.bg} mb-4`}>
                     <benefit.icon className={`w-6 h-6 ${benefit.color}`} />
                   </div>
-                  <h3 className="text-lg font-semibold text-[#1d1d1f] mb-2">{benefit.title}</h3>
+                  <h3 className="font-display text-lg font-semibold text-[#0a0a0a] mb-2">{benefit.title}</h3>
                   <p className="text-[#6F6F6F] text-sm">{benefit.description}</p>
                 </div>
               ))}
@@ -377,10 +377,10 @@ export default function P2PTradingPage() {
 
           {/* P2P vs Net Metering */}
           <section className="mb-16">
-            <h2 className="text-2xl sm:text-3xl font-[family-name:var(--font-display)] text-[#1d1d1f] mb-6">
+            <h2 className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-display)] text-[#0a0a0a] mb-6">
               Net Metering vs P2P Trading
             </h2>
-            <p className="text-lg text-[#6F6F6F] leading-relaxed mb-8">
+            <p className="text-lg text-[#1d1d1f] leading-relaxed mb-8">
               Understanding the difference helps you maximize your{" "}
               <strong className="text-[#1d1d1f]">rooftop solar income in India</strong>:
             </p>
@@ -425,10 +425,10 @@ export default function P2PTradingPage() {
 
           {/* Available Platforms */}
           <section className="mb-16">
-            <h2 className="text-2xl sm:text-3xl font-[family-name:var(--font-display)] text-[#1d1d1f] mb-6">
+            <h2 className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-display)] text-[#0a0a0a] mb-6">
               Authorized P2P Trading Platforms in India
             </h2>
-            <p className="text-lg text-[#6F6F6F] leading-relaxed mb-8">
+            <p className="text-lg text-[#1d1d1f] leading-relaxed mb-8">
               Several DISCOMs have launched P2P trading pilots. Here are some authorized platforms
               supported by India Energy Stack (IES):
             </p>
@@ -466,10 +466,10 @@ export default function P2PTradingPage() {
 
           {/* Future Section */}
           <section className="mb-16">
-            <h2 className="text-2xl sm:text-3xl font-[family-name:var(--font-display)] text-[#1d1d1f] mb-6 text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-display)] text-[#0a0a0a] mb-6 text-center">
               The Future of Solar Income in India
             </h2>
-            <p className="text-lg text-[#6F6F6F] leading-relaxed mb-8 text-center max-w-3xl mx-auto">
+            <p className="text-lg text-[#1d1d1f] leading-relaxed mb-8 text-center max-w-3xl mx-auto">
               <strong className="text-[#1d1d1f]">Peer-to-Peer energy trading</strong> is the next
               big step after solar adoption. It transforms your solar system from a cost-saving tool
               into a revenue-generating asset.
