@@ -11,6 +11,18 @@ interface LenisProviderProps {
   children: ReactNode;
 }
 
+/**
+ * Mounts Lenis (smooth wheel scrolling) and wires it to GSAP's ticker so
+ * ScrollTrigger animations stay in sync. Site-wide.
+ *
+ * Lenis hijacks the wheel — when its raf loop is leaked or stops getting
+ * called, the page can feel "stuck" because Lenis is suppressing native
+ * deltas while not advancing its own scroll position. The cleanup
+ * function below previously passed an inline arrow to gsap.ticker.remove,
+ * which created a new function reference and so didn't actually
+ * unregister the ticker. Fixed by hoisting the ticker callback into a
+ * named const so add() and remove() see the same reference.
+ */
 export function LenisProvider({ children }: LenisProviderProps) {
   const lenisRef = useRef<Lenis | null>(null);
 
@@ -23,19 +35,21 @@ export function LenisProvider({ children }: LenisProviderProps) {
 
     lenisRef.current = lenis;
 
-    lenis.on("scroll", ScrollTrigger.update);
+    const onScroll = () => ScrollTrigger.update();
+    lenis.on("scroll", onScroll);
 
-    gsap.ticker.add((time) => {
+    // Single named callback so add() and remove() see the same reference.
+    const tickerCallback = (time: number) => {
       lenis.raf(time * 1000);
-    });
-
+    };
+    gsap.ticker.add(tickerCallback);
     gsap.ticker.lagSmoothing(0);
 
     return () => {
+      gsap.ticker.remove(tickerCallback);
+      lenis.off("scroll", onScroll);
       lenis.destroy();
-      gsap.ticker.remove((time) => {
-        lenis.raf(time * 1000);
-      });
+      lenisRef.current = null;
     };
   }, []);
 
