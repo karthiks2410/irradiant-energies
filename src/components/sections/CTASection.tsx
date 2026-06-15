@@ -67,10 +67,10 @@ export function CTASection() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1d1d1f] mb-6 tracking-tight">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-[#0a0a0a] mb-6 tracking-tight">
               Ready to Go Solar?
             </h2>
-            <p className="text-lg text-[#6e6e73] mb-6">
+            <p className="text-lg text-[#1d1d1f] mb-6">
               Get a free consultation and customized quote for your home or business.
               Our experts will design the perfect system for your needs.
             </p>
@@ -166,7 +166,7 @@ export function CTASection() {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
           >
             <div className="bg-white rounded-2xl p-8 shadow-xl shadow-black/5 border border-black/5">
-              <h3 className="text-xl font-semibold text-[#1d1d1f] mb-6">
+              <h3 className="font-display text-xl font-semibold text-[#0a0a0a] mb-6">
                 Get Your Free Quote
               </h3>
               <form onSubmit={handleSubmit} className="space-y-4">

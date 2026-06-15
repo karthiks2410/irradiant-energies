@@ -61,14 +61,14 @@ export default function VPPArticlePage() {
 
             {/* H1 - Primary Keyword */}
             <h1
-              className="text-3xl sm:text-4xl md:text-5xl font-normal font-[family-name:var(--font-display)] mb-6"
+              className="text-4xl sm:text-5xl md:text-6xl font-bold font-[family-name:var(--font-display)] mb-6"
               style={{ lineHeight: 1.15, letterSpacing: "-1px", color: "#1d1d1f" }}
             >
               Virtual Power Plant (VPP) in India
             </h1>
 
             {/* Hero Description - Keywords Rich */}
-            <p className="text-lg sm:text-xl text-[#6F6F6F] max-w-2xl mx-auto mb-8">
+            <p className="text-lg sm:text-xl text-[#1d1d1f] max-w-2xl mx-auto mb-8">
               The future of solar energy is here. Turn your home into a{" "}
               <strong className="text-[#1d1d1f]">smart solar system</strong> that saves money,
               stores power, and supports the grid.
@@ -96,15 +96,15 @@ export default function VPPArticlePage() {
         <article className="max-w-4xl mx-auto px-6 py-12">
           {/* What is VPP Section - H2 with Keywords */}
           <section className="mb-16">
-            <h2 className="text-2xl sm:text-3xl font-[family-name:var(--font-display)] text-[#1d1d1f] mb-6">
+            <h2 className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-display)] text-[#0a0a0a] mb-6">
               What is a Virtual Power Plant?
             </h2>
-            <p className="text-lg text-[#6F6F6F] leading-relaxed mb-8">
+            <p className="text-lg text-[#1d1d1f] leading-relaxed mb-8">
               A <strong className="text-[#1d1d1f]">Virtual Power Plant (VPP)</strong> is a smart
               network of homes and businesses with solar systems, batteries, and intelligent devices
               that work together like a single power plant.
             </p>
-            <p className="text-lg text-[#6F6F6F] leading-relaxed mb-8">
+            <p className="text-lg text-[#1d1d1f] leading-relaxed mb-8">
               Instead of producing electricity from one large location, a VPP connects thousands of
               small energy systems—creating{" "}
               <strong className="text-[#1d1d1f]">distributed energy in India</strong>:
@@ -155,7 +155,7 @@ export default function VPPArticlePage() {
               ))}
             </div>
 
-            <p className="text-lg text-[#6F6F6F] leading-relaxed mb-6">
+            <p className="text-lg text-[#1d1d1f] leading-relaxed mb-6">
               Using advanced software, these{" "}
               <strong className="text-[#1d1d1f]">smart solar systems in India</strong> can
               automatically:
@@ -193,10 +193,10 @@ export default function VPPArticlePage() {
 
           {/* Why India Needs VPP Section */}
           <section className="mb-16 p-8 rounded-3xl bg-gray-50">
-            <h2 className="text-2xl sm:text-3xl font-[family-name:var(--font-display)] text-[#1d1d1f] mb-6 text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-display)] text-[#0a0a0a] mb-6 text-center">
               Why India Needs Virtual Power Plants
             </h2>
-            <p className="text-lg text-[#6F6F6F] leading-relaxed mb-8 text-center max-w-2xl mx-auto">
+            <p className="text-lg text-[#1d1d1f] leading-relaxed mb-8 text-center max-w-2xl mx-auto">
               India is seeing rapid growth in{" "}
               <strong className="text-[#1d1d1f]">rooftop solar with battery</strong> installations,
               electricity demand, and EV adoption. But the current electricity system has
@@ -250,10 +250,10 @@ export default function VPPArticlePage() {
 
           {/* How VPP Solves This */}
           <section className="mb-16">
-            <h2 className="text-2xl sm:text-3xl font-[family-name:var(--font-display)] text-[#1d1d1f] mb-6">
+            <h2 className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-display)] text-[#0a0a0a] mb-6">
               How Virtual Power Plant Works
             </h2>
-            <p className="text-lg text-[#6F6F6F] leading-relaxed mb-8">
+            <p className="text-lg text-[#1d1d1f] leading-relaxed mb-8">
               A VPP makes the <strong className="text-[#1d1d1f]">smart grid in India</strong>{" "}
               smarter and more efficient by:
             </p>
@@ -285,7 +285,7 @@ export default function VPPArticlePage() {
 
           {/* How It Works Steps */}
           <section className="mb-16">
-            <h2 className="text-2xl sm:text-3xl font-[family-name:var(--font-display)] text-[#1d1d1f] mb-8 text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-display)] text-[#0a0a0a] mb-8 text-center">
               How VPP Works in Solar Systems
             </h2>
 
@@ -335,7 +335,7 @@ export default function VPPArticlePage() {
                   </div>
                   <div className="flex-1 pb-10">
                     <div className="text-xs text-[#6F6F6F] mb-1">Step {item.step}</div>
-                    <h3 className="text-lg font-semibold text-[#1d1d1f] mb-2">{item.title}</h3>
+                    <h3 className="font-display text-lg font-semibold text-[#0a0a0a] mb-2">{item.title}</h3>
                     <p className="text-[#6F6F6F]">{item.description}</p>
                   </div>
                 </div>
@@ -345,7 +345,7 @@ export default function VPPArticlePage() {
 
           {/* Benefits Section */}
           <section className="mb-16 p-8 rounded-3xl bg-gradient-to-b from-[#52842D]/10 to-white">
-            <h2 className="text-2xl sm:text-3xl font-[family-name:var(--font-display)] text-[#1d1d1f] mb-4 text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-display)] text-[#0a0a0a] mb-4 text-center">
               Benefits of Virtual Power Plant for Homes
             </h2>
             <p className="text-[#6F6F6F] text-center mb-8 max-w-xl mx-auto">
@@ -395,7 +395,7 @@ export default function VPPArticlePage() {
                   <div className={`inline-flex p-3 rounded-xl ${benefit.bg} mb-4`}>
                     <benefit.icon className={`w-6 h-6 ${benefit.color}`} />
                   </div>
-                  <h3 className="text-lg font-semibold text-[#1d1d1f] mb-2">{benefit.title}</h3>
+                  <h3 className="font-display text-lg font-semibold text-[#0a0a0a] mb-2">{benefit.title}</h3>
                   <p className="text-[#6F6F6F] text-sm">{benefit.description}</p>
                 </div>
               ))}
@@ -404,10 +404,10 @@ export default function VPPArticlePage() {
 
           {/* VPP in India Section */}
           <section className="mb-16">
-            <h2 className="text-2xl sm:text-3xl font-[family-name:var(--font-display)] text-[#1d1d1f] mb-6">
+            <h2 className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-display)] text-[#0a0a0a] mb-6">
               Is VPP Available in India?
             </h2>
-            <p className="text-lg text-[#6F6F6F] leading-relaxed mb-8">
+            <p className="text-lg text-[#1d1d1f] leading-relaxed mb-8">
               <strong className="text-[#1d1d1f]">Virtual Power Plants in India</strong> are still
               emerging, but the foundation is already being built through:
             </p>
@@ -438,10 +438,10 @@ export default function VPPArticlePage() {
 
           {/* Prosumer Section */}
           <section className="mb-16">
-            <h2 className="text-2xl sm:text-3xl font-[family-name:var(--font-display)] text-[#1d1d1f] mb-6">
+            <h2 className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-display)] text-[#0a0a0a] mb-6">
               The Future of Solar Energy in India
             </h2>
-            <p className="text-lg text-[#6F6F6F] leading-relaxed mb-8">
+            <p className="text-lg text-[#1d1d1f] leading-relaxed mb-8">
               Traditionally, you only consumed electricity. With solar + VPP, you become a:
             </p>
 
@@ -450,7 +450,7 @@ export default function VPPArticlePage() {
               <p className="text-xl opacity-90">Producer + Consumer</p>
             </div>
 
-            <p className="text-lg text-[#6F6F6F] leading-relaxed mb-6 text-center">
+            <p className="text-lg text-[#1d1d1f] leading-relaxed mb-6 text-center">
               Virtual Power Plants will transform how electricity works in India. Homes will not
               just consume power—they will produce, store, and share it intelligently.
             </p>
@@ -476,10 +476,10 @@ export default function VPPArticlePage() {
 
           {/* Where We Fit In */}
           <section className="mb-16">
-            <h2 className="text-2xl sm:text-3xl font-[family-name:var(--font-display)] text-[#1d1d1f] mb-6">
+            <h2 className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-display)] text-[#0a0a0a] mb-6">
               Where We Fit In
             </h2>
-            <p className="text-lg text-[#6F6F6F] leading-relaxed mb-8">
+            <p className="text-lg text-[#1d1d1f] leading-relaxed mb-8">
               At <strong className="text-[#1d1d1f]">Irradiant Energie</strong>, we are not just
               installing solar systems—we are preparing our customers for the{" "}
               <strong className="text-[#1d1d1f]">solar energy future in India</strong>.

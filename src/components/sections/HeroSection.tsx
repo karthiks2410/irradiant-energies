@@ -80,9 +80,9 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.7, ease: EASE_OUT_EXPO }}
           className="text-base sm:text-lg max-w-2xl mt-8 leading-relaxed"
-          style={{ color: "#6F6F6F" }}
+          style={{ color: "#1d1d1f" }}
         >
-          India's complete solar ecosystem — from rooftop to revenue. Premium
+          India&apos;s complete solar ecosystem — from rooftop to revenue. Premium
           panels, smart energy management, and peer-to-peer trading.
         </motion.p>
 

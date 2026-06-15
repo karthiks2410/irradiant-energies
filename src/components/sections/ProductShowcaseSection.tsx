@@ -132,17 +132,17 @@ function ProductCard({
           </div>
 
           <h2
-            className="text-4xl md:text-5xl lg:text-6xl font-normal font-[family-name:var(--font-display)]"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold font-[family-name:var(--font-display)]"
             style={{
               lineHeight: 1,
               letterSpacing: "-1.5px",
-              color: "#1d1d1f",
+              color: "#0a0a0a",
             }}
           >
             {product.title}
           </h2>
 
-          <p className="text-lg text-[#6F6F6F] max-w-lg leading-relaxed">
+          <p className="text-lg text-[#1d1d1f] max-w-lg leading-relaxed">
             {product.description}
           </p>
 
@@ -240,8 +240,8 @@ export function ProductShowcaseSection() {
                 Our Solutions
               </p>
               <h2
-                className="text-3xl md:text-4xl font-normal font-[family-name:var(--font-display)]"
-                style={{ color: "#1d1d1f" }}
+                className="text-3xl md:text-4xl font-bold font-[family-name:var(--font-display)]"
+                style={{ color: "#0a0a0a" }}
               >
                 Complete Solar Ecosystem
               </h2>
@@ -285,7 +285,7 @@ export function ProductShowcaseSection() {
         transition={{ duration: 0.8 }}
         className="py-12 text-center px-6"
       >
-        <p className="text-[#6F6F6F] text-lg mb-6 max-w-xl mx-auto">
+        <p className="text-[#1d1d1f] text-lg mb-6 max-w-xl mx-auto">
           Not sure which solution is right for you? Let our experts help you design the perfect system.
         </p>
         <motion.div
