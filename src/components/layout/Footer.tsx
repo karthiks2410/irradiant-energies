@@ -70,7 +70,11 @@ const itemVariants = {
 export function Footer() {
   return (
     <footer className="bg-white border-t border-black/5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      {/* Bottom padding stays generous on mobile so the fixed Get Quote pill +
+          WhatsApp bubble (both anchored bottom-right via layout.tsx) don't
+          overlap the address line and copyright. Desktop has neither sticky
+          element, so py-16 is enough. */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-32 lg:pb-16">
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12"
           initial="hidden"
