@@ -15,7 +15,7 @@ export default function HomeSolarPage() {
       <Header />
       <SegmentLandingPage
         segmentId="home"
-        heroImage="/segments/home-hero.jpg"
+        heroImage="/assets/segments/home-hero.jpg"
         heroFocal="50% 25%"
         showLeadForm
         showJourney

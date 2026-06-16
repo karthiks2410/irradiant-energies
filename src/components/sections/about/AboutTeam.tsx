@@ -22,7 +22,7 @@ const team: TeamMember[] = [
     description:
       "Driving the transition to renewable energy",
     bio: "With a Masters in Renewable Systems, Keerthi has spearheaded over 20+ large-scale solar installations in Germany.",
-    image: "/team/keerthi-raj.jpg",
+    image: "/assets/team/keerthi-raj.jpg",
     linkedin: "#",
   },
   {
@@ -32,7 +32,7 @@ const team: TeamMember[] = [
     description:
       "Lead architect of our high-efficiency solar grid systems.",
     bio: "Pavan is an civil engineering veteran.",
-    image: "/team/maruthi-pavan.jpg",
+    image: "/assets/team/maruthi-pavan.jpg",
     linkedin: "#",
   },
   {
@@ -42,7 +42,7 @@ const team: TeamMember[] = [
     description:
       "Ensuring every project leaves a positive footprint on our planet.",
     bio: "Tejas is a marketing expert.",
-    image: "/team/maruthi-tejas.jpg",
+    image: "/assets/team/maruthi-tejas.jpg",
     linkedin: "#",
   },
   {
@@ -52,7 +52,7 @@ const team: TeamMember[] = [
     description:
       "Providing technical support to the team.",
     bio: "Karthik is a technical support expert.",
-    image: "/team/karthik.jpg",
+    image: "/assets/team/karthik.jpg",
     linkedin: "#",
   },
   {
@@ -62,7 +62,7 @@ const team: TeamMember[] = [
     description:
       "Providing technical support to the team.",
     bio: "Nikhil is a technical support expert.",
-    image: "/team/nikhil.jpg",
+    image: "/assets/team/nikhil.jpg",
     linkedin: "#",
   },
 ];

@@ -90,14 +90,14 @@ export function Header() {
           {/* Logo */}
           <Link href="/" onClick={handleHomeClick} className="flex items-center space-x-2.5">
             <Image
-              src="/logo.svg"
+              src="/assets/logo.svg"
               alt="Irradiant Energie"
               width={44}
               height={52}
               className="h-11 w-auto sm:h-12"
             />
             <Image
-              src="/logo-text.svg"
+              src="/assets/logo-text.svg"
               alt="Irradiant Energie"
               width={160}
               height={52}
