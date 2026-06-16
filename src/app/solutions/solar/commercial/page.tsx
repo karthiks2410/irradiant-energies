@@ -15,7 +15,7 @@ export default function CommercialSolarPage() {
       <Header />
       <SegmentLandingPage
         segmentId="commercial"
-        heroImage="/segments/commercial-hero.jpg"
+        heroImage="/assets/segments/commercial-hero.jpg"
         heroFocal="50% 60%"
         showLeadForm
         showJourney

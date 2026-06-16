@@ -67,7 +67,7 @@ export default function RootLayout({
     "@type": "Organization",
     name: "Irradiant Energie",
     url: "https://irradiantenergie.com",
-    logo: "https://irradiantenergie.com/logo.svg",
+    logo: "https://irradiantenergie.com/assets/logo.svg",
     description:
       "India's complete solar ecosystem — solar panels, energy storage, EV charging, and peer-to-peer energy trading.",
     areaServed: { "@type": "Country", name: "India" },

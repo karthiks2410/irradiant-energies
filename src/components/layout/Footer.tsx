@@ -86,14 +86,14 @@ export function Footer() {
           <motion.div className="lg:col-span-2" variants={itemVariants}>
             <Link href="/" className="flex items-center space-x-3 mb-6">
               <Image
-                src="/logo.svg"
+                src="/assets/logo.svg"
                 alt="Irradiant Energie"
                 width={40}
                 height={47}
                 className="h-10 w-auto"
               />
               <Image
-                src="/logo-text.svg"
+                src="/assets/logo-text.svg"
                 alt="Irradiant Energie"
                 width={150}
                 height={50}

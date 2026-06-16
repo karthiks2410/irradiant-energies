@@ -27,7 +27,7 @@ export function P2PTradingAnimation() {
   return (
     <div className="absolute inset-0 overflow-hidden">
       <Image
-        src="/p2p-trading.jpg"
+        src="/assets/p2p-trading.jpg"
         alt="Neighborhood with rooftop solar"
         fill
         sizes="(max-width: 768px) 100vw, 50vw"

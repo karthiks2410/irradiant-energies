@@ -29,7 +29,7 @@ export function HeroSection() {
         }}
       >
         <Image
-          src="/solar-panel.jpg"
+          src="/assets/solar-panel.jpg"
           alt="Solar panels on rooftop"
           fill
           priority

@@ -10,7 +10,7 @@ export const size = {
 export const contentType = "image/png";
 
 export default async function Image() {
-  const logoSvg = await readFile(join(process.cwd(), "public", "logo.svg"), "utf-8");
+  const logoSvg = await readFile(join(process.cwd(), "public", "assets", "logo.svg"), "utf-8");
   const logoDataUrl = `data:image/svg+xml;base64,${Buffer.from(logoSvg).toString("base64")}`;
 
   return new ImageResponse(
@@ -51,7 +51,7 @@ export default async function Image() {
           }}
         />
 
-        {/* Logo from public/logo.svg — single source of truth */}
+        {/* Logo from public/assets/logo.svg — single source of truth */}
         <div
           style={{
             display: "flex",

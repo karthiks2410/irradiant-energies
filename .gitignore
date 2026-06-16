@@ -40,7 +40,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-*.png
+
+# Screenshot dumps in repo root (Playwright captures, manual screenshots, etc).
+# Scoped to repo root so legitimate images under public/ or src/ stay tracked.
+/*.png
+/*.jpg
+/*.jpeg
+# Old design-exploration mockup directory (kept on disk, never committed).
+/.green-mockup/
 
 # local agent / tooling artifacts
 .claude/*

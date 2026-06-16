@@ -16,7 +16,7 @@ const products = [
     title: "Harness the Sun",
     description:
       "Premium solar panels for homes, housing societies, and industrial scale. On-Grid, Off-Grid, and Hybrid solutions tailored to your needs.",
-    image: "/solar-panel.jpg",
+    image: "/assets/solar-panel.jpg",
     icon: Sun,
     iconBg: "bg-[#52842D]/20",
     iconColor: "text-[#52842D]",
@@ -31,7 +31,7 @@ const products = [
     title: "Store Power, Stay Empowered",
     description:
       "Battery Energy Storage Systems (BESS) for reliable backup and optimized energy usage. Never worry about power outages again.",
-    image: "/smart-box.jpg",
+    image: "/assets/smart-box.jpg",
     icon: Battery,
     iconBg: "bg-blue-500/20",
     iconColor: "text-blue-500",
@@ -46,7 +46,7 @@ const products = [
     title: "Charge Your Future",
     description:
       "Complete EV charging infrastructure - Grid Dependent, Solar + Grid, or Hybrid solutions for homes, businesses, and public spaces.",
-    image: "/ev-charging.jpg",
+    image: "/assets/ev-charging.jpg",
     icon: Car,
     iconBg: "bg-purple-500/20",
     iconColor: "text-purple-500",
@@ -61,7 +61,7 @@ const products = [
     title: "Your Energy. Your Market.",
     description:
       "Generate more than you need? Sell it to your neighbors. Peer-to-peer energy trading coming to Karnataka first.",
-    image: "/p2p-trading.jpg",
+    image: "/assets/p2p-trading.jpg",
     animation: "p2p" as const,
     icon: Users,
     iconBg: "bg-emerald-500/20",
@@ -77,7 +77,7 @@ const products = [
     title: "Power the Grid Together",
     description:
       "Join a network of distributed energy resources. Your solar + battery becomes part of a smarter, cleaner grid.",
-    image: "/vpp-network.jpg",
+    image: "/assets/vpp-network.jpg",
     icon: Zap,
     iconBg: "bg-amber-500/20",
     iconColor: "text-amber-500",
