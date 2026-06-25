@@ -10,9 +10,9 @@ import { EASE_OUT_EXPO } from "@/lib/motion";
 
 const footerLinks = {
   solutions: [
-    { name: "Solar", href: "/solutions/solar/home/on-grid" },
-    { name: "Energy Storage", href: "/solutions/ess/bess" },
-    { name: "EV Charging", href: "/solutions/ev-charging/grid-dependent" },
+    { name: "Solar", href: "/solutions/solar/home" },
+    { name: "Energy Storage", href: "/get-quote" },
+    { name: "EV Charging", href: "/get-quote" },
     { name: "Virtual Power Plant", href: "/discover/vpp" },
     { name: "P2P Trading", href: "/discover/p2p-trading" },
   ],

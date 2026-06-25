@@ -21,7 +21,7 @@ const products = [
     iconBg: "bg-[#52842D]/20",
     iconColor: "text-[#52842D]",
     cta: { label: "Get Quote", href: "/get-quote" },
-    ctaSecondary: { label: "Learn More", href: "/solutions/solar/home/on-grid" },
+    ctaSecondary: { label: "Learn More", href: "/solutions/solar/home" },
     available: true,
   },
   {
@@ -36,7 +36,6 @@ const products = [
     iconBg: "bg-blue-500/20",
     iconColor: "text-blue-500",
     cta: { label: "Get Quote", href: "/get-quote" },
-    ctaSecondary: { label: "Learn More", href: "/solutions/ess/bess" },
     available: true,
   },
   {
@@ -51,7 +50,6 @@ const products = [
     iconBg: "bg-purple-500/20",
     iconColor: "text-purple-500",
     cta: { label: "Get Quote", href: "/get-quote" },
-    ctaSecondary: { label: "Learn More", href: "/solutions/ev-charging/grid-dependent" },
     available: true,
   },
   {
