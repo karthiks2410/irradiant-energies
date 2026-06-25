@@ -5,8 +5,6 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { WhatsAppInlineButton } from "@/components/ui/WhatsAppInlineButton";
-import { BusinessHoursBadge } from "@/components/ui/BusinessHoursBadge";
 import { EASE_OUT_EXPO, PRESS_HOVER, PRESS_TAP, SPRING_PRESS } from "@/lib/motion";
 import { solutionTypes, getSegmentById } from "@/lib/solutions-data";
 import { LeadCaptureForm } from "@/components/sections/segment/LeadCaptureForm";
@@ -138,9 +136,6 @@ export function SegmentLandingPage({
                   </Button>
                 </Link>
               </motion.div>
-              <WhatsAppInlineButton
-                message={`Hi! I'd like a free solar quote for my ${segment.name.toLowerCase()}.`}
-              />
               <motion.div whileHover={PRESS_HOVER} whileTap={PRESS_TAP} transition={SPRING_PRESS}>
                 <Link href="#system-types">
                   <Button
@@ -152,7 +147,6 @@ export function SegmentLandingPage({
                 </Link>
               </motion.div>
             </div>
-            <BusinessHoursBadge className="mt-4" />
           </motion.div>
 
           {/* Hero visual */}
@@ -315,14 +309,7 @@ export function SegmentLandingPage({
                   </Button>
                 </Link>
               </motion.div>
-              <WhatsAppInlineButton
-                appearance="onGreen"
-                message={`Hi! I'd like a free solar quote for my ${segment.name.toLowerCase()}.`}
-              />
             </div>
-            <p className="mt-5 inline-flex items-center gap-1.5 text-xs text-white/70 leading-none">
-              Replies in &lt;10 min <span className="text-white/40">·</span> 9 AM–9 PM IST
-            </p>
           </motion.div>
         </div>
       </section>

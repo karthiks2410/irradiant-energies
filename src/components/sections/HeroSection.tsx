@@ -13,8 +13,6 @@ import {
   Sun,
   Wrench,
 } from "lucide-react";
-import { BusinessHoursBadge } from "@/components/ui/BusinessHoursBadge";
-import { WhatsAppInlineButton } from "@/components/ui/WhatsAppInlineButton";
 import {
   EASE_OUT_EXPO,
   SPRING_PRESS,
@@ -90,24 +88,24 @@ function AudiencePicker({ disableMotion }: { disableMotion: boolean }) {
             >
               <Link
                 href={href}
-                className="group flex items-center gap-3 rounded-2xl border bg-white p-4 transition-colors hover:border-[#52842D] sm:flex-col sm:items-center sm:gap-2 sm:p-5 sm:text-center"
+                className="group flex flex-col items-center gap-2 rounded-2xl border bg-white p-5 text-center transition-colors hover:border-[#52842D]"
                 style={{ borderColor: "#e5e7eb" }}
               >
                 <span
-                  className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-colors group-hover:bg-[#52842D] group-hover:text-white sm:h-11 sm:w-11"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-xl transition-colors group-hover:bg-[#52842D] group-hover:text-white"
                   style={{ backgroundColor: "#f5f5f7", color: "#52842D" }}
                 >
                   <Icon className="h-5 w-5" />
                 </span>
-                <span className="flex min-w-0 flex-1 flex-col text-left sm:mt-1 sm:items-center sm:text-center">
+                <span className="mt-1 flex flex-col items-center text-center">
                   <span
-                    className="text-[15px] font-semibold sm:text-base"
+                    className="text-base font-semibold"
                     style={{ color: "#1d1d1f" }}
                   >
                     {label}
                   </span>
                   <span
-                    className="mt-0.5 text-xs sm:text-[13px]"
+                    className="mt-0.5 text-[13px]"
                     style={{ color: "#6F6F6F" }}
                   >
                     {sub}
@@ -241,19 +239,6 @@ export function HeroSection() {
         <div className="mt-10 w-full">
           <AudiencePicker disableMotion={disableMotion} />
         </div>
-
-        <motion.div
-          initial={disableMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 0.5, delay: 1.25, ease: EASE_OUT_EXPO }}
-          className="mt-5 flex flex-col items-center gap-2 text-sm sm:flex-row sm:gap-3"
-          style={{ color: "#6F6F6F" }}
-        >
-          <span>Prefer to chat?</span>
-          <WhatsAppInlineButton size="default" />
-          <BusinessHoursBadge />
-        </motion.div>
 
         <div className="mt-10 w-full">
           <TrustStrip disableMotion={disableMotion} />
