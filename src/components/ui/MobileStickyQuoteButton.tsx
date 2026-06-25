@@ -15,7 +15,16 @@ import { EASE_OUT_EXPO, PRESS_HOVER, PRESS_TAP, SPRING_PRESS } from "@/lib/motio
  * to ask the user to "Get Quote" while they're literally on the quote
  * page) and on /get-quote/result (they've already submitted).
  *
- * Stacks above the WhatsAppButton (which sits at bottom-6 right-6).
+ * Anchored to the bottom-LEFT on mobile, on purpose:
+ *   - The WhatsAppButton owns bottom-right (bottom-6 right-6, h-14).
+ *   - Inline CTAs ("Calculate Your Subsidy", "Get a free quote", form
+ *     submit buttons) are centered or right-aligned in their containers
+ *     and on a 390px viewport their tap-targets reach within ~6px of the
+ *     right edge — that's why a right-anchored sticky pill clipped them
+ *     ("Calculate Your S…idy"). Anchoring left keeps the pill in the
+ *     thumb zone without ever sitting on top of inline page CTAs.
+ *   - bottom uses env(safe-area-inset-bottom) so the pill clears the
+ *     iOS home indicator on notched devices.
  */
 export function MobileStickyQuoteButton() {
   const pathname = usePathname();
@@ -38,9 +47,11 @@ export function MobileStickyQuoteButton() {
               transition: { duration: 0.4, ease: EASE_OUT_EXPO, delay: 0.6 },
             }
       }
-      // Above the WhatsApp bubble (which sits at bottom-6 right-6, h-14).
       // Mobile only — desktop has the header CTA always visible.
-      className="lg:hidden fixed bottom-24 right-6 z-40"
+      // Bottom-LEFT so it never sits on inline page CTAs that hug the right
+      // edge on a 390px viewport. WhatsApp keeps bottom-right.
+      style={{ bottom: "calc(env(safe-area-inset-bottom, 0px) + 1.5rem)" }}
+      className="lg:hidden fixed left-4 z-40"
     >
       <motion.div
         whileHover={reduceMotion ? undefined : PRESS_HOVER}
