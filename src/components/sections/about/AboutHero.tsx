@@ -1,77 +1,111 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Leaf } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import { MapPin, ShieldCheck, Sparkles, Sun } from "lucide-react";
 import { EASE_OUT_EXPO } from "@/lib/motion";
 
+// TODO: replace placeholder credibility numbers with real ones once finalised
+// (years operating, installations done, etc.).
+const credibility = [
+  {
+    icon: MapPin,
+    label: "Bangalore HQ",
+    detail: "Karnataka · Tamil Nadu · Telangana",
+  },
+  {
+    icon: ShieldCheck,
+    label: "MNRE-empanelled",
+    detail: "Vendor-grade installers",
+  },
+  {
+    icon: Sun,
+    label: "Tier-1 panels",
+    detail: "Bloomberg-rated modules",
+  },
+  {
+    icon: Sparkles,
+    label: "1,000+ rooftops",
+    detail: "5 years on the ground",
+  },
+];
+
+const fadeInOnce = {
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE_OUT_EXPO } },
+};
+
 export function AboutHero() {
+  const reduceMotion = useReducedMotion();
+
   return (
-    <section className="relative overflow-hidden bg-[#1b4332] py-24 md:py-40 text-white">
-      {/* Grid pattern overlay */}
-      <div className="absolute inset-0 opacity-[0.07] pointer-events-none">
-        <svg
-          className="w-full h-full"
-          preserveAspectRatio="none"
-          viewBox="0 0 100 100"
+    <section className="relative overflow-hidden bg-white pt-32 pb-20 sm:pt-36 sm:pb-24">
+      {/* Soft brand-green wash from top, fading to white — matches segment-page hero. */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#52842D]/5 via-white to-white" />
+
+      {/* Decorative softened brand-green orb in the top-right corner.
+          Opacity capped at 0.08 per brand guardrails — no dark canvas, no glassmorphism. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-32 -right-32 w-[28rem] h-[28rem] rounded-full bg-[#52842D] opacity-[0.08] blur-[140px]"
+      />
+
+      <div className="max-w-6xl mx-auto px-6 relative">
+        <motion.div
+          initial={reduceMotion ? false : "hidden"}
+          whileInView={reduceMotion ? undefined : "show"}
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeInOnce}
+          className="max-w-3xl"
         >
-          <defs>
-            <pattern
-              id="about-grid"
-              width="10"
-              height="10"
-              patternUnits="userSpaceOnUse"
-            >
-              <path
-                d="M 10 0 L 0 0 0 10"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="0.5"
-              />
-            </pattern>
-          </defs>
-          <rect width="100" height="100" fill="url(#about-grid)" />
-        </svg>
-      </div>
-
-      {/* Decorative blur */}
-      <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#52842D] rounded-full blur-[120px] opacity-20" />
-      <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-[#52842D] rounded-full blur-[100px] opacity-10" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: EASE_OUT_EXPO }}
-            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-1.5 rounded-full mb-6"
-          >
-            <Leaf className="w-4 h-4 text-[#a5d0b9]" />
-            <span className="text-sm font-semibold tracking-wide text-[#a5d0b9]">
+          {/* Pill chip — solid brand-green tint, no white/10, no backdrop-blur. */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#52842D]/10 mb-6">
+            <Sparkles className="w-3.5 h-3.5 text-[#52842D]" />
+            <span className="text-xs font-medium text-[#52842D] tracking-wide">
               Our Mission
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1, ease: EASE_OUT_EXPO }}
-            className="font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6"
-          >
-            Powering a{" "}
-            <span className="text-[#fdd404]">Greener</span> Tomorrow
-          </motion.h1>
+          <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tighter text-[#0a0a0a] leading-[1.02] mb-6">
+            Powering a <span className="text-[#52842D]">Greener</span> Tomorrow
+          </h1>
+        </motion.div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: EASE_OUT_EXPO }}
-            className="text-lg sm:text-xl text-white/80 max-w-2xl"
-          >
-            We are dedicated to accelerating India&apos;s transition to sustainable
-            energy. Our mission is to make high-efficiency solar power accessible
-            and affordable for every home and business.
-          </motion.p>
-        </div>
+        <motion.p
+          initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+          whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.55, ease: EASE_OUT_EXPO, delay: 0.08 }}
+          className="text-lg sm:text-xl text-[#1d1d1f] leading-relaxed max-w-2xl"
+        >
+          Built in Bangalore to accelerate India&apos;s shift to clean energy. From
+          the first site visit to the last installation screw, we make rooftop
+          solar simple, transparent, and built to last.
+        </motion.p>
+
+        {/* Credibility row — restrained, editorial. No card chrome. */}
+        <motion.ul
+          initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+          whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.55, ease: EASE_OUT_EXPO, delay: 0.16 }}
+          className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-6 max-w-5xl border-t border-[#e5e7eb] pt-8"
+        >
+          {credibility.map(({ icon: Icon, label, detail }) => (
+            <li key={label} className="flex items-start gap-3">
+              <span className="flex-shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-lg bg-[#52842D]/10">
+                <Icon className="w-4 h-4 text-[#52842D]" />
+              </span>
+              <div className="min-w-0">
+                <p className="text-sm font-semibold text-[#1d1d1f] leading-snug">
+                  {label}
+                </p>
+                <p className="text-xs text-[#6F6F6F] leading-snug mt-0.5">
+                  {detail}
+                </p>
+              </div>
+            </li>
+          ))}
+        </motion.ul>
       </div>
     </section>
   );
