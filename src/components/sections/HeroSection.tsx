@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import {
-  ArrowRight,
   BadgeCheck,
   Building2,
   Factory,
@@ -102,14 +101,10 @@ function AudiencePicker({ disableMotion }: { disableMotion: boolean }) {
                 </span>
                 <span className="flex min-w-0 flex-1 flex-col text-left sm:mt-1 sm:items-center sm:text-center">
                   <span
-                    className="flex items-center gap-1.5 text-[15px] font-semibold sm:text-base"
+                    className="text-[15px] font-semibold sm:text-base"
                     style={{ color: "#1d1d1f" }}
                   >
                     {label}
-                    <ArrowRight
-                      className="h-3.5 w-3.5 -translate-x-0.5 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100"
-                      style={{ color: "#52842D" }}
-                    />
                   </span>
                   <span
                     className="mt-0.5 text-xs sm:text-[13px]"
