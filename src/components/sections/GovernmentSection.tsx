@@ -1,10 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Calculator, Landmark, ChevronDown } from "lucide-react";
+import { Calculator } from "lucide-react";
 import { TextReveal, MaskReveal } from "@/components/animations/TextReveal";
 import { EASE_OUT_EXPO, PRESS_HOVER, PRESS_TAP, SPRING_PRESS } from "@/lib/motion";
 
@@ -35,159 +34,8 @@ const subsidyStats = [
   },
 ];
 
-// TODO: verify slabs against current MNRE/state schemes
-const STATE_SUBSIDY: Record<string, { central: number; state: number }> = {
-  // South
-  "Karnataka": { central: 78000, state: 0 },
-  "Tamil Nadu": { central: 78000, state: 0 },
-  "Telangana": { central: 78000, state: 0 },
-  "Kerala": { central: 78000, state: 10000 },
-  "Andhra Pradesh": { central: 78000, state: 0 },
-  // West
-  "Maharashtra": { central: 78000, state: 6000 }, // ₹6k/kW state top-up
-  "Gujarat": { central: 78000, state: 40000 }, // strong state policy
-  "Goa": { central: 78000, state: 0 },
-  // North
-  "Delhi": { central: 78000, state: 30000 }, // strong NCT policy
-  "Uttar Pradesh": { central: 78000, state: 30000 },
-  "Rajasthan": { central: 78000, state: 0 },
-  "Punjab": { central: 78000, state: 0 },
-  "Haryana": { central: 78000, state: 0 },
-  "Himachal Pradesh": { central: 78000, state: 0 },
-  "Uttarakhand": { central: 78000, state: 0 },
-  "Jammu & Kashmir": { central: 78000, state: 0 },
-  // Central
-  "Madhya Pradesh": { central: 78000, state: 0 },
-  "Chhattisgarh": { central: 78000, state: 0 },
-  // East
-  "West Bengal": { central: 78000, state: 0 },
-  "Bihar": { central: 78000, state: 0 },
-  "Jharkhand": { central: 78000, state: 0 },
-  "Odisha": { central: 78000, state: 0 },
-  // Northeast
-  "Assam": { central: 78000, state: 0 },
-  "Arunachal Pradesh": { central: 78000, state: 0 },
-  "Manipur": { central: 78000, state: 0 },
-  "Meghalaya": { central: 78000, state: 0 },
-  "Mizoram": { central: 78000, state: 0 },
-  "Nagaland": { central: 78000, state: 0 },
-  "Sikkim": { central: 78000, state: 0 },
-  "Tripura": { central: 78000, state: 0 },
-  // UTs
-  "Chandigarh": { central: 78000, state: 0 },
-  "Puducherry": { central: 78000, state: 0 },
-  "Andaman & Nicobar Islands": { central: 78000, state: 0 },
-  "Dadra & Nagar Haveli and Daman & Diu": { central: 78000, state: 0 },
-  "Lakshadweep": { central: 78000, state: 0 },
-  "Ladakh": { central: 78000, state: 0 },
-};
-
-const STATES = Object.keys(STATE_SUBSIDY).sort((a, b) => a.localeCompare(b));
-
-const inrFormatter = new Intl.NumberFormat("en-IN", {
-  style: "currency",
-  currency: "INR",
-  maximumFractionDigits: 0,
-});
-
-function formatINR(n: number): string {
-  return inrFormatter.format(n);
-}
-
 // TODO: replace with brand logos (with permission)
 const EMI_BANKS = ["Bajaj Finserv", "HDFC", "ICICI", "SBI", "Axis", "Kotak"];
-
-function StateSubsidyLookup() {
-  const [stateName, setStateName] = useState("Karnataka");
-  const reduceMotion = useReducedMotion();
-
-  const { central, state } = STATE_SUBSIDY[stateName];
-  const total = central + state;
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, ease: EASE_OUT_EXPO }}
-      className="mb-12 md:mb-14"
-    >
-      <div className="mx-auto max-w-3xl rounded-2xl bg-white border border-[#e5e7eb] shadow-lg shadow-black/5 p-6 md:p-8">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-5">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#52842D]/10 text-[#52842D]">
-              <Landmark className="h-4 w-4" aria-hidden="true" />
-            </span>
-            <div>
-              <h3 className="font-display text-xl md:text-2xl font-semibold text-[#1d1d1f] tracking-tight">
-                See subsidy in your state
-              </h3>
-              <p className="text-sm text-[#6F6F6F]">
-                Pick a state to estimate your combined subsidy.
-              </p>
-            </div>
-          </div>
-
-          <div className="relative w-full md:w-64">
-            <label htmlFor="state-subsidy-select" className="sr-only">
-              Select your state
-            </label>
-            <select
-              id="state-subsidy-select"
-              value={stateName}
-              onChange={(e) => setStateName(e.target.value)}
-              className="w-full appearance-none rounded-full border border-[#e5e7eb] bg-white px-4 py-2.5 pr-10 text-sm font-medium text-[#1d1d1f] shadow-sm transition-colors hover:border-[#52842D]/40 focus:border-[#52842D] focus:outline-none focus:ring-2 focus:ring-[#52842D]/20"
-            >
-              {STATES.map((s) => (
-                <option key={s} value={s}>
-                  {s}
-                </option>
-              ))}
-            </select>
-            <ChevronDown
-              className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#6F6F6F]"
-              aria-hidden="true"
-            />
-          </div>
-        </div>
-
-        <div
-          aria-live="polite"
-          className="rounded-xl bg-[#f5f5f7] px-5 py-4 text-[#1d1d1f]"
-        >
-          <p className="text-sm md:text-base leading-relaxed">
-            <span className="font-semibold text-[#1d1d1f]">{stateName}</span>
-            {" — Central PM Surya Ghar "}
-            <span className="font-semibold">{formatINR(central)}</span>
-            {" + State top-up "}
-            <span className="font-semibold">{formatINR(state)}</span>
-            {" = "}
-            <AnimatePresence mode="popLayout" initial={false}>
-              <motion.span
-                key={total}
-                initial={
-                  reduceMotion ? { opacity: 1 } : { opacity: 0, y: -6 }
-                }
-                animate={{ opacity: 1, y: 0 }}
-                exit={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 6 }}
-                transition={{ duration: 0.3, ease: EASE_OUT_EXPO }}
-                className="inline-block font-bold text-[#52842D]"
-              >
-                {formatINR(total)} total
-              </motion.span>
-            </AnimatePresence>
-            {" for a 3kW system."}
-          </p>
-        </div>
-
-        <p className="mt-3 text-xs text-[#6F6F6F]">
-          These are typical slabs — actual subsidy depends on system size and
-          current MNRE schedule.
-        </p>
-      </div>
-    </motion.div>
-  );
-}
 
 function EMIStrip() {
   const pills = ["From ₹3,500/month", "No-cost EMI", "Instant approval"];
@@ -292,8 +140,6 @@ export function GovernmentSection() {
               your solar investment cost by up to 40%.
             </p>
           </MaskReveal>
-
-          <StateSubsidyLookup />
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
