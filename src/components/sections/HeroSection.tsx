@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
@@ -23,7 +22,6 @@ import {
   PRESS_HOVER,
   PRESS_TAP,
 } from "@/lib/motion";
-
 const HEADLINE_WORDS = ["Power", "Your", "Future", "With", "Solar", "Energy"];
 
 type AudienceTile = {
@@ -93,7 +91,7 @@ function AudiencePicker({ disableMotion }: { disableMotion: boolean }) {
             >
               <Link
                 href={href}
-                className="group flex items-center gap-3 rounded-2xl border bg-white p-4 text-left transition-colors hover:border-[#52842D] sm:flex-col sm:items-start sm:gap-2 sm:p-5"
+                className="group flex items-center gap-3 rounded-2xl border bg-white p-4 transition-colors hover:border-[#52842D] sm:flex-col sm:items-center sm:gap-2 sm:p-5 sm:text-center"
                 style={{ borderColor: "#e5e7eb" }}
               >
                 <span
@@ -102,7 +100,7 @@ function AudiencePicker({ disableMotion }: { disableMotion: boolean }) {
                 >
                   <Icon className="h-5 w-5" />
                 </span>
-                <span className="flex min-w-0 flex-1 flex-col sm:mt-1">
+                <span className="flex min-w-0 flex-1 flex-col text-left sm:mt-1 sm:items-center sm:text-center">
                   <span
                     className="flex items-center gap-1.5 text-[15px] font-semibold sm:text-base"
                     style={{ color: "#1d1d1f" }}
@@ -164,114 +162,6 @@ function TrustStrip({ disableMotion }: { disableMotion: boolean }) {
         </li>
       ))}
     </motion.ul>
-  );
-}
-
-function formatINR(n: number): string {
-  // Indian digit grouping (lakhs): 1,23,456
-  if (!Number.isFinite(n)) return "0";
-  return Math.round(n).toLocaleString("en-IN");
-}
-
-function SavingsWidget({ disableMotion }: { disableMotion: boolean }) {
-  const [bill, setBill] = useState<string>("5000");
-  const billNum = useMemo(() => {
-    const parsed = parseInt(bill.replace(/[^0-9]/g, ""), 10);
-    return Number.isFinite(parsed) ? parsed : 0;
-  }, [bill]);
-  // TODO: tie to real calc — back-of-envelope 70% of monthly bill.
-  const savings = Math.max(0, Math.round(billNum * 0.7));
-  const initial = disableMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 };
-
-  const queryBill = billNum > 0 ? billNum : 5000;
-  return (
-    <motion.div
-      initial={initial}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.4 }}
-      transition={{ duration: 0.65, delay: 1.45, ease: EASE_OUT_EXPO }}
-      className="w-full max-w-[340px] rounded-2xl border p-5 text-left shadow-sm sm:max-w-[360px]"
-      style={{
-        backgroundColor: "#ffffff",
-        borderColor: "#e5e7eb",
-      }}
-    >
-      <div
-        className="text-xs font-medium uppercase tracking-[0.08em]"
-        style={{ color: "#6F6F6F" }}
-      >
-        See your monthly savings
-      </div>
-
-      <label
-        htmlFor="hero-bill"
-        className="mt-3 block text-xs"
-        style={{ color: "#6F6F6F" }}
-      >
-        Monthly electricity bill
-      </label>
-      <div
-        className="mt-1.5 flex items-center gap-2 rounded-xl border px-3 py-2.5 transition-colors focus-within:border-[#52842D] focus-within:ring-2 focus-within:ring-[#52842D]/20"
-        style={{ borderColor: "#e5e7eb", backgroundColor: "#ffffff" }}
-      >
-        <span
-          className="text-base font-semibold"
-          style={{ color: "#1d1d1f" }}
-          aria-hidden
-        >
-          ₹
-        </span>
-        <input
-          id="hero-bill"
-          type="text"
-          inputMode="numeric"
-          pattern="[0-9]*"
-          value={bill}
-          onChange={(e) => setBill(e.target.value.replace(/[^0-9]/g, ""))}
-          placeholder="5000"
-          aria-label="Monthly electricity bill in rupees"
-          className="w-full bg-transparent text-base font-medium outline-none placeholder:text-[#9CA3AF]"
-          style={{ color: "#1d1d1f" }}
-        />
-      </div>
-
-      <div
-        className="mt-4 rounded-xl px-3 py-2.5"
-        style={{ backgroundColor: "#f5f5f7" }}
-      >
-        <div className="text-xs" style={{ color: "#6F6F6F" }}>
-          You save approx
-        </div>
-        <div
-          className="mt-0.5 text-xl font-semibold tabular-nums"
-          style={{ color: "#1d1d1f" }}
-        >
-          ₹{formatINR(savings)}
-          <span
-            className="ml-1 text-sm font-normal"
-            style={{ color: "#6F6F6F" }}
-          >
-            / month
-          </span>
-        </div>
-      </div>
-
-      <motion.div
-        whileHover={PRESS_HOVER}
-        whileTap={PRESS_TAP}
-        transition={SPRING_PRESS}
-        className="mt-4"
-      >
-        <Link
-          href={`/get-quote?bill=${queryBill}`}
-          className="inline-flex w-full items-center justify-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#446F26]"
-          style={{ backgroundColor: "#52842D" }}
-        >
-          Get my exact savings
-          <ArrowRight className="h-4 w-4" />
-        </Link>
-      </motion.div>
-    </motion.div>
   );
 }
 
@@ -372,10 +262,6 @@ export function HeroSection() {
 
         <div className="mt-10 w-full">
           <TrustStrip disableMotion={disableMotion} />
-        </div>
-
-        <div className="mt-10 flex w-full justify-center">
-          <SavingsWidget disableMotion={disableMotion} />
         </div>
       </div>
     </section>
