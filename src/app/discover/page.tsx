@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Zap, Users, Sun, BookOpen } from "lucide-react";
+import { ArrowRight, Zap, Users, Sun, BookOpen, Landmark, Wallet, Map } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
@@ -44,6 +44,42 @@ const articles = [
     iconBg: "bg-[#52842D]/10",
     tag: "Coming Soon",
     readTime: "6 min read",
+    comingSoon: true,
+  },
+  {
+    slug: "pm-surya-ghar-disbursement",
+    title: "How PM Surya Ghar Disbursement Works",
+    description:
+      "Understand the 4-step bank-credit timeline, what paperwork is needed, and how to track your subsidy after installation.",
+    icon: Landmark,
+    iconColor: "text-[#52842D]",
+    iconBg: "bg-[#52842D]/10",
+    tag: "Govt Subsidy",
+    readTime: "6 min read",
+    comingSoon: true,
+  },
+  {
+    slug: "solar-emi-india-2026",
+    title: "Solar EMI in India: A 2026 Guide",
+    description:
+      "Compare no-cost EMI offers from Bajaj Finserv, HDFC, and ICICI — and learn which works best for rooftop solar.",
+    icon: Wallet,
+    iconColor: "text-amber-500",
+    iconBg: "bg-amber-500/10",
+    tag: "Financing",
+    readTime: "5 min read",
+    comingSoon: true,
+  },
+  {
+    slug: "net-metering-state-by-state",
+    title: "Net Metering State-by-State",
+    description:
+      "How net metering rules differ across Karnataka, Maharashtra, Gujarat, and Delhi — and what it means for your savings.",
+    icon: Map,
+    iconColor: "text-blue-500",
+    iconBg: "bg-blue-500/10",
+    tag: "Regulations",
+    readTime: "8 min read",
     comingSoon: true,
   },
 ];
