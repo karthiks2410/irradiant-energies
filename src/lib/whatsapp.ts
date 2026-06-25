@@ -1,5 +1,6 @@
 import { COMPANY } from "./constants";
-import { formatINR, type QuoteRecommendation } from "./solar-calc";
+import { formatINR } from "./format";
+import { type QuoteRecommendation } from "./solar-calc";
 import type { QuoteContact } from "./quote-schema";
 
 /**

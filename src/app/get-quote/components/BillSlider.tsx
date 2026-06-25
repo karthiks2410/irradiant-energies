@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { formatINR } from "@/lib/format";
 import { TickerNumber } from "./TickerNumber";
 
 export type BillMode = "rupees" | "kwh";
@@ -67,7 +68,7 @@ export function BillSlider({
             value={value}
             format={(n) =>
               mode === "rupees"
-                ? `₹${Math.round(n).toLocaleString("en-IN")}`
+                ? formatINR(Math.round(n))
                 : `${Math.round(n).toLocaleString("en-IN")}`
             }
             className="font-display text-4xl text-[#1d1d1f] tabular-nums"
@@ -97,10 +98,10 @@ export function BillSlider({
             className="mt-2 flex justify-between text-[11px] text-[#6F6F6F]"
           >
             <span>
-              {mode === "rupees" ? `₹${MIN_RUPEES}` : `${MIN_KWH}`}
+              {mode === "rupees" ? formatINR(MIN_RUPEES) : `${MIN_KWH}`}
             </span>
             <span>
-              {mode === "rupees" ? `₹${MAX_RUPEES.toLocaleString("en-IN")}` : `${MAX_KWH.toLocaleString("en-IN")}`}
+              {mode === "rupees" ? formatINR(MAX_RUPEES) : `${MAX_KWH.toLocaleString("en-IN")}`}
             </span>
           </motion.div>
         </div>

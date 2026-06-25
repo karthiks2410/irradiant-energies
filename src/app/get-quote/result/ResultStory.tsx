@@ -14,8 +14,8 @@ import {
 } from "lucide-react";
 import { COMPANY } from "@/lib/constants";
 import { EASE_OUT_EXPO, PRESS_HOVER, PRESS_TAP, SPRING_PRESS } from "@/lib/motion";
+import { formatINR } from "@/lib/format";
 import {
-  formatINR,
   projectionCurve,
   type QuoteRecommendation,
 } from "@/lib/solar-calc";

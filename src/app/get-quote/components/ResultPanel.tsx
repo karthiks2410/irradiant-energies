@@ -3,7 +3,8 @@
 import { motion, type Variants } from "framer-motion";
 import { Sun, IndianRupee, CalendarDays, Hourglass, TreePine, BadgeIndianRupee } from "lucide-react";
 import { EASE_OUT_EXPO } from "@/lib/motion";
-import { formatINR, type QuoteRecommendation } from "@/lib/solar-calc";
+import { formatINR } from "@/lib/format";
+import { type QuoteRecommendation } from "@/lib/solar-calc";
 import { TickerNumber } from "./TickerNumber";
 
 const containerVariants: Variants = {

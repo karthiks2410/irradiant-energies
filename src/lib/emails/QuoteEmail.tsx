@@ -11,7 +11,8 @@ import {
   Text,
 } from "@react-email/components";
 import * as React from "react";
-import { formatINR, type QuoteRecommendation } from "@/lib/solar-calc";
+import { formatINR } from "@/lib/format";
+import { type QuoteRecommendation } from "@/lib/solar-calc";
 
 type QuoteEmailProps = {
   customerName: string;

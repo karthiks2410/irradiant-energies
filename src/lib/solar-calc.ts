@@ -215,18 +215,6 @@ export function projectionCurve(yearOneMonthlyBenefit: number, years: number = P
   return points;
 }
 
-/**
- * Indian-format currency formatter. ₹1,23,456.
- */
-export function formatINR(rupees: number, options: { compact?: boolean } = {}): string {
-  if (options.compact) {
-    if (rupees >= 10000000) return `₹${(rupees / 10000000).toFixed(2)} Cr`;
-    if (rupees >= 100000) return `₹${(rupees / 100000).toFixed(1)} L`;
-    if (rupees >= 1000) return `₹${(rupees / 1000).toFixed(1)}k`;
-  }
-  return new Intl.NumberFormat("en-IN", {
-    style: "currency",
-    currency: "INR",
-    maximumFractionDigits: 0,
-  }).format(rupees);
-}
+// formatINR has moved to `src/lib/format.ts`. Re-exported here so existing
+// `import { formatINR } from "@/lib/solar-calc"` callers keep working.
+export { formatINR } from "./format";
