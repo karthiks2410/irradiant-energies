@@ -64,7 +64,7 @@ const TRUST_PILLS: TrustPill[] = [
 
 function AudiencePicker({ disableMotion }: { disableMotion: boolean }) {
   return (
-    <div className="grid w-full max-w-3xl grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
+    <div className="mx-auto grid w-full max-w-3xl grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
       {AUDIENCE_TILES.map(({ label, href, Icon, sub }, i) => {
         const tileInitial = disableMotion
           ? { opacity: 1, y: 0 }
