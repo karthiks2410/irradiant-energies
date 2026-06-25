@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { WhatsAppInlineButton } from "@/components/ui/WhatsAppInlineButton";
+import { BusinessHoursBadge } from "@/components/ui/BusinessHoursBadge";
 import { COMPANY } from "@/lib/constants";
 import { SPRING_PRESS, PRESS_HOVER, PRESS_TAP } from "@/lib/motion";
 
@@ -242,6 +244,13 @@ export function CTASection() {
                       <ArrowRight className="ml-2 w-5 h-5" />
                     </Button>
                   </motion.div>
+                  {/* WhatsApp parity: Indian buyers convert on WhatsApp.
+                      Block-size pairs with the full-width submit above; the
+                      business-hours line below sets response-time expectations. */}
+                  <div className="mt-3">
+                    <WhatsAppInlineButton size="block" message="Hi! I'd like a free solar quote for my home." />
+                  </div>
+                  <BusinessHoursBadge className="mt-3 w-full justify-center" />
                 </motion.div>
                 <p className="text-xs text-[#86868b] text-center">
                   By submitting, you agree to our privacy policy.
