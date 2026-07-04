@@ -33,7 +33,7 @@ const team: TeamMember[] = [
   {
     name: "Keerthi Raj K C",
     shortName: "Keerthi",
-    role: "Founder & CEO",
+    role: "Founder",
     description: "Driving the transition to renewable energy.",
     bio: "With a Masters in Renewable Systems, Keerthi has spearheaded over 20+ large-scale solar installations across Germany and India.",
     // TODO: replace with real headshot when team photos are ready
@@ -42,7 +42,7 @@ const team: TeamMember[] = [
   {
     name: "Maruthi S Pavan",
     shortName: "Pavan",
-    role: "Head of Engineering",
+    role: "Co-Founder",
     description: "Lead architect of our high-efficiency solar grid systems.",
     bio: "Pavan is a civil engineering veteran with deep expertise designing distributed solar systems for the Indian grid.",
     // TODO: replace with real headshot when team photos are ready
